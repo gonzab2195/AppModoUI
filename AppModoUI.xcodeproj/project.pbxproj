@@ -9,21 +9,39 @@
 /* Begin PBXBuildFile section */
 		BFD6105C2B500FEC004E3953 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD6105B2B500FEC004E3953 /* AppDelegate.swift */; };
 		BFD6105E2B500FEC004E3953 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD6105D2B500FEC004E3953 /* SceneDelegate.swift */; };
-		BFD610602B500FEC004E3953 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD6105F2B500FEC004E3953 /* ViewController.swift */; };
 		BFD610632B500FEC004E3953 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BFD610612B500FEC004E3953 /* Main.storyboard */; };
 		BFD610652B500FF0004E3953 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BFD610642B500FF0004E3953 /* Assets.xcassets */; };
 		BFD610682B500FF0004E3953 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BFD610662B500FF0004E3953 /* LaunchScreen.storyboard */; };
+		BFD610722B50102D004E3953 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD610712B50102D004E3953 /* LoginVC.swift */; };
+		BFD610742B501C42004E3953 /* PasswordDots.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD610732B501C42004E3953 /* PasswordDots.swift */; };
+		BFD610792B5036A3004E3953 /* LoginMainActionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD610782B5036A3004E3953 /* LoginMainActionButton.swift */; };
+		BFD6107C2B50378A004E3953 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD6107B2B50378A004E3953 /* Colors.swift */; };
+		BFD6107E2B5038D2004E3953 /* KeypadButtonContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD6107D2B5038D2004E3953 /* KeypadButtonContainer.swift */; };
+		BFD610812B50397A004E3953 /* KeypadButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD610802B50397A004E3953 /* KeypadButton.swift */; };
+		BFD610832B503BE7004E3953 /* KeypadComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD610822B503BE7004E3953 /* KeypadComponent.swift */; };
+		BFD610852B505B15004E3953 /* Keypad.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD610842B505B15004E3953 /* Keypad.swift */; };
+		BFD610882B5069E7004E3953 /* NumberPad.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD610872B5069E7004E3953 /* NumberPad.swift */; };
+		BFD6108A2B50AEB9004E3953 /* PasswordEyeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD610892B50AEB9004E3953 /* PasswordEyeButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		BFD610582B500FEC004E3953 /* AppModoUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AppModoUI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BFD6105B2B500FEC004E3953 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BFD6105D2B500FEC004E3953 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		BFD6105F2B500FEC004E3953 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		BFD610622B500FEC004E3953 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		BFD610642B500FF0004E3953 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BFD610672B500FF0004E3953 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BFD610692B500FF0004E3953 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BFD610712B50102D004E3953 /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
+		BFD610732B501C42004E3953 /* PasswordDots.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordDots.swift; sourceTree = "<group>"; };
+		BFD610782B5036A3004E3953 /* LoginMainActionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginMainActionButton.swift; sourceTree = "<group>"; };
+		BFD6107B2B50378A004E3953 /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		BFD6107D2B5038D2004E3953 /* KeypadButtonContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeypadButtonContainer.swift; sourceTree = "<group>"; };
+		BFD610802B50397A004E3953 /* KeypadButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeypadButton.swift; sourceTree = "<group>"; };
+		BFD610822B503BE7004E3953 /* KeypadComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeypadComponent.swift; sourceTree = "<group>"; };
+		BFD610842B505B15004E3953 /* Keypad.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Keypad.swift; sourceTree = "<group>"; };
+		BFD610872B5069E7004E3953 /* NumberPad.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberPad.swift; sourceTree = "<group>"; };
+		BFD610892B50AEB9004E3953 /* PasswordEyeButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordEyeButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,15 +74,72 @@
 		BFD6105A2B500FEC004E3953 /* AppModoUI */ = {
 			isa = PBXGroup;
 			children = (
+				BFD610862B505B22004E3953 /* model */,
+				BFD6107A2B50376D004E3953 /* Constants */,
+				BFD610752B50364F004E3953 /* Components */,
+				BFD610712B50102D004E3953 /* LoginVC.swift */,
 				BFD6105B2B500FEC004E3953 /* AppDelegate.swift */,
 				BFD6105D2B500FEC004E3953 /* SceneDelegate.swift */,
-				BFD6105F2B500FEC004E3953 /* ViewController.swift */,
 				BFD610612B500FEC004E3953 /* Main.storyboard */,
 				BFD610642B500FF0004E3953 /* Assets.xcassets */,
 				BFD610662B500FF0004E3953 /* LaunchScreen.storyboard */,
 				BFD610692B500FF0004E3953 /* Info.plist */,
 			);
 			path = AppModoUI;
+			sourceTree = "<group>";
+		};
+		BFD610752B50364F004E3953 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				BFD6107F2B503960004E3953 /* Keypad */,
+				BFD610772B50367D004E3953 /* Buttons */,
+				BFD610762B503656004E3953 /* Password */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		BFD610762B503656004E3953 /* Password */ = {
+			isa = PBXGroup;
+			children = (
+				BFD610732B501C42004E3953 /* PasswordDots.swift */,
+			);
+			path = Password;
+			sourceTree = "<group>";
+		};
+		BFD610772B50367D004E3953 /* Buttons */ = {
+			isa = PBXGroup;
+			children = (
+				BFD610802B50397A004E3953 /* KeypadButton.swift */,
+				BFD610782B5036A3004E3953 /* LoginMainActionButton.swift */,
+				BFD610892B50AEB9004E3953 /* PasswordEyeButton.swift */,
+			);
+			path = Buttons;
+			sourceTree = "<group>";
+		};
+		BFD6107A2B50376D004E3953 /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				BFD6107B2B50378A004E3953 /* Colors.swift */,
+			);
+			path = Constants;
+			sourceTree = "<group>";
+		};
+		BFD6107F2B503960004E3953 /* Keypad */ = {
+			isa = PBXGroup;
+			children = (
+				BFD6107D2B5038D2004E3953 /* KeypadButtonContainer.swift */,
+				BFD610822B503BE7004E3953 /* KeypadComponent.swift */,
+				BFD610872B5069E7004E3953 /* NumberPad.swift */,
+			);
+			path = Keypad;
+			sourceTree = "<group>";
+		};
+		BFD610862B505B22004E3953 /* model */ = {
+			isa = PBXGroup;
+			children = (
+				BFD610842B505B15004E3953 /* Keypad.swift */,
+			);
+			path = model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -138,9 +213,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BFD610602B500FEC004E3953 /* ViewController.swift in Sources */,
+				BFD6107E2B5038D2004E3953 /* KeypadButtonContainer.swift in Sources */,
 				BFD6105C2B500FEC004E3953 /* AppDelegate.swift in Sources */,
+				BFD6107C2B50378A004E3953 /* Colors.swift in Sources */,
+				BFD610852B505B15004E3953 /* Keypad.swift in Sources */,
+				BFD6108A2B50AEB9004E3953 /* PasswordEyeButton.swift in Sources */,
+				BFD610792B5036A3004E3953 /* LoginMainActionButton.swift in Sources */,
 				BFD6105E2B500FEC004E3953 /* SceneDelegate.swift in Sources */,
+				BFD610832B503BE7004E3953 /* KeypadComponent.swift in Sources */,
+				BFD610882B5069E7004E3953 /* NumberPad.swift in Sources */,
+				BFD610742B501C42004E3953 /* PasswordDots.swift in Sources */,
+				BFD610722B50102D004E3953 /* LoginVC.swift in Sources */,
+				BFD610812B50397A004E3953 /* KeypadButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -218,7 +302,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -275,7 +359,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
