@@ -72,6 +72,18 @@ class LoginVC: UIViewController {
                     password += keypad.mainText
                     passwordDots?.updatePasswordDots(password: password)
                 }
+                
+                if password.count == passwordDots!.passwordLength! {
+                    let homeStoryboard = UIStoryboard(
+                        name: StoryboardNames.HOME_STORYBOARD,
+                        bundle: nil)
+
+                    let homeVC = homeStoryboard.instantiateViewController(
+                        withIdentifier: ViewsNames.HOME_VIEW) as! HomeVC
+                    
+                    self.navigationController?.pushViewController(
+                        homeVC, animated: true)
+                }
             case .DeleteArrow:
                 password = String(password.dropLast())
                 passwordDots?.updatePasswordDots(password: password)

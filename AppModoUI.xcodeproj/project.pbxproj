@@ -23,6 +23,10 @@
 		BFD610882B5069E7004E3953 /* NumberPad.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD610872B5069E7004E3953 /* NumberPad.swift */; };
 		BFD6108A2B50AEB9004E3953 /* PasswordEyeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD610892B50AEB9004E3953 /* PasswordEyeButton.swift */; };
 		BFD6108C2B56C677004E3953 /* ObserversNames.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD6108B2B56C677004E3953 /* ObserversNames.swift */; };
+		BFD6108E2B56F79F004E3953 /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD6108D2B56F79F004E3953 /* HomeVC.swift */; };
+		BFD610902B56FD8F004E3953 /* ViewsNames.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD6108F2B56FD8F004E3953 /* ViewsNames.swift */; };
+		BFD610922B56FDEF004E3953 /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BFD610912B56FDEF004E3953 /* Home.storyboard */; };
+		BFD610962B56FFA4004E3953 /* StoryboardNames.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD610952B56FFA4004E3953 /* StoryboardNames.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +48,10 @@
 		BFD610872B5069E7004E3953 /* NumberPad.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberPad.swift; sourceTree = "<group>"; };
 		BFD610892B50AEB9004E3953 /* PasswordEyeButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordEyeButton.swift; sourceTree = "<group>"; };
 		BFD6108B2B56C677004E3953 /* ObserversNames.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObserversNames.swift; sourceTree = "<group>"; };
+		BFD6108D2B56F79F004E3953 /* HomeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVC.swift; sourceTree = "<group>"; };
+		BFD6108F2B56FD8F004E3953 /* ViewsNames.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewsNames.swift; sourceTree = "<group>"; };
+		BFD610912B56FDEF004E3953 /* Home.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
+		BFD610952B56FFA4004E3953 /* StoryboardNames.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryboardNames.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,13 +84,13 @@
 		BFD6105A2B500FEC004E3953 /* AppModoUI */ = {
 			isa = PBXGroup;
 			children = (
+				BFD610942B56FE09004E3953 /* ViewController */,
+				BFD610932B56FDF4004E3953 /* Storyboard */,
 				BFD610862B505B22004E3953 /* model */,
 				BFD6107A2B50376D004E3953 /* Constants */,
 				BFD610752B50364F004E3953 /* Components */,
-				BFD610712B50102D004E3953 /* LoginVC.swift */,
 				BFD6105B2B500FEC004E3953 /* AppDelegate.swift */,
 				BFD6105D2B500FEC004E3953 /* SceneDelegate.swift */,
-				BFD610612B500FEC004E3953 /* Main.storyboard */,
 				BFD610642B500FF0004E3953 /* Assets.xcassets */,
 				BFD610662B500FF0004E3953 /* LaunchScreen.storyboard */,
 				BFD610692B500FF0004E3953 /* Info.plist */,
@@ -123,6 +131,8 @@
 			children = (
 				BFD6107B2B50378A004E3953 /* Colors.swift */,
 				BFD6108B2B56C677004E3953 /* ObserversNames.swift */,
+				BFD6108F2B56FD8F004E3953 /* ViewsNames.swift */,
+				BFD610952B56FFA4004E3953 /* StoryboardNames.swift */,
 			);
 			path = Constants;
 			sourceTree = "<group>";
@@ -143,6 +153,24 @@
 				BFD610842B505B15004E3953 /* Keypad.swift */,
 			);
 			path = model;
+			sourceTree = "<group>";
+		};
+		BFD610932B56FDF4004E3953 /* Storyboard */ = {
+			isa = PBXGroup;
+			children = (
+				BFD610612B500FEC004E3953 /* Main.storyboard */,
+				BFD610912B56FDEF004E3953 /* Home.storyboard */,
+			);
+			path = Storyboard;
+			sourceTree = "<group>";
+		};
+		BFD610942B56FE09004E3953 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				BFD610712B50102D004E3953 /* LoginVC.swift */,
+				BFD6108D2B56F79F004E3953 /* HomeVC.swift */,
+			);
+			path = ViewController;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -206,6 +234,7 @@
 				BFD610682B500FF0004E3953 /* LaunchScreen.storyboard in Resources */,
 				BFD610652B500FF0004E3953 /* Assets.xcassets in Resources */,
 				BFD610632B500FEC004E3953 /* Main.storyboard in Resources */,
+				BFD610922B56FDEF004E3953 /* Home.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -217,7 +246,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				BFD6108C2B56C677004E3953 /* ObserversNames.swift in Sources */,
+				BFD6108E2B56F79F004E3953 /* HomeVC.swift in Sources */,
 				BFD6107E2B5038D2004E3953 /* KeypadButtonContainer.swift in Sources */,
+				BFD610902B56FD8F004E3953 /* ViewsNames.swift in Sources */,
 				BFD6105C2B500FEC004E3953 /* AppDelegate.swift in Sources */,
 				BFD6107C2B50378A004E3953 /* Colors.swift in Sources */,
 				BFD610852B505B15004E3953 /* Keypad.swift in Sources */,
@@ -227,6 +258,7 @@
 				BFD610832B503BE7004E3953 /* KeypadComponent.swift in Sources */,
 				BFD610882B5069E7004E3953 /* NumberPad.swift in Sources */,
 				BFD610742B501C42004E3953 /* PasswordDots.swift in Sources */,
+				BFD610962B56FFA4004E3953 /* StoryboardNames.swift in Sources */,
 				BFD610722B50102D004E3953 /* LoginVC.swift in Sources */,
 				BFD610812B50397A004E3953 /* KeypadButton.swift in Sources */,
 			);

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="5XW-hU-aBU">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -13,13 +13,13 @@
         <!--LoginVC-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="LoginVC" customModule="AppModoUI" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Login" id="BYZ-38-t0r" customClass="LoginVC" customModule="AppModoUI" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="xLo-i9-91j">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="24t-hg-8CI">
-                                <rect key="frame" x="164" y="159" width="65" height="65"/>
+                                <rect key="frame" x="164" y="163" width="65" height="65"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="AV" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eIP-yI-qkE">
                                         <rect key="frame" x="17.666666666666657" y="22.666666666666657" width="30" height="20"/>
@@ -40,19 +40,19 @@
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nombre Usuario" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yot-ZU-Tbc">
-                                <rect key="frame" x="90" y="239" width="213" height="21"/>
+                                <rect key="frame" x="90" y="243" width="213" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ingresá tu clave" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZJT-kH-19H">
-                                <rect key="frame" x="120" y="335" width="153" height="21"/>
+                                <rect key="frame" x="120" y="339" width="153" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view multipleTouchEnabled="YES" contentMode="center" translatesAutoresizingMaskIntoConstraints="NO" id="0Ab-Zn-UY2">
-                                <rect key="frame" x="80" y="356" width="233" height="50"/>
+                                <rect key="frame" x="80" y="360" width="233" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="6js-Aj-1LU"/>
                                 </constraints>
@@ -63,6 +63,30 @@
                                     <constraint firstAttribute="height" constant="200" id="GNZ-29-xk7"/>
                                 </constraints>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="18e-0W-A5S">
+                                <rect key="frame" x="20" y="548" width="170" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="ARB-4C-aNl"/>
+                                    <constraint firstAttribute="width" constant="170" id="D5r-dW-AcK"/>
+                                </constraints>
+                                <color key="tintColor" name="secondaryGray_3"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" title="Olvidé mi clave">
+                                    <color key="baseForegroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </buttonConfiguration>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MJ6-o0-hyX">
+                                <rect key="frame" x="203" y="548" width="170" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="170" id="vfH-yq-iXL"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="zOh-0X-LQb"/>
+                                </constraints>
+                                <color key="tintColor" name="secondaryGray_3"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" title="Cambié mi número">
+                                    <color key="baseForegroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </buttonConfiguration>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="LeK-hX-B7x"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -76,17 +100,22 @@
                             <constraint firstItem="0Ab-Zn-UY2" firstAttribute="centerX" secondItem="xLo-i9-91j" secondAttribute="centerX" id="NHQ-hl-hZg"/>
                             <constraint firstItem="ZJT-kH-19H" firstAttribute="leading" secondItem="LeK-hX-B7x" secondAttribute="leading" constant="120" id="Nme-y0-zAr"/>
                             <constraint firstItem="LeK-hX-B7x" firstAttribute="trailing" secondItem="ZJT-kH-19H" secondAttribute="trailing" constant="120" id="Phx-47-fuN"/>
+                            <constraint firstItem="LeK-hX-B7x" firstAttribute="trailing" secondItem="MJ6-o0-hyX" secondAttribute="trailing" constant="20" id="WrO-Bp-lee"/>
                             <constraint firstItem="LeK-hX-B7x" firstAttribute="trailing" secondItem="0Ab-Zn-UY2" secondAttribute="trailing" constant="80" id="XnV-rC-XSj"/>
+                            <constraint firstItem="Z8z-f8-ggg" firstAttribute="top" secondItem="18e-0W-A5S" secondAttribute="bottom" constant="20" id="YQJ-fh-gS5"/>
                             <constraint firstItem="LeK-hX-B7x" firstAttribute="trailing" secondItem="Yot-ZU-Tbc" secondAttribute="trailing" constant="90" id="a4Z-Hl-d1q"/>
                             <constraint firstItem="ZJT-kH-19H" firstAttribute="top" secondItem="Yot-ZU-Tbc" secondAttribute="bottom" constant="75" id="gRV-3P-40O"/>
                             <constraint firstItem="LeK-hX-B7x" firstAttribute="bottom" secondItem="Z8z-f8-ggg" secondAttribute="bottom" id="iDx-J4-gRn"/>
                             <constraint firstItem="Z8z-f8-ggg" firstAttribute="leading" secondItem="LeK-hX-B7x" secondAttribute="leading" constant="20" id="iKR-I9-iOZ"/>
                             <constraint firstItem="Z8z-f8-ggg" firstAttribute="centerX" secondItem="xLo-i9-91j" secondAttribute="centerX" id="iiI-AG-xjn"/>
                             <constraint firstItem="LeK-hX-B7x" firstAttribute="trailing" secondItem="Z8z-f8-ggg" secondAttribute="trailing" constant="20" id="jaa-PS-ggg"/>
-                            <constraint firstItem="24t-hg-8CI" firstAttribute="top" secondItem="LeK-hX-B7x" secondAttribute="top" constant="100" id="q3L-LW-M9O"/>
+                            <constraint firstItem="24t-hg-8CI" firstAttribute="top" secondItem="LeK-hX-B7x" secondAttribute="top" constant="60" id="q3L-LW-M9O"/>
+                            <constraint firstItem="18e-0W-A5S" firstAttribute="leading" secondItem="LeK-hX-B7x" secondAttribute="leading" constant="20" id="tpX-mQ-u8O"/>
                             <constraint firstItem="Yot-ZU-Tbc" firstAttribute="top" secondItem="24t-hg-8CI" secondAttribute="bottom" constant="15" id="xFg-BU-CpG"/>
+                            <constraint firstItem="Z8z-f8-ggg" firstAttribute="top" secondItem="MJ6-o0-hyX" secondAttribute="bottom" constant="20" id="zQa-Ky-hZt"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="9F6-5n-IiO"/>
                     <connections>
                         <outlet property="avatarCircle" destination="24t-hg-8CI" id="gNC-Hd-20H"/>
                         <outlet property="keypadView" destination="Z8z-f8-ggg" id="hj5-56-6on"/>
@@ -98,10 +127,31 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="130.53435114503816" y="-27.464788732394368"/>
+            <point key="canvasLocation" x="1982.4427480916029" y="-27.464788732394368"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="gLE-Od-UgP">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="5XW-hU-aBU" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="0LP-U4-Oqr">
+                        <rect key="frame" x="0.0" y="59" width="393" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="225-Zs-igO"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1Cp-VG-gph" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1055.7251908396945" y="-27.464788732394368"/>
         </scene>
     </scenes>
     <resources>
+        <namedColor name="secondaryGray_3">
+            <color red="0.97254901960784312" green="0.97254901960784312" blue="0.97254901960784312" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
         <namedColor name="secondaryPayment_10">
             <color red="0.86274509803921573" green="0.96078431372549022" blue="0.90588235294117647" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>
