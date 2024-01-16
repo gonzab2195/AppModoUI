@@ -12,8 +12,7 @@ class HomeVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.navigationController?.navigationBar.isHidden=true
-        self.navigationController?.interactivePopGestureRecognizer?.isEnabled = false
+        hideNavigationBar(view: self)
     }
     
 }

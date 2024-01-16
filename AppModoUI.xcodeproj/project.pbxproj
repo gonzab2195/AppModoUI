@@ -27,6 +27,7 @@
 		BFD610902B56FD8F004E3953 /* ViewsNames.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD6108F2B56FD8F004E3953 /* ViewsNames.swift */; };
 		BFD610922B56FDEF004E3953 /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BFD610912B56FDEF004E3953 /* Home.storyboard */; };
 		BFD610962B56FFA4004E3953 /* StoryboardNames.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD610952B56FFA4004E3953 /* StoryboardNames.swift */; };
+		BFD610992B5702B8004E3953 /* Navigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD610982B5702B8004E3953 /* Navigation.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,6 +53,7 @@
 		BFD6108F2B56FD8F004E3953 /* ViewsNames.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewsNames.swift; sourceTree = "<group>"; };
 		BFD610912B56FDEF004E3953 /* Home.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
 		BFD610952B56FFA4004E3953 /* StoryboardNames.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryboardNames.swift; sourceTree = "<group>"; };
+		BFD610982B5702B8004E3953 /* Navigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Navigation.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,6 +86,7 @@
 		BFD6105A2B500FEC004E3953 /* AppModoUI */ = {
 			isa = PBXGroup;
 			children = (
+				BFD610972B5702AA004E3953 /* Utilities */,
 				BFD610942B56FE09004E3953 /* ViewController */,
 				BFD610932B56FDF4004E3953 /* Storyboard */,
 				BFD610862B505B22004E3953 /* model */,
@@ -173,6 +176,14 @@
 			path = ViewController;
 			sourceTree = "<group>";
 		};
+		BFD610972B5702AA004E3953 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				BFD610982B5702B8004E3953 /* Navigation.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -253,6 +264,7 @@
 				BFD6107C2B50378A004E3953 /* Colors.swift in Sources */,
 				BFD610852B505B15004E3953 /* Keypad.swift in Sources */,
 				BFD6108A2B50AEB9004E3953 /* PasswordEyeButton.swift in Sources */,
+				BFD610992B5702B8004E3953 /* Navigation.swift in Sources */,
 				BFD610792B5036A3004E3953 /* LoginMainActionButton.swift in Sources */,
 				BFD6105E2B500FEC004E3953 /* SceneDelegate.swift in Sources */,
 				BFD610832B503BE7004E3953 /* KeypadComponent.swift in Sources */,
