@@ -7,15 +7,22 @@
 
 import UIKit
 
+protocol PasswordEyeButtonDelegate {
+    func onEyeButtonPressed()
+}
+
 class PasswordEyeButton: UIButton {
 
+    let showPasswordImage = "eye-open"
+    let hidePasswordImage = "eye-close"
+    var showingPassword = false
     var superView: UIView?
-    var leftCircle: UIView?
     
-    init(superView : UIView, leftCircle: UIView) {
+    var delegate: PasswordEyeButtonDelegate?
+        
+    init(superView : UIView) {
         super.init(frame: .zero)
         self.superView = superView
-        self.leftCircle = leftCircle
     }
     
     required init?(coder: NSCoder) {
@@ -24,11 +31,11 @@ class PasswordEyeButton: UIButton {
     
     func createEyeButton(){
         
-        guard let superView = superView, let leftCircle = self.leftCircle else {
+        guard let superView = superView else {
             return
         }
                 
-        self.setImage(UIImage(named: "eye-open"), for: .normal)
+        self.setImage(UIImage(named: showingPassword ? hidePasswordImage : showPasswordImage), for: .normal)
         
         self.isUserInteractionEnabled = true
         superView.isUserInteractionEnabled = true
@@ -42,7 +49,7 @@ class PasswordEyeButton: UIButton {
         self.translatesAutoresizingMaskIntoConstraints = false
 
         NSLayoutConstraint.activate([
-            self.leftAnchor.constraint(equalTo: leftCircle.rightAnchor, constant: 15),
+            self.leftAnchor.constraint(equalTo: superView.safeAreaLayoutGuide.leftAnchor, constant: CGFloat((36 * 5) + 25)),
             self.widthAnchor.constraint(equalToConstant: 35),
             self.heightAnchor.constraint(equalToConstant: 35),
             self.centerYAnchor.constraint(equalTo: superView.centerYAnchor)
@@ -52,12 +59,14 @@ class PasswordEyeButton: UIButton {
     
     @objc func imageTapped(sender: UIButton) {
        
-        if(sender.currentImage == UIImage(named: "eye-open")){
-            sender.setImage(UIImage(named: "eye-close"), for: .normal)
-
+        if(sender.currentImage == UIImage(named: showPasswordImage)){
+            sender.setImage(UIImage(named: hidePasswordImage), for: .normal)
+            showingPassword = true
         }else{
-            sender.setImage(UIImage(named: "eye-open"), for: .normal)
+            sender.setImage(UIImage(named: showPasswordImage), for: .normal)
+            showingPassword = false
         }
+        delegate?.onEyeButtonPressed()
     }
 
 }

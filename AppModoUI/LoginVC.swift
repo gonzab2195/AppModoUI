@@ -16,17 +16,26 @@ class LoginVC: UIViewController {
     @IBOutlet weak var passwordDotsContainer: UIView!
     @IBOutlet weak var keypadView: UIView!
     
+    private var passwordDots:PasswordDots?
+    private var password = ""
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-       
+        
         configureAvatarCircle()
         configureUserInitialsLabel()
         configureUsernameLabel()
         
-        PasswordDots(superView: passwordDotsContainer)
-            .createPasswordDots()
+        passwordDots = PasswordDots(superView: passwordDotsContainer, passwordLength: 6)
+        passwordDots!.createPasswordDots()
         
         KeypadComponent(superView: keypadView).createKeypad()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(LoginVC.keypadPressed(notification:)), name: Notification.Name(ObserversNames.KEYPAD_BUTTON_PRESSED), object: nil)
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
     }
     
     func configureAvatarCircle() {
@@ -50,5 +59,28 @@ class LoginVC: UIViewController {
         usernameLabel.textColor = .black
         usernameLabel.font = .systemFont(ofSize: 16, weight: .semibold)
         
+    }
+    
+    @objc func keypadPressed(notification: NSNotification){
+        
+        if let keypad:Keypad = notification.object as? Keypad {
+            
+            switch keypad.imageName {
+                
+            case .Empty:
+                if password.count < passwordDots!.passwordLength! {
+                    password += keypad.mainText
+                    passwordDots?.updatePasswordDots(password: password)
+                }
+            case .DeleteArrow:
+                password = String(password.dropLast())
+                passwordDots?.updatePasswordDots(password: password)
+            case .FaceId:
+                print("Face id")
+            }
+           
+        }
+        
+       
     }
 }

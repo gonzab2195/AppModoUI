@@ -22,6 +22,7 @@
 		BFD610852B505B15004E3953 /* Keypad.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD610842B505B15004E3953 /* Keypad.swift */; };
 		BFD610882B5069E7004E3953 /* NumberPad.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD610872B5069E7004E3953 /* NumberPad.swift */; };
 		BFD6108A2B50AEB9004E3953 /* PasswordEyeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD610892B50AEB9004E3953 /* PasswordEyeButton.swift */; };
+		BFD6108C2B56C677004E3953 /* ObserversNames.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD6108B2B56C677004E3953 /* ObserversNames.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +43,7 @@
 		BFD610842B505B15004E3953 /* Keypad.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Keypad.swift; sourceTree = "<group>"; };
 		BFD610872B5069E7004E3953 /* NumberPad.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberPad.swift; sourceTree = "<group>"; };
 		BFD610892B50AEB9004E3953 /* PasswordEyeButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordEyeButton.swift; sourceTree = "<group>"; };
+		BFD6108B2B56C677004E3953 /* ObserversNames.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObserversNames.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,6 +122,7 @@
 			isa = PBXGroup;
 			children = (
 				BFD6107B2B50378A004E3953 /* Colors.swift */,
+				BFD6108B2B56C677004E3953 /* ObserversNames.swift */,
 			);
 			path = Constants;
 			sourceTree = "<group>";
@@ -213,6 +216,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BFD6108C2B56C677004E3953 /* ObserversNames.swift in Sources */,
 				BFD6107E2B5038D2004E3953 /* KeypadButtonContainer.swift in Sources */,
 				BFD6105C2B500FEC004E3953 /* AppDelegate.swift in Sources */,
 				BFD6107C2B50378A004E3953 /* Colors.swift in Sources */,

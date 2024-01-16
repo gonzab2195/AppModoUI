@@ -59,7 +59,9 @@ class KeypadButton: UIButton {
     }
     
     @objc func buttonTapped(sender: UIButton) {
-        print("prueba")
+       
+        let observerName = Notification.Name(ObserversNames.KEYPAD_BUTTON_PRESSED)
+        NotificationCenter.default.post(name: observerName, object: keypad)
     }
 
     

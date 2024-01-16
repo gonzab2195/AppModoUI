@@ -7,84 +7,100 @@
 
 import UIKit
 
-class PasswordDots {
+class PasswordDots: PasswordEyeButtonDelegate {
     
-    let emptyDotColor = UIColor(named: Colors.SECONDARY_GRAY_8)
-    let circle1 = UIView()
-    let circle2 = UIView()
-    let circle3 = UIView()
-    let circle4 = UIView()
-    let circle5 = UIView()
-    let circle6 = UIView()
-    let eyeButton = UIButton()
     
+    
+    private let emptyDotColor = UIColor(named: Colors.SECONDARY_GRAY_8)
+    private let filledDotColor = UIColor(named: Colors.PAYMENT_DEFAULT)
+    private var password = ""
+    
+    let passwordLength: Int?
     let superView: UIView?
+    let eyeButton:PasswordEyeButton?
+
+    var passwordShown = false
     
-    init(superView: UIView) {
+    init(superView: UIView, passwordLength: Int) {
         self.superView = superView
+        self.passwordLength = passwordLength
+        self.eyeButton = PasswordEyeButton(superView: superView)
+
+    }
+    
+    func onEyeButtonPressed() {
+        updatePasswordDots(password: password)
     }
     
     func createPasswordDots(){
         
-        createFirstCircle()
-        
-        createOtherDots(currentCircle: circle2, leftCircle: circle1)
-        createOtherDots(currentCircle: circle3, leftCircle: circle2)
-        createOtherDots(currentCircle: circle4, leftCircle: circle3)
-        createOtherDots(currentCircle: circle5, leftCircle: circle4)
-        createOtherDots(currentCircle: circle6, leftCircle: circle5)
-        
-        guard let superView = superView else {
+        guard let superView = superView, let passwordLength = self.passwordLength else {
             return
         }
         
-        PasswordEyeButton(superView: superView, leftCircle: circle6).createEyeButton()
+        eyeButton?.delegate = self
+        
+        for i in 0..<passwordLength {
+            
+            createDot(circleNumber:i)
+            
+        }
+        
+        eyeButton!.createEyeButton()
+        
     }
     
-    private func createFirstCircle(){
+    func updatePasswordDots(password:String){
         
-        guard let superView = superView else {
+        guard let superView = superView, let _ = self.passwordLength else {
             return
         }
         
-        superView.addSubview(circle1)
+        self.password = password
         
-        circle1.translatesAutoresizingMaskIntoConstraints = false
-        circle1.backgroundColor = emptyDotColor
+        for subview in superView.subviews {
+            subview.removeFromSuperview()
+        }
+       
+        createPasswordDots()
+    }
+    
+    private func createDot(circleNumber: Int){
+        
+        guard let superView = superView, let eyeButton = self.eyeButton else {
+            return
+        }
+        
+        let circle = UILabel()
+        
+        if eyeButton.showingPassword && password.count > circleNumber {
+            let letterIndex = password.index(password.startIndex, offsetBy: circleNumber)
+            circle.text = String(password[letterIndex])
+            circle.textAlignment = .center
+            circle.backgroundColor = .clear
+        }else{
+            circle.backgroundColor = password.count > circleNumber ? filledDotColor : emptyDotColor
+            circle.layer.cornerRadius = 7
+            circle.clipsToBounds = true
+        }
+       
+        
+        superView.addSubview(circle)
+        
+        circle.translatesAutoresizingMaskIntoConstraints = false
       
         NSLayoutConstraint.activate([
-            circle1.leftAnchor.constraint(equalTo: superView.safeAreaLayoutGuide.leftAnchor, constant: 0),
-            circle1.widthAnchor.constraint(equalToConstant: 13),
-            circle1.heightAnchor.constraint(equalToConstant: 13),
-            circle1.centerYAnchor.constraint(equalTo: superView.centerYAnchor)
+            circle.leftAnchor.constraint(equalTo: superView.safeAreaLayoutGuide.leftAnchor, constant: CGFloat(circleNumber * 36)),
+            circle.widthAnchor.constraint(equalToConstant: 16),
+            circle.heightAnchor.constraint(equalToConstant: 16),
+            circle.centerYAnchor.constraint(equalTo: superView.centerYAnchor)
             
         ])
         
-        circle1.layer.cornerRadius = 6.5
-        circle1.clipsToBounds = true
+        
     }
     
-    private func createOtherDots(currentCircle: UIView, leftCircle: UIView){
-        
-        guard let superView = superView else {
-            return
-        }
-        
-        superView.addSubview(currentCircle)
-        
-        currentCircle.translatesAutoresizingMaskIntoConstraints = false
-        currentCircle.backgroundColor = emptyDotColor
-      
-        NSLayoutConstraint.activate([
-            currentCircle.leftAnchor.constraint(equalTo: leftCircle.rightAnchor, constant: 20),
-            currentCircle.widthAnchor.constraint(equalToConstant: 13),
-            currentCircle.heightAnchor.constraint(equalToConstant: 13),
-            currentCircle.centerYAnchor.constraint(equalTo: superView.centerYAnchor),
-        ])
-        
-        currentCircle.layer.cornerRadius = 6.5
-        currentCircle.clipsToBounds = true
-    }
+    
     
 
 }
