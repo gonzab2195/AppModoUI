@@ -87,6 +87,12 @@
                                     <color key="baseForegroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </buttonConfiguration>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DZx-vE-6fi">
+                                <rect key="frame" x="10" y="430" width="373" height="0.0"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" name="errorDark"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="LeK-hX-B7x"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -96,6 +102,8 @@
                             <constraint firstItem="0Ab-Zn-UY2" firstAttribute="leading" secondItem="LeK-hX-B7x" secondAttribute="leading" constant="80" id="5s6-ua-FSL"/>
                             <constraint firstItem="Yot-ZU-Tbc" firstAttribute="centerX" secondItem="xLo-i9-91j" secondAttribute="centerX" id="81c-od-4Av"/>
                             <constraint firstItem="Yot-ZU-Tbc" firstAttribute="leading" secondItem="LeK-hX-B7x" secondAttribute="leading" constant="90" id="9C4-so-0Ym"/>
+                            <constraint firstItem="LeK-hX-B7x" firstAttribute="trailing" secondItem="DZx-vE-6fi" secondAttribute="trailing" constant="10" id="Br5-c3-aC1"/>
+                            <constraint firstItem="DZx-vE-6fi" firstAttribute="centerX" secondItem="xLo-i9-91j" secondAttribute="centerX" id="HHI-Rb-web"/>
                             <constraint firstItem="ZJT-kH-19H" firstAttribute="centerX" secondItem="xLo-i9-91j" secondAttribute="centerX" id="JzH-c3-gaM"/>
                             <constraint firstItem="0Ab-Zn-UY2" firstAttribute="centerX" secondItem="xLo-i9-91j" secondAttribute="centerX" id="NHQ-hl-hZg"/>
                             <constraint firstItem="ZJT-kH-19H" firstAttribute="leading" secondItem="LeK-hX-B7x" secondAttribute="leading" constant="120" id="Nme-y0-zAr"/>
@@ -104,6 +112,8 @@
                             <constraint firstItem="LeK-hX-B7x" firstAttribute="trailing" secondItem="0Ab-Zn-UY2" secondAttribute="trailing" constant="80" id="XnV-rC-XSj"/>
                             <constraint firstItem="Z8z-f8-ggg" firstAttribute="top" secondItem="18e-0W-A5S" secondAttribute="bottom" constant="20" id="YQJ-fh-gS5"/>
                             <constraint firstItem="LeK-hX-B7x" firstAttribute="trailing" secondItem="Yot-ZU-Tbc" secondAttribute="trailing" constant="90" id="a4Z-Hl-d1q"/>
+                            <constraint firstItem="DZx-vE-6fi" firstAttribute="top" secondItem="0Ab-Zn-UY2" secondAttribute="bottom" constant="20" id="eZU-BO-e7e"/>
+                            <constraint firstItem="DZx-vE-6fi" firstAttribute="leading" secondItem="LeK-hX-B7x" secondAttribute="leading" constant="10" id="gCQ-d7-sE8"/>
                             <constraint firstItem="ZJT-kH-19H" firstAttribute="top" secondItem="Yot-ZU-Tbc" secondAttribute="bottom" constant="75" id="gRV-3P-40O"/>
                             <constraint firstItem="LeK-hX-B7x" firstAttribute="bottom" secondItem="Z8z-f8-ggg" secondAttribute="bottom" id="iDx-J4-gRn"/>
                             <constraint firstItem="Z8z-f8-ggg" firstAttribute="leading" secondItem="LeK-hX-B7x" secondAttribute="leading" constant="20" id="iKR-I9-iOZ"/>
@@ -118,6 +128,7 @@
                     <navigationItem key="navigationItem" id="9F6-5n-IiO"/>
                     <connections>
                         <outlet property="avatarCircle" destination="24t-hg-8CI" id="gNC-Hd-20H"/>
+                        <outlet property="errorLabel" destination="DZx-vE-6fi" id="VTA-TH-C2P"/>
                         <outlet property="keypadView" destination="Z8z-f8-ggg" id="hj5-56-6on"/>
                         <outlet property="passwordDotsContainer" destination="0Ab-Zn-UY2" id="A1B-m6-dwn"/>
                         <outlet property="passwordInputLabel" destination="ZJT-kH-19H" id="XSR-hu-cWl"/>
@@ -149,6 +160,9 @@
         </scene>
     </scenes>
     <resources>
+        <namedColor name="errorDark">
+            <color red="0.88627450980392153" green="0.011764705882352941" blue="0.30196078431372547" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
         <namedColor name="secondaryGray_3">
             <color red="0.97254901960784312" green="0.97254901960784312" blue="0.97254901960784312" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>

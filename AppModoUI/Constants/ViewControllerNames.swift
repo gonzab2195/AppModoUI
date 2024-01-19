@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct ViewsNames {
+struct ViewControllerNames {
     
     public static let HOME_VIEW = "Home"
 

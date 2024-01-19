@@ -15,9 +15,12 @@ class LoginVC: UIViewController {
     @IBOutlet weak var passwordInputLabel: UILabel!
     @IBOutlet weak var passwordDotsContainer: UIView!
     @IBOutlet weak var keypadView: UIView!
+    @IBOutlet weak var errorLabel: UILabel!
     
     private var passwordDots:PasswordDots?
-    private var password = ""
+    
+    var loginVM = LoginVM()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,10 +29,16 @@ class LoginVC: UIViewController {
         configureUserInitialsLabel()
         configureUsernameLabel()
         
-        passwordDots = PasswordDots(superView: passwordDotsContainer, passwordLength: 6)
+        passwordDots = PasswordDots(superView: passwordDotsContainer, passwordLength: loginVM.passwordLength)
         passwordDots!.createPasswordDots()
         
         KeypadComponent(superView: keypadView).createKeypad()
+        
+        loginVM.updatePasswordDots = { self.passwordDots?.updatePasswordDots(password: $0) }
+        loginVM.showLoginErrorLabel = { self.errorOnLogin(message: $0) }
+        loginVM.redirectToLogged = { redirectToStoryboard(currentView: self,
+                                                          storyboardID: StoryboardNames.HOME_STORYBOARD,
+                                                          viewControllerID: ViewControllerNames.HOME_VIEW) }
         
         NotificationCenter.default.addObserver(self, selector: #selector(LoginVC.keypadPressed(notification:)), name: Notification.Name(ObserversNames.KEYPAD_BUTTON_PRESSED), object: nil)
     }
@@ -47,52 +56,33 @@ class LoginVC: UIViewController {
     
     func configureUserInitialsLabel() {
         
-        userInitialsLabel.text = "GB"
+        userInitialsLabel.text = loginVM.nameInitials
         userInitialsLabel.textColor = UIColor(named: Colors.PAYMENT_DARK)
         userInitialsLabel.font = .systemFont(ofSize: 19, weight: .semibold)
-        
     }
     
     func configureUsernameLabel() {
         
-        usernameLabel.text = "Gonzalo Berro"
+        usernameLabel.text = loginVM.name
         usernameLabel.textColor = .black
         usernameLabel.font = .systemFont(ofSize: 16, weight: .semibold)
-        
+    }
+    
+    func errorOnLogin(message: String){
+        errorLabel.isHidden = false
+        errorLabel.text = message
     }
     
     @objc func keypadPressed(notification: NSNotification){
         
+        errorLabel.isHidden = true
+        
         if let keypad:Keypad = notification.object as? Keypad {
             
-            switch keypad.imageName {
-                
-            case .Empty:
-                if password.count < passwordDots!.passwordLength! {
-                    password += keypad.mainText
-                    passwordDots?.updatePasswordDots(password: password)
-                }
-                
-                if password.count == passwordDots!.passwordLength! {
-                    let homeStoryboard = UIStoryboard(
-                        name: StoryboardNames.HOME_STORYBOARD,
-                        bundle: nil)
-
-                    let homeVC = homeStoryboard.instantiateViewController(
-                        withIdentifier: ViewsNames.HOME_VIEW) as! HomeVC
-                    
-                    self.navigationController?.pushViewController(
-                        homeVC, animated: true)
-                }
-            case .DeleteArrow:
-                password = String(password.dropLast())
-                passwordDots?.updatePasswordDots(password: password)
-            case .FaceId:
-                print("Face id")
-            }
+            loginVM.handleKeyboardPressed(keypad: keypad)
            
         }
-        
-       
     }
+    
+    
 }

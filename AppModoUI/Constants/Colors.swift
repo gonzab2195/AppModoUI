@@ -14,4 +14,5 @@ struct Colors {
     public static let  SECONDARY_GRAY_3 = "secondaryGray_3"
     public static let  SECONDARY_GRAY_8 = "secondaryGray_8"
     public static let  SECONDARY_PAYMENT_10 = "secondaryPayment_10"
+    public static let  ERROR_DARK = "errorDark"
 }
