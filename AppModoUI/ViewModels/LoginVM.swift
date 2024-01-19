@@ -7,14 +7,20 @@
 
 import Foundation
 
-class LoginVM {
+protocol LoginVMProtocol {
+    var updatePasswordDots: ((String) -> Void)? { get set }
+    var showLoginErrorLabel: ((String) -> Void)? { get set }
+    var redirectToLogged: (() -> Void)? { get set }
+}
+
+class LoginVM: LoginVMProtocol {
     
     //Constants
     
      var passwordLength = 6
    
     //Delegates
-    
+    var delegates: LoginVMProtocol?
     var updatePasswordDots: ((String)->Void)?
     var showLoginErrorLabel: ((String) -> Void)?
     var redirectToLogged: (() -> Void)?
@@ -78,11 +84,9 @@ class LoginVM {
                         print(userInfo.name ?? "Error")
                         
                         redirectToLogged()
-                        
-                        /**/
                     }
                  
-                }catch{
+                }catch let error{
                     print("Fallo el login")
                 }
                     

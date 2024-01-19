@@ -9,15 +9,13 @@ import UIKit
 
 class PasswordDots: PasswordEyeButtonDelegate {
     
-    
-    
     private let emptyDotColor = UIColor(named: Colors.SECONDARY_GRAY_8)
     private let filledDotColor = UIColor(named: Colors.PAYMENT_DEFAULT)
     private var password = ""
     
     let passwordLength: Int?
     let superView: UIView?
-    let eyeButton:PasswordEyeButton?
+    let eyeButton: PasswordEyeButton?
 
     var passwordShown = false
     

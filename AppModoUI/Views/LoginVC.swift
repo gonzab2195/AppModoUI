@@ -17,7 +17,7 @@ class LoginVC: UIViewController {
     @IBOutlet weak var keypadView: UIView!
     @IBOutlet weak var errorLabel: UILabel!
     
-    private var passwordDots:PasswordDots?
+    private var passwordDots: PasswordDots?
     
     var loginVM = LoginVM()
     
