@@ -7,19 +7,12 @@
 
 import Foundation
 
-protocol LoginVMProtocol {
-    var updatePasswordDots: ((String) -> Void)? { get set }
-    var showLoginErrorLabel: ((String) -> Void)? { get set }
-    var redirectToHome: (() -> Void)? { get set }
-}
-
-class LoginVM: LoginVMProtocol {
+class LoginVM {
     
     //Constants
     var passwordLength = 6
    
     //Delegates
-    var delegates: LoginVMProtocol?
     var updatePasswordDots: ((String)->Void)?
     var showLoginErrorLabel: ((String) -> Void)?
     var redirectToHome: (() -> Void)?
