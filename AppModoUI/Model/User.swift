@@ -76,7 +76,7 @@ extension User {
     static func getUserFromKeychain() -> User?{
         do{
             let decoder = NetworkManager.createDecoder()
-            let userAsString = retrieveTokenFromKeychain(key: KeychainKeys.ME)
+            let userAsString = Keychain.retrieveKeyFromKeychain(key: KeychainKeys.ME)
             let userAsData = userAsString!.data(using: .utf8)
             
             return try decoder.decode(User.self, from: userAsData! )
