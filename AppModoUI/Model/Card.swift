@@ -9,26 +9,26 @@ import Foundation
 
 struct Card: Decodable {
     
-    let id: String?
-    let issuerName: String?
-    let favourite: Bool?
-    let expiry: String?
-    let type: String?
-    let bin: String?
-    let lastDigits: String?
-    let expired: Bool?
-    let bank: Bank?
+    let id: String
+    let issuerName: String
+    let favourite: Bool
+    let expiry: String
+    let type: String
+    let bin: String
+    let lastDigits: String
+    let expired: Bool
+    let bank: Bank
     let color: String?
-    let cardColor: String?
-    let bankLogo: String?
-    let issuerLogo: String?
-    let issuerBackgroundLogo: String?
-    let recentlyPushed: Bool?
-    let enrollmentType: String?
-    let details_available: Bool?
-    let cvvType: String?
-    let prepaid: Bool?
-    let cardArt: CardArt?
+    let cardColor: String
+    let bankLogo: String
+    let issuerLogo: String
+    let issuerBackgroundLogo: String
+    let recentlyPushed: Bool
+    let enrollmentType: String
+    let detailsAvailable: Bool
+    let cvvType: String
+    let prepaid: Bool
+    let cardArt: CardArt
     
 }
 
@@ -49,7 +49,7 @@ extension Card: Encodable {
         try container.encode(issuerBackgroundLogo, forKey: .issuerBackgroundLogo)
         try container.encode(recentlyPushed, forKey: .recentlyPushed)
         try container.encode(enrollmentType, forKey: .enrollmentType)
-        try container.encode(details_available, forKey: .details_available)
+        try container.encode(detailsAvailable, forKey: .detailsAvailable)
         try container.encode(cvvType, forKey: .cvvType)
         try container.encode(prepaid, forKey: .prepaid)
         try container.encode(cardArt, forKey: .cardArt)

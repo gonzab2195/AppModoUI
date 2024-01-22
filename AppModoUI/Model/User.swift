@@ -9,28 +9,31 @@ import Foundation
 
 struct User: Decodable {
     
-   let id: String?
-   let name: String?
-   let firstName: String?
-   let lastName: String?
-   let createdAt: String?
-   let phoneNumber: String?
-   let dni: String?
-   let accounts: [String]? // TIPAR
-   let cards: [Card]?
-   let emailValidated: Bool?
-   let email: String?
-   let gender: String?
-   let identityValidation: Bool?
-   let recieveBenefits: Bool?
-   let memberGetMembersAmount: String?
-   let memberGetMembersMaxAmount: String?
-   let memberGetMembersUrl: String?
+   let id: String
+   let name: String
+   let firstName: String
+   let lastName: String
+   let createdAt: String
+   let phoneNumber: String
+   let dni: String
+   let accounts: [Account]
+   let cards: [Card]
+   let emailValidated: Bool
+   let email: String
+   let gender: String
+   let identityValidation: Bool
+   let receiveBenefits: Bool
+   let memberGetMembersAmount: String
+   let memberGetMembersMaxAmount: String
+   let memberGetMembersUrl: String
    let suggestedBanks: [String]? // TIPAR
    let suggestedBanksByCards: [SuggestedBanksByCards]?
    let licensePlates: [String]? // TIPAR
    let image: String?
-    
+
+   static func emptyUser() -> User{
+        return User(id: "", name: "", firstName: "", lastName: "", createdAt: "", phoneNumber: "", dni: "", accounts: [], cards: [], emailValidated: false, email: "", gender: "", identityValidation: false, receiveBenefits: false, memberGetMembersAmount: "", memberGetMembersMaxAmount: "", memberGetMembersUrl: "", suggestedBanks: [], suggestedBanksByCards: [], licensePlates: [], image: "")
+    }
 }
 
 extension User: Encodable {
@@ -49,7 +52,7 @@ extension User: Encodable {
         try container.encode(email, forKey: .email)
         try container.encode(gender, forKey: .gender)
         try container.encode(identityValidation, forKey: .identityValidation)
-        try container.encode(recieveBenefits, forKey: .recieveBenefits)
+        try container.encode(receiveBenefits, forKey: .receiveBenefits)
         try container.encode(memberGetMembersAmount, forKey: .memberGetMembersAmount)
         try container.encode(memberGetMembersMaxAmount, forKey: .memberGetMembersMaxAmount)
         try container.encode(memberGetMembersUrl, forKey: .memberGetMembersUrl)
@@ -61,13 +64,8 @@ extension User: Encodable {
 }
 
 extension User {
+    
     func userInitials() -> String {
-        
-        guard let name = self.name else {
-            print("erroror")
-            return ""
-        }
-        
         let words = name.components(separatedBy: " ")
         let firstLetters = words.map { $0.prefix(1) }
         return firstLetters.joined()
@@ -77,11 +75,15 @@ extension User {
         do{
             let decoder = NetworkManager.createDecoder()
             let userAsString = Keychain.retrieveKeyFromKeychain(key: KeychainKeys.ME)
-            let userAsData = userAsString!.data(using: .utf8)
             
-            return try decoder.decode(User.self, from: userAsData! )
+            guard let userAsData = userAsString!.data(using: .utf8) else {
+                return self.emptyUser()
+            }
+            let userDecoded = try decoder.decode(User.self, from: userAsData)
+            
+            return userDecoded
         } catch {
-            return nil
+            return self.emptyUser()
         }
     }
 }

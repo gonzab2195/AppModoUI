@@ -52,8 +52,7 @@ class NetworkManager {
         
         if httpStatus != 200 {
             let decodedError: ErrorResponse = try decoder.decode(ErrorResponse.self, from: data)
-                            
-            throw NSError(domain: "Error on Response", code: httpStatus, userInfo: [NSLocalizedDescriptionKey: decodedError.errors.first?.message ?? ""])
+            throw NSError(domain: "Error on Response", code: httpStatus, userInfo: [NSLocalizedDescriptionKey: decodedError.errors.first?.message ?? "No Message"])
         }
         
     }

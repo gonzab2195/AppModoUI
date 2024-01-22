@@ -14,6 +14,7 @@
 		BF7BFA1E2B5D5692002F3802 /* HorizontalCarrousel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7BFA1D2B5D5692002F3802 /* HorizontalCarrousel.swift */; };
 		BF7BFA212B5D5D4B002F3802 /* HomeAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7BFA202B5D5D4B002F3802 /* HomeAccount.swift */; };
 		BF7BFA232B5D99F0002F3802 /* AccountsCarrousel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7BFA222B5D99F0002F3802 /* AccountsCarrousel.swift */; };
+		BF7BFA272B5EC62F002F3802 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7BFA262B5EC62F002F3802 /* Account.swift */; };
 		BFD6105C2B500FEC004E3953 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD6105B2B500FEC004E3953 /* AppDelegate.swift */; };
 		BFD6105E2B500FEC004E3953 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD6105D2B500FEC004E3953 /* SceneDelegate.swift */; };
 		BFD610632B500FEC004E3953 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BFD610612B500FEC004E3953 /* Main.storyboard */; };
@@ -60,6 +61,7 @@
 		BF7BFA1D2B5D5692002F3802 /* HorizontalCarrousel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalCarrousel.swift; sourceTree = "<group>"; };
 		BF7BFA202B5D5D4B002F3802 /* HomeAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeAccount.swift; sourceTree = "<group>"; };
 		BF7BFA222B5D99F0002F3802 /* AccountsCarrousel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountsCarrousel.swift; sourceTree = "<group>"; };
+		BF7BFA262B5EC62F002F3802 /* Account.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
 		BFD610582B500FEC004E3953 /* AppModoUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AppModoUI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BFD6105B2B500FEC004E3953 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BFD6105D2B500FEC004E3953 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -283,6 +285,7 @@
 				BFD610B32B59939A004E3953 /* ErrorMessage.swift */,
 				BFD610B52B5993D7004E3953 /* ErrorResponse.swift */,
 				BFD610B72B59A382004E3953 /* Bank.swift */,
+				BF7BFA262B5EC62F002F3802 /* Account.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -383,6 +386,7 @@
 				BFD6108E2B56F79F004E3953 /* HomeVC.swift in Sources */,
 				BFD6107E2B5038D2004E3953 /* KeypadButtonContainer.swift in Sources */,
 				BF7BFA1E2B5D5692002F3802 /* HorizontalCarrousel.swift in Sources */,
+				BF7BFA272B5EC62F002F3802 /* Account.swift in Sources */,
 				BF7BFA232B5D99F0002F3802 /* AccountsCarrousel.swift in Sources */,
 				BFD610C12B59F1CA004E3953 /* LoginPresenter.swift in Sources */,
 				BFD610AC2B59743F004E3953 /* User.swift in Sources */,

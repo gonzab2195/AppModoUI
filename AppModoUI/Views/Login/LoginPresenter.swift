@@ -7,15 +7,19 @@
 
 import Foundation
 
+protocol LoginPresenterProtocol {
+    func updatePasswordDots(password: String) -> Void
+    func showLoginErrorLabel(message: String) -> Void
+    func redirectToHome() -> Void
+}
+
 class LoginPresenter {
     
     //Constants
     var passwordLength = 6
    
     //Delegates
-    var updatePasswordDots: ((String)->Void)?
-    var showLoginErrorLabel: ((String) -> Void)?
-    var redirectToHome: (() -> Void)?
+    var delegate: LoginPresenterProtocol?
     
     //Variables
     
@@ -38,9 +42,8 @@ class LoginPresenter {
     
     @MainActor
     private func handleAddNumber(keypad: Keypad){
-       
-        guard let updatePasswordDots = self.updatePasswordDots,
-              let redirectToHome = self.redirectToHome else{
+        
+        guard let delegate = self.delegate else {
             return
         }
                 
@@ -50,7 +53,7 @@ class LoginPresenter {
         
         if password.count < passwordLength {
             password += keypad.mainText
-            updatePasswordDots(password)
+            delegate.updatePasswordDots(password: password)
         }else{
             return
         }
@@ -63,12 +66,11 @@ class LoginPresenter {
                     
                     try await UserAPI.shared.getUserInfo()
                     
-                    redirectToHome()
+                    delegate.redirectToHome()
                     
                 }catch let error{
                     
                     handleErrorLabel(message: "Error interno")
-                    
                     print(error)
                 }
                     
@@ -79,27 +81,26 @@ class LoginPresenter {
     
     private func handleRemoveNumber(){
         
-        guard let updatePasswordDots = self.updatePasswordDots else{
+        guard let delegate = self.delegate else {
             return
         }
         
         password = String(password.dropLast())
         
-        updatePasswordDots(password)
+        delegate.updatePasswordDots(password: password)
         
     }
     
     private func handleErrorLabel(message: String){
         
-        guard let updatePasswordDots = self.updatePasswordDots,
-              let showLoginErrorLabel = self.showLoginErrorLabel else{
+        guard let delegate = self.delegate else {
             return
         }
         
         loginTriesLeft -= 1
         password = ""
         
-        updatePasswordDots(password)
-        showLoginErrorLabel(message)
+        delegate.updatePasswordDots(password: password)
+        delegate.showLoginErrorLabel(message: message)
     }
 }

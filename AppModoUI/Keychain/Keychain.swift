@@ -48,11 +48,11 @@ class Keychain : KeychainProtocol {
     
     static func retrieveKeyFromKeychain(key: String) -> String? {
         let keychainQuery: [String: Any] = [
-            kSecClass as String: kSecClassGenericPassword,
-            kSecAttrAccount as String: key,
-            kSecReturnData as String: kCFBooleanTrue!,
-            kSecMatchLimit as String: kSecMatchLimitOne
-        ]
+                   kSecClass as String: kSecClassGenericPassword,
+                   kSecAttrAccount as String: key,
+                   kSecReturnData as String: kCFBooleanTrue!,
+                   kSecMatchLimit as String: kSecMatchLimitOne
+               ]
         
         var dataTypeRef: AnyObject?
         let status = SecItemCopyMatching(keychainQuery as CFDictionary, &dataTypeRef)
@@ -67,18 +67,18 @@ class Keychain : KeychainProtocol {
     }
     
     static func deleteKeyFromKeychain(keyToDelete: String) {
-        let query: [String: Any] = [
-            kSecClass as String: kSecClassGenericPassword,
-            kSecAttrService as String: "yourServiceName",
-            kSecAttrAccount as String: keyToDelete
-        ]
+        let keychainQuery = [
+                kSecClass as String: kSecClassGenericPassword as String,
+                kSecAttrAccount as String: keyToDelete] as [String : Any]
         
-        let status = SecItemDelete(query as CFDictionary)
-        
-        if status == errSecSuccess {
-            print("Property deleted successfully.")
+        var result: AnyObject?
+        let keyExistsStatus = SecItemCopyMatching(keychainQuery as CFDictionary, &result)
+
+        if keyExistsStatus == errSecSuccess {
+            
+            let status = SecItemDelete(keychainQuery as CFDictionary)
         } else {
-            print("Error deleting property: \(status)")
+            print("No existe la key a eliminar \(keyToDelete)")
         }
     }
 }

@@ -9,7 +9,7 @@ import UIKit
 
 final class LoginAPI: NetworkManagerProtocol {
     
-    static let baseURL = "https://api.qa.playdigital.com.ar/v2/auth/"
+    static let baseURL = "https://api.preprod.playdigital.com.ar/v2/auth/"
     private let loginURL = baseURL + "login"
     
     static let shared = LoginAPI()

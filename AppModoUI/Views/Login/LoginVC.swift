@@ -7,7 +7,7 @@
 
 import UIKit
 
-class LoginVC: ViewManager {
+class LoginVC: ViewManager, LoginPresenterProtocol {
     
     @IBOutlet weak var avatarCircle: UIView!
     @IBOutlet weak var userInitialsLabel: UILabel!
@@ -33,12 +33,14 @@ class LoginVC: ViewManager {
         
         KeypadComponent(superView: keypadView).createKeypad()
         
-        loginVM.updatePasswordDots = { self.passwordDots?.updatePasswordDots(password: $0) }
+        loginVM.delegate = self
+        
+        /*loginVM.updatePasswordDots = { self.passwordDots?.updatePasswordDots(password: $0) }
         loginVM.showLoginErrorLabel = { self.errorOnLogin(message: $0) }
         loginVM.redirectToHome = { Navigation.redirectToStoryboard(currentView: self,
                                                         storyboardID: StoryboardNames.HOME_STORYBOARD,
-                                                        viewControllerID: ViewControllerNames.HOME_VIEW) }
-        loginVM.redirectToHome!()
+                                                        viewControllerID: ViewControllerNames.HOME_VIEW) }*/
+        //loginVM.redirectToHome!()
         NotificationCenter.default.addObserver(self, selector: #selector(LoginVC.keypadPressed(notification:)), name: Notification.Name(ObserversNames.KEYPAD_BUTTON_PRESSED), object: nil)
     }
     
@@ -70,6 +72,20 @@ class LoginVC: ViewManager {
     func errorOnLogin(message: String){
         errorLabel.isHidden = false
         errorLabel.text = message
+    }
+    
+    func updatePasswordDots(password: String) {
+        self.passwordDots?.updatePasswordDots(password: password)
+    }
+    
+    func showLoginErrorLabel(message: String){
+        self.errorOnLogin(message: message)
+    }
+    
+    func redirectToHome(){
+        Navigation.redirectToStoryboard(currentView: self,
+                                        storyboardID: StoryboardNames.HOME_STORYBOARD,
+                                        viewControllerID: ViewControllerNames.HOME_VIEW)
     }
     
     @objc func keypadPressed(notification: NSNotification){

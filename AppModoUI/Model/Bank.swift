@@ -9,12 +9,11 @@ import Foundation
 
 struct Bank: Decodable {
     
-   let id: String?
-   let name: String?
-   let imageUrl: String?
+    let id: String
+    let name: String
+    let imageUrl: String
     
 }
-
 
 extension Bank: Encodable {
     func encode(to encoder: Encoder) throws {
