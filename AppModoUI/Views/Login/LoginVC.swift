@@ -18,7 +18,7 @@ class LoginVC: ViewManager {
     @IBOutlet weak var errorLabel: UILabel!
     
     private var passwordDots: PasswordDots?
-    private var loginVM = LoginVM()
+    private var loginVM = LoginPresenter()
     
     override func viewDidLoad() {
         super.viewDidLoad()

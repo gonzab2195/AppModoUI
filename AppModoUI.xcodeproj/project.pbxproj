@@ -48,7 +48,7 @@
 		BFD610B42B59939A004E3953 /* ErrorMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD610B32B59939A004E3953 /* ErrorMessage.swift */; };
 		BFD610B62B5993D7004E3953 /* ErrorResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD610B52B5993D7004E3953 /* ErrorResponse.swift */; };
 		BFD610B82B59A382004E3953 /* Bank.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD610B72B59A382004E3953 /* Bank.swift */; };
-		BFD610C12B59F1CA004E3953 /* LoginVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD610C02B59F1CA004E3953 /* LoginVM.swift */; };
+		BFD610C12B59F1CA004E3953 /* LoginPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD610C02B59F1CA004E3953 /* LoginPresenter.swift */; };
 		BFD610C32B5AB990004E3953 /* ViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD610C22B5AB990004E3953 /* ViewManager.swift */; };
 /* End PBXBuildFile section */
 
@@ -96,7 +96,7 @@
 		BFD610B32B59939A004E3953 /* ErrorMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorMessage.swift; sourceTree = "<group>"; };
 		BFD610B52B5993D7004E3953 /* ErrorResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorResponse.swift; sourceTree = "<group>"; };
 		BFD610B72B59A382004E3953 /* Bank.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bank.swift; sourceTree = "<group>"; };
-		BFD610C02B59F1CA004E3953 /* LoginVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVM.swift; sourceTree = "<group>"; };
+		BFD610C02B59F1CA004E3953 /* LoginPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPresenter.swift; sourceTree = "<group>"; };
 		BFD610C22B5AB990004E3953 /* ViewManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -141,7 +141,7 @@
 		BF7BFA242B5E9C20002F3802 /* Login */ = {
 			isa = PBXGroup;
 			children = (
-				BFD610C02B59F1CA004E3953 /* LoginVM.swift */,
+				BFD610C02B59F1CA004E3953 /* LoginPresenter.swift */,
 				BFD610712B50102D004E3953 /* LoginVC.swift */,
 			);
 			path = Login;
@@ -384,7 +384,7 @@
 				BFD6107E2B5038D2004E3953 /* KeypadButtonContainer.swift in Sources */,
 				BF7BFA1E2B5D5692002F3802 /* HorizontalCarrousel.swift in Sources */,
 				BF7BFA232B5D99F0002F3802 /* AccountsCarrousel.swift in Sources */,
-				BFD610C12B59F1CA004E3953 /* LoginVM.swift in Sources */,
+				BFD610C12B59F1CA004E3953 /* LoginPresenter.swift in Sources */,
 				BFD610AC2B59743F004E3953 /* User.swift in Sources */,
 				BFD610A82B59714B004E3953 /* UserAPI.swift in Sources */,
 				BFD610902B56FD8F004E3953 /* ViewControllerNames.swift in Sources */,

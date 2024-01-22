@@ -7,7 +7,7 @@
 
 import Foundation
 
-class LoginVM {
+class LoginPresenter {
     
     //Constants
     var passwordLength = 6
