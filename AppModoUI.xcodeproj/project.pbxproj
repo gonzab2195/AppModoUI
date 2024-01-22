@@ -15,6 +15,7 @@
 		BF7BFA212B5D5D4B002F3802 /* HomeAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7BFA202B5D5D4B002F3802 /* HomeAccount.swift */; };
 		BF7BFA232B5D99F0002F3802 /* AccountsCarrousel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7BFA222B5D99F0002F3802 /* AccountsCarrousel.swift */; };
 		BF7BFA272B5EC62F002F3802 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7BFA262B5EC62F002F3802 /* Account.swift */; };
+		BF7BFA292B5ED247002F3802 /* LoginRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7BFA282B5ED247002F3802 /* LoginRouter.swift */; };
 		BFD6105C2B500FEC004E3953 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD6105B2B500FEC004E3953 /* AppDelegate.swift */; };
 		BFD6105E2B500FEC004E3953 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD6105D2B500FEC004E3953 /* SceneDelegate.swift */; };
 		BFD610632B500FEC004E3953 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BFD610612B500FEC004E3953 /* Main.storyboard */; };
@@ -62,6 +63,7 @@
 		BF7BFA202B5D5D4B002F3802 /* HomeAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeAccount.swift; sourceTree = "<group>"; };
 		BF7BFA222B5D99F0002F3802 /* AccountsCarrousel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountsCarrousel.swift; sourceTree = "<group>"; };
 		BF7BFA262B5EC62F002F3802 /* Account.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
+		BF7BFA282B5ED247002F3802 /* LoginRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginRouter.swift; sourceTree = "<group>"; };
 		BFD610582B500FEC004E3953 /* AppModoUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AppModoUI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BFD6105B2B500FEC004E3953 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BFD6105D2B500FEC004E3953 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -145,6 +147,7 @@
 			children = (
 				BFD610C02B59F1CA004E3953 /* LoginPresenter.swift */,
 				BFD610712B50102D004E3953 /* LoginVC.swift */,
+				BF7BFA282B5ED247002F3802 /* LoginRouter.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -397,6 +400,7 @@
 				BF7BFA192B5C4F6D002F3802 /* UserImageCircle.swift in Sources */,
 				BFD610B22B598B74004E3953 /* SuggestedBanksByCards.swift in Sources */,
 				BFD610852B505B15004E3953 /* Keypad.swift in Sources */,
+				BF7BFA292B5ED247002F3802 /* LoginRouter.swift in Sources */,
 				BFD610B02B598B3C004E3953 /* CardArt.swift in Sources */,
 				BFD610A62B597035004E3953 /* KeychainKeys.swift in Sources */,
 				BFD6108A2B50AEB9004E3953 /* PasswordEyeButton.swift in Sources */,

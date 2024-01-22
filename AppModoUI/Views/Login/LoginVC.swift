@@ -9,6 +9,9 @@ import UIKit
 
 class LoginVC: ViewManager, LoginPresenterProtocol {
     
+    //Presenter
+    private var loginVM: LoginPresenter?
+    
     @IBOutlet weak var avatarCircle: UIView!
     @IBOutlet weak var userInitialsLabel: UILabel!
     @IBOutlet weak var usernameLabel: UILabel!
@@ -18,35 +21,26 @@ class LoginVC: ViewManager, LoginPresenterProtocol {
     @IBOutlet weak var errorLabel: UILabel!
     
     private var passwordDots: PasswordDots?
-    private var loginVM = LoginPresenter()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         Navigation.hideNavigationBar(view: self)
         
+        loginVM = LoginPresenter(view: self)
+        
         configureAvatarCircle()
         configureUserInitialsLabel()
         configureUsernameLabel()
+        configurePassword()
+        configureKeypad()
         
-        passwordDots = PasswordDots(superView: passwordDotsContainer, passwordLength: loginVM.passwordLength)
-        passwordDots!.createPasswordDots()
-        
-        KeypadComponent(superView: keypadView).createKeypad()
-        
-        loginVM.delegate = self
-        
-        /*loginVM.updatePasswordDots = { self.passwordDots?.updatePasswordDots(password: $0) }
-        loginVM.showLoginErrorLabel = { self.errorOnLogin(message: $0) }
-        loginVM.redirectToHome = { Navigation.redirectToStoryboard(currentView: self,
-                                                        storyboardID: StoryboardNames.HOME_STORYBOARD,
-                                                        viewControllerID: ViewControllerNames.HOME_VIEW) }*/
-        //loginVM.redirectToHome!()
-        NotificationCenter.default.addObserver(self, selector: #selector(LoginVC.keypadPressed(notification:)), name: Notification.Name(ObserversNames.KEYPAD_BUTTON_PRESSED), object: nil)
     }
     
     deinit {
         NotificationCenter.default.removeObserver(self)
     }
+    
+    //UI
     
     func configureAvatarCircle() {
         
@@ -57,22 +51,35 @@ class LoginVC: ViewManager, LoginPresenterProtocol {
     
     func configureUserInitialsLabel() {
         
-        userInitialsLabel.text = loginVM.nameInitials
+        userInitialsLabel.text = loginVM!.nameInitials
         userInitialsLabel.textColor = UIColor(named: Colors.PAYMENT_DARK)
         userInitialsLabel.font = .systemFont(ofSize: 19, weight: .semibold)
     }
     
     func configureUsernameLabel() {
         
-        usernameLabel.text = loginVM.name
+        usernameLabel.text = loginVM!.name
         usernameLabel.textColor = .black
         usernameLabel.font = .systemFont(ofSize: 16, weight: .semibold)
+    }
+    
+    func configurePassword(){
+        passwordDots = PasswordDots(superView: passwordDotsContainer, passwordLength: loginVM!.passwordLength)
+        passwordDots!.createPasswordDots()
+    }
+    
+    func configureKeypad(){
+        KeypadComponent(superView: keypadView).createKeypad()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(LoginVC.keypadPressed(notification:)), name: Notification.Name(ObserversNames.KEYPAD_BUTTON_PRESSED), object: nil)
     }
     
     func errorOnLogin(message: String){
         errorLabel.isHidden = false
         errorLabel.text = message
     }
+    
+    //Functions
     
     func updatePasswordDots(password: String) {
         self.passwordDots?.updatePasswordDots(password: password)
@@ -82,19 +89,13 @@ class LoginVC: ViewManager, LoginPresenterProtocol {
         self.errorOnLogin(message: message)
     }
     
-    func redirectToHome(){
-        Navigation.redirectToStoryboard(currentView: self,
-                                        storyboardID: StoryboardNames.HOME_STORYBOARD,
-                                        viewControllerID: ViewControllerNames.HOME_VIEW)
-    }
-    
     @objc func keypadPressed(notification: NSNotification){
         
         errorLabel.isHidden = true
         
         if let keypad:Keypad = notification.object as? Keypad {
             
-            loginVM.handleKeyboardPressed(keypad: keypad)
+            loginVM!.handleKeyboardPressed(keypad: keypad)
            
         }
     }
