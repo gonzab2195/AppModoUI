@@ -93,7 +93,15 @@ class HomeVC: ViewManager {
     
     func configureAccountsCarrousel(){
         
-        let accountsCarrousel = AccountsCarrousel()
+        var carrouselElements: [UIView] = []
+        
+        for account in user.accounts {
+            
+            carrouselElements.append(HomeAccount(account: account))
+            
+        }
+        
+        let accountsCarrousel = AccountsCarrousel(carrouselElements: carrouselElements)
         scrollViewContent.addSubview(accountsCarrousel)
         
         NSLayoutConstraint.activate([

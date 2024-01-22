@@ -9,8 +9,11 @@ import UIKit
 
 class HomeAccount: UIView {
     
-    init(){
+    var account: Account?
+    
+    init(account: Account){
         super.init(frame: .zero)
+        self.account = account
         configure()
     }
     
@@ -20,6 +23,10 @@ class HomeAccount: UIView {
     
     func configure() {
         
+        guard let account = self.account else {
+            return
+        }
+        
         self.translatesAutoresizingMaskIntoConstraints = false
         self.backgroundColor = UIColor(named: Colors.SECONDARY_GRAY_3)
         self.layer.cornerRadius = 25
@@ -27,34 +34,33 @@ class HomeAccount: UIView {
         self.layer.borderWidth = 1
         
         //Bank
-        let bankLogo = UIImageView()
-        bankLogo.image = UIImage(named: "galicia")
-        bankLogo.contentMode = .scaleAspectFit
-        bankLogo.translatesAutoresizingMaskIntoConstraints = false
+        let bankLogoImageView = UIImageView()
+        bankLogoImageView.imageFrom(url: URL(string: account.bank.imageUrl)!)
+        bankLogoImageView.contentMode = .scaleAspectFit
+        bankLogoImageView.translatesAutoresizingMaskIntoConstraints = false
         
-        
-        self.addSubview(bankLogo)
+        self.addSubview(bankLogoImageView)
         
         NSLayoutConstraint.activate([
-            bankLogo.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20),
-            bankLogo.topAnchor.constraint(equalTo: self.topAnchor, constant: 20),
-            bankLogo.widthAnchor.constraint(equalToConstant: 25),
-            bankLogo.heightAnchor.constraint(equalToConstant: 25)
+            bankLogoImageView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20),
+            bankLogoImageView.topAnchor.constraint(equalTo: self.topAnchor, constant: 20),
+            bankLogoImageView.widthAnchor.constraint(equalToConstant: 30),
+            bankLogoImageView.heightAnchor.constraint(equalToConstant: 30)
         ])
-        bankLogo.layer.cornerRadius = 12.5
-        bankLogo.layer.masksToBounds = true
+        bankLogoImageView.layer.cornerRadius = 12.5
+        bankLogoImageView.layer.masksToBounds = true
         
         let bankName = UILabel()
-        bankName.text = "Galicia"
+        bankName.text = account.bank.name
         bankName.font = .systemFont(ofSize: 15, weight: .semibold)
         bankName.translatesAutoresizingMaskIntoConstraints = false
         
         self.addSubview(bankName)
         
         NSLayoutConstraint.activate([
-            bankName.leadingAnchor.constraint(equalTo: bankLogo.trailingAnchor, constant: 10),
-            bankName.topAnchor.constraint(equalTo: self.topAnchor, constant: 23),
-            bankName.widthAnchor.constraint(equalToConstant: 50),
+            bankName.leadingAnchor.constraint(equalTo: bankLogoImageView.trailingAnchor, constant: 5),
+            bankName.topAnchor.constraint(equalTo: self.topAnchor, constant: 26),
+            bankName.widthAnchor.constraint(equalToConstant: 100),
         ])
         
         //Amount
@@ -81,13 +87,13 @@ class HomeAccount: UIView {
         self.addSubview(decimalsAmount)
         
         NSLayoutConstraint.activate([
-            roundedAmount.topAnchor.constraint(equalTo: bankLogo.topAnchor, constant: 40),
+            roundedAmount.topAnchor.constraint(equalTo: bankLogoImageView.topAnchor, constant: 40),
             roundedAmount.leadingAnchor.constraint(equalTo: currency.trailingAnchor, constant: 3),
             
             currency.topAnchor.constraint(equalTo: roundedAmount.topAnchor, constant: 2),
             currency.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20),
             
-            decimalsAmount.topAnchor.constraint(equalTo: bankLogo.topAnchor, constant: 40),
+            decimalsAmount.topAnchor.constraint(equalTo: bankLogoImageView.topAnchor, constant: 40),
             decimalsAmount.leadingAnchor.constraint(equalTo: roundedAmount.trailingAnchor),
             decimalsAmount.bottomAnchor.constraint(equalTo: roundedAmount.bottomAnchor, constant: 5)
         ])
@@ -95,7 +101,7 @@ class HomeAccount: UIView {
         let accountInfo = UILabel()
         
         accountInfo.font = .systemFont(ofSize: 13, weight: .regular)
-        accountInfo.text = "CA ∙ 8294"
+        accountInfo.text = "\(account.type == "SAVINGS" ? "CA" : "CC") ∙ \(account.lastDigits)"
         accountInfo.translatesAutoresizingMaskIntoConstraints = false
         
         self.addSubview(accountInfo)

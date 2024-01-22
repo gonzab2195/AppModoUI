@@ -9,7 +9,7 @@ import UIKit
 
 struct Navigation {
  
-    static func hideNavigationBar(view : UIViewController){
+    static func hideNavigationBar(view : ViewManager){
         view.navigationController?.navigationBar.isHidden=true
         view.navigationController?.interactivePopGestureRecognizer?.isEnabled = false
     }
@@ -28,6 +28,10 @@ struct Navigation {
                     homeVC, animated: true)
             
         }
+    }
+    
+    static func redirectToViewController(fromView: ViewManager, toView: ViewManager){
+        fromView.navigationController?.pushViewController(toView, animated: true)
     }
     
 }

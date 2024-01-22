@@ -9,8 +9,11 @@ import UIKit
 
 class AccountsCarrousel: UIView {
     
-    init(){
+    var carrouselElements: [UIView]?
+    
+    init(carrouselElements: [UIView]){
         super.init(frame: .zero)
+        self.carrouselElements = carrouselElements
         configure()
     }
     
@@ -46,20 +49,14 @@ class AccountsCarrousel: UIView {
     
     func configureCarrousel() {
         
-        let elementsArray = [
-            HomeAccount(),
-            HomeAccount(),
-            HomeAccount(),
-            HomeAccount(),
-            HomeAccount(),
-            HomeAccount(),
-            HomeAccount(),
-        ]
+        guard let carrouselElements = self.carrouselElements else {
+            return
+        }
         
         let carrouselContainer = HorizontalCarrousel(elementsWidth: 250,
                                                      spaceBetween: 10,
                                                      initialPadding: 20,
-                                                     elementsArray: elementsArray)
+                                                     elementsArray: carrouselElements)
         
         self.addSubview(carrouselContainer)
         
