@@ -10,6 +10,6 @@ import Foundation
 struct ViewControllerNames {
     
     public static let HOME_VIEW = "Home"
-
+    public static let LOGIN_VIEW = "Login"
     
 }

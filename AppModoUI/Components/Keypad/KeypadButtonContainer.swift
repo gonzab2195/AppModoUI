@@ -7,21 +7,18 @@
 
 import UIKit
 
-class KeypadButtonContainer: UIView {
+final class KeypadButtonContainer: UIView {
     
-    var x: Int?
-    var y: Int?
-    var superView: UIView?
-
+    private var keypad: Keypad?
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
     }
     
-    init(superView: UIView, x: Int, y: Int) {
+    init(keypad: Keypad) {
         super.init(frame: .zero)
-        self.x = x
-        self.y = y
-        self.superView=superView
+        self.keypad = keypad
+        configureButton()
     }
     
     required init?(coder: NSCoder) {
@@ -30,26 +27,7 @@ class KeypadButtonContainer: UIView {
     
     func configureButton(){
         
-        guard let superView = superView else {
-            return
-        }
-        
-        let buttonsSpace = Double(superView.frame.width / 3);
-        
-        superView.addSubview(self)
-        
-        let leftAnchor : CGFloat = CGFloat(buttonsSpace * Double(x ?? 0))
-        let topAnchor: CGFloat = CGFloat(50 * (y ?? 0))
-        
         self.translatesAutoresizingMaskIntoConstraints = false
-        
-        NSLayoutConstraint.activate([
-            self.widthAnchor.constraint(equalToConstant: CGFloat(buttonsSpace)),
-            self.heightAnchor.constraint(equalToConstant: 40),
-            self.topAnchor.constraint(equalTo: superView.topAnchor, constant: topAnchor),
-            self.leftAnchor.constraint(equalTo: superView.leftAnchor, constant: leftAnchor)
-        
-        ])
         
         configureButtonContent()
 
@@ -57,12 +35,21 @@ class KeypadButtonContainer: UIView {
     
     func configureButtonContent(){
         
-        guard let x = self.x, let y = self.y else {
+        guard let keypad = self.keypad else {
             return
         }
         
-        KeypadButton(superView: self, keypad: keypadArray[(y*3)+x]).configure()
+        let keypadButton = KeypadButton(keypad: keypad)
         
+        self.addSubview(keypadButton)
+        self.bringSubviewToFront(keypadButton)
+        
+        NSLayoutConstraint.activate([
+            keypadButton.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: 5),
+            keypadButton.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -5),
+            keypadButton.topAnchor.constraint(equalTo: self.topAnchor, constant: 5),
+            keypadButton.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 5)
+        ])
     }
 
 }

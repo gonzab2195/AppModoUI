@@ -7,18 +7,20 @@
 
 import Foundation
 
-class Bank: Decodable {
+struct Bank: Decodable {
     
-    var id: String?
-    var name: String?
-    var imageUrl: String?
+   let id: String?
+   let name: String?
+   let imageUrl: String?
     
-    init(){}
-    
-    init(id: String? = nil, name: String? = nil, imageUrl: String? = nil) {
-        self.id = id
-        self.name = name
-        self.imageUrl = imageUrl
+}
+
+
+extension Bank: Encodable {
+    func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(id, forKey: .id)
+        try container.encode(name, forKey: .name)
+        try container.encode(imageUrl, forKey: .imageUrl)
     }
-    
 }

@@ -10,5 +10,6 @@ import Foundation
 struct ObserversNames {
     
     public static let KEYPAD_BUTTON_PRESSED = "KEYPAD_BUTTON_PRESSED"
+    public static let LOG_OUT = "LOG_OUT"
     
 }

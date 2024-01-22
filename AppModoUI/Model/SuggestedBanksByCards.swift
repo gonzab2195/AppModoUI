@@ -7,22 +7,26 @@
 
 import Foundation
 
-class SuggestedBanksByCards: Decodable {
+struct SuggestedBanksByCards: Decodable {
     
-    let id: String?
-    let name: String?
-    let imageUrl: String?
-    let canLink: Bool?
-    let automaticCardLinking: Bool?
-    let favourite: Bool?
+    let id: String
+    let name: String
+    let imageUrl: String
+    let canLink: Bool
+    let automaticCardLinking: Bool
+    let favourite: Bool
     
-    init(id: String?, name: String?, imageUrl: String?, canLink: Bool?, automaticCardLinking: Bool?, favourite: Bool?) {
-        self.id = id
-        self.name = name
-        self.imageUrl = imageUrl
-        self.canLink = canLink
-        self.automaticCardLinking = automaticCardLinking
-        self.favourite = favourite
+}
+
+extension SuggestedBanksByCards: Encodable {
+    func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(id, forKey: .id)
+        try container.encode(name, forKey: .name)
+        try container.encode(imageUrl, forKey: .imageUrl)
+        try container.encode(canLink, forKey: .canLink)
+        try container.encode(automaticCardLinking, forKey: .automaticCardLinking)
+        try container.encode(favourite, forKey: .favourite)
+
     }
-    
 }

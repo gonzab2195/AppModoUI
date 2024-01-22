@@ -9,7 +9,6 @@ import Foundation
 
 final class UserAPI: NetworkManagerProtocol {
     
-    
     static let baseURL = "https://api.qa.playdigital.com.ar/users/"
     private let meUrl = baseURL + "me"
     
@@ -17,7 +16,7 @@ final class UserAPI: NetworkManagerProtocol {
     
     private init(){}
     
-    func getUserInfo() async throws -> User {
+    func getUserInfo() async throws {
         
         do {
             
@@ -26,7 +25,7 @@ final class UserAPI: NetworkManagerProtocol {
             var request = URLRequest(url: url)
             request.httpMethod = NetworkManager.GET
             request.addValue(MockData.FINGERPRINT, forHTTPHeaderField: NetworkManager.FINGERPRINT_HEADER)
-            request.addValue(retrieveTokenFromKeychain(key: KeychainKeys.ACCESS_TOKEN) ?? "", forHTTPHeaderField: NetworkManager.AUTHORIZATION_HEADER)
+            request.addValue(Keychain.retrieveKeyFromKeychain(key: KeychainKeys.ACCESS_TOKEN) ?? "", forHTTPHeaderField: NetworkManager.AUTHORIZATION_HEADER)
             let (data, response) = try await URLSession.shared.data(for: request)
             
             guard let httpResponse = response as? HTTPURLResponse else {
@@ -34,16 +33,13 @@ final class UserAPI: NetworkManagerProtocol {
             }
             
             try NetworkManager.responseHasError(httpStatus: httpResponse.statusCode, data: data)
-                      
-            let decoder = NetworkManager.createDecoder()
-            let decodedResponse = try decoder.decode(User.self, from: data)
-            
-            return decodedResponse
+                                  
+            Keychain.saveToKeychain(key: KeychainKeys.ME,
+                                save: String(data: data, encoding: .utf8)!)
             
         } catch let error {
             NetworkManager.isDecodingError(error: error)
-            print(error)
-            return User()
+            throw error
         }
         
     }

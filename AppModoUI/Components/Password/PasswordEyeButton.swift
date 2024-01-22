@@ -11,12 +11,12 @@ protocol PasswordEyeButtonDelegate {
     func onEyeButtonPressed()
 }
 
-class PasswordEyeButton: UIButton {
+final class PasswordEyeButton: UIButton {
 
-    let showPasswordImage = "eye-open"
-    let hidePasswordImage = "eye-close"
+    private let showPasswordImage = "eye-open"
+    private let hidePasswordImage = "eye-close"
     var showingPassword = false
-    var superView: UIView?
+    private var superView: UIView?
     
     var delegate: PasswordEyeButtonDelegate?
         

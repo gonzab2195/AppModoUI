@@ -7,55 +7,81 @@
 
 import Foundation
 
-class User: Decodable {
+struct User: Decodable {
     
-    var id: String?
-    var name: String?
-    var firstName: String?
-    var lastName: String?
-    var createdAt: String?
-    var phoneNumber: String?
-    var dni: String?
-    var accounts: [String]? // TIPAR
-    var cards: [Card]?
-    var emailValidated: Bool?
-    var email: String?
-    var gender: String?
-    var identityValidation: Bool?
-    var recieveBenefits: Bool?
-    var memberGetMembersAmount: String?
-    var memberGetMembersMaxAmount: String?
-    var memberGetMembersUrl: String?
-    var suggestedBanks: [String]? // TIPAR
-    var suggestedBanksByCards: [SuggestedBanksByCards]?
-    var licensePlates: [String]? // TIPAR
-    var image: String?
+   let id: String?
+   let name: String?
+   let firstName: String?
+   let lastName: String?
+   let createdAt: String?
+   let phoneNumber: String?
+   let dni: String?
+   let accounts: [String]? // TIPAR
+   let cards: [Card]?
+   let emailValidated: Bool?
+   let email: String?
+   let gender: String?
+   let identityValidation: Bool?
+   let recieveBenefits: Bool?
+   let memberGetMembersAmount: String?
+   let memberGetMembersMaxAmount: String?
+   let memberGetMembersUrl: String?
+   let suggestedBanks: [String]? // TIPAR
+   let suggestedBanksByCards: [SuggestedBanksByCards]?
+   let licensePlates: [String]? // TIPAR
+   let image: String?
     
-    init(){}
-    
-    init(id: String?, name: String?, firstName: String?, lastName: String?, createdAt: String?, phoneNumber: String?, dni: String?, accounts: [String]?, cards: [Card]?, emailValidated: Bool?, email: String?, gender: String?, identityValidation: Bool?, recieveBenefits: Bool?, memberGetMembersAmount: String?, memberGetMembersMaxAmount: String?, memberGetMembersUrl: String?, suggestedBanks: [String], suggestedBanksByCards: [SuggestedBanksByCards]?, licensePlates: [String], image: String?) {
-        self.id = id
-        self.name = name
-        self.firstName = firstName
-        self.lastName = lastName
-        self.createdAt = createdAt
-        self.phoneNumber = phoneNumber
-        self.dni = dni
-        self.accounts = accounts
-        self.cards = cards
-        self.emailValidated = emailValidated
-        self.email = email
-        self.gender = gender
-        self.identityValidation = identityValidation
-        self.recieveBenefits = recieveBenefits
-        self.memberGetMembersAmount = memberGetMembersAmount
-        self.memberGetMembersMaxAmount = memberGetMembersMaxAmount
-        self.memberGetMembersUrl = memberGetMembersUrl
-        self.suggestedBanks = suggestedBanks
-        self.suggestedBanksByCards = suggestedBanksByCards
-        self.licensePlates = licensePlates
-        self.image = image
+}
+
+extension User: Encodable {
+    func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(id, forKey: .id)
+        try container.encode(name, forKey: .name)
+        try container.encode(firstName, forKey: .firstName)
+        try container.encode(lastName, forKey: .lastName)
+        try container.encode(createdAt, forKey: .createdAt)
+        try container.encode(phoneNumber, forKey: .phoneNumber)
+        try container.encode(dni, forKey: .dni)
+        try container.encode(accounts, forKey: .accounts)
+        try container.encode(cards, forKey: .cards)
+        try container.encode(emailValidated, forKey: .emailValidated)
+        try container.encode(email, forKey: .email)
+        try container.encode(gender, forKey: .gender)
+        try container.encode(identityValidation, forKey: .identityValidation)
+        try container.encode(recieveBenefits, forKey: .recieveBenefits)
+        try container.encode(memberGetMembersAmount, forKey: .memberGetMembersAmount)
+        try container.encode(memberGetMembersMaxAmount, forKey: .memberGetMembersMaxAmount)
+        try container.encode(memberGetMembersUrl, forKey: .memberGetMembersUrl)
+        try container.encode(suggestedBanks, forKey: .suggestedBanks)
+        try container.encode(suggestedBanksByCards, forKey: .suggestedBanksByCards)
+        try container.encode(licensePlates, forKey: .licensePlates)
+        try container.encode(image, forKey: .image)
     }
 }
 
-
+extension User {
+    func userInitials() -> String {
+        
+        guard let name = self.name else {
+            print("erroror")
+            return ""
+        }
+        
+        let words = name.components(separatedBy: " ")
+        let firstLetters = words.map { $0.prefix(1) }
+        return firstLetters.joined()
+    }
+    
+    static func getUserFromKeychain() -> User?{
+        do{
+            let decoder = NetworkManager.createDecoder()
+            let userAsString = retrieveTokenFromKeychain(key: KeychainKeys.ME)
+            let userAsData = userAsString!.data(using: .utf8)
+            
+            return try decoder.decode(User.self, from: userAsData! )
+        } catch {
+            return nil
+        }
+    }
+}

@@ -7,10 +7,10 @@
 
 import UIKit
 
-class KeypadComponent {
+final class KeypadComponent {
     
-    let superView: UIView
-    let buttonsAmount = 12
+    private let superView: UIView
+    private let buttonsAmount = 12
     
     init(superView: UIView) {
         self.superView = superView
@@ -19,11 +19,24 @@ class KeypadComponent {
     func createKeypad(){
         var xCount = 0
         var yCount = 0
-        
+        let buttonWidth = superView.frame.width / 3
         for _ in 0..<buttonsAmount {
             
-            KeypadButtonContainer(superView: superView, x: xCount, y: yCount).configureButton()
-        
+            let buttonContainer = KeypadButtonContainer(keypad: keypadArray[(yCount*3)+xCount])
+            
+            superView.addSubview(buttonContainer)
+            
+            let leftAnchor : CGFloat = CGFloat(buttonWidth * Double(xCount))
+            let topAnchor: CGFloat = CGFloat(50 * (yCount))
+            
+            NSLayoutConstraint.activate([
+                buttonContainer.widthAnchor.constraint(equalToConstant: CGFloat(buttonWidth)),
+                buttonContainer.heightAnchor.constraint(equalToConstant: 40),
+                buttonContainer.topAnchor.constraint(equalTo: superView.topAnchor, constant: topAnchor),
+                buttonContainer.leftAnchor.constraint(equalTo: superView.leftAnchor, constant: leftAnchor)
+            
+            ])
+            
             yCount = xCount == 2 ? yCount + 1 : yCount
             xCount = xCount == 2 ? 0 : xCount + 1
             

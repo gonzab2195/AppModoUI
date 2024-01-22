@@ -7,15 +7,9 @@
 
 import Foundation
 
-class ErrorResponse: Decodable {
+struct ErrorResponse: Decodable {
     
-    var errors: [ErrorMessage]?
-    var internalCode: String?
+   let errors: [ErrorMessage]
+   let internalCode: String
     
-    init(){}
-    
-    init(errors: [ErrorMessage], internalCode: String) {
-        self.errors = errors
-        self.internalCode = internalCode
-    }
 }

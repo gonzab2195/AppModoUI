@@ -7,19 +7,18 @@
 
 import UIKit
 
-class NumberPad: UIView {
+final class NumberPad: UIView {
 
-    var superView: UIView?
-    var keypad: Keypad?
+    private var keypad: Keypad?
 
     override init(frame: CGRect) {
         super.init(frame: frame)
     }
     
-    init(superView: UIView, keypad: Keypad){
+    init(keypad: Keypad){
         super.init(frame: .zero)
-        self.superView = superView
         self.keypad = keypad
+        configureNumberPad()
     }
     
     required init?(coder: NSCoder) {
@@ -28,9 +27,12 @@ class NumberPad: UIView {
     
     func configureNumberPad(){
         
-        guard let superView = self.superView, let keypad = self.keypad else {
+        guard let keypad = self.keypad else {
             return
         }
+        
+        self.translatesAutoresizingMaskIntoConstraints = false
+        self.isUserInteractionEnabled = false
         
         let titleLabel = UILabel()
         let subTitle = UILabel()
@@ -40,15 +42,15 @@ class NumberPad: UIView {
         titleLabel.text = keypad.mainText
         titleLabel.textAlignment = .center
         
-        superView.addSubview(titleLabel)
+        self.addSubview(titleLabel)
         
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            titleLabel.centerXAnchor.constraint(equalTo: superView.centerXAnchor),
-            titleLabel.centerYAnchor.constraint(equalTo: superView.centerYAnchor,
+            titleLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+            titleLabel.centerYAnchor.constraint(equalTo: self.centerYAnchor,
                                                 constant: keypad.subText.isEmpty ? 0 : -5),
-            titleLabel.widthAnchor.constraint(equalTo: superView.widthAnchor)
+            titleLabel.widthAnchor.constraint(equalTo: self.widthAnchor)
         ])
         
         if(!keypad.subText.isEmpty) {
@@ -58,14 +60,14 @@ class NumberPad: UIView {
             subTitle.text = keypad.subText
             subTitle.textAlignment = .center
 
-            superView.addSubview(subTitle)
+            self.addSubview(subTitle)
                                  
             subTitle.translatesAutoresizingMaskIntoConstraints = false
             
             NSLayoutConstraint.activate([
-                subTitle.centerXAnchor.constraint(equalTo: superView.centerXAnchor),
-                subTitle.centerYAnchor.constraint(equalTo: superView.centerYAnchor, constant: 10),
-                subTitle.widthAnchor.constraint(equalTo: superView.widthAnchor)
+                subTitle.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+                subTitle.centerYAnchor.constraint(equalTo: self.centerYAnchor, constant: 10),
+                subTitle.widthAnchor.constraint(equalTo: self.widthAnchor)
             ])
             
         }

@@ -7,36 +7,18 @@
 
 import Foundation
 
-class Login : Decodable {
-    
-    var accessToken: String?
-    var idToken: String?
-    var refreshToken: String?
-    var expiresIn: Int?
-    var tokenType: String?
-    var identityValidation: Bool?
-    var softtokenInvalid: Bool?
-    var onboardingVersion: String?
-    var additionalData: Bool?
-    var identityDocumentInfo: Bool?
-    var lastLogin: String?
-    
-    init(){}
-    
-    init(accessToken: String, idToken: String, refreshToken: String, expiresIn: Int, tokenType: String, identityValidation: Bool, softtokenInvalid: Bool, onboardingVersion: String, additionalData: Bool, identityDocumentInfo: Bool, lastLogin: String) {
-        self.accessToken = accessToken
-        self.idToken = idToken
-        self.refreshToken = refreshToken
-        self.expiresIn = expiresIn
-        self.tokenType = tokenType
-        self.identityValidation = identityValidation
-        self.softtokenInvalid = softtokenInvalid
-        self.onboardingVersion = onboardingVersion
-        self.additionalData = additionalData
-        self.identityDocumentInfo = identityDocumentInfo
-        self.lastLogin = lastLogin
-    }
-    
+struct Login : Decodable {
+   let accessToken: String
+   let idToken: String
+   let refreshToken: String
+   let expiresIn: Int
+   let tokenType: String
+   let identityValidation: Bool
+   let softtokenInvalid: Bool
+   let onboardingVersion: String
+   let additionalData: Bool
+   let identityDocumentInfo: Bool
+   let lastLogin: String
 }
 
 

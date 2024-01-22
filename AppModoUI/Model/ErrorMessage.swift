@@ -7,14 +7,8 @@
 
 import Foundation
 
-class ErrorMessage: Decodable {
+struct ErrorMessage: Decodable {
     
-    var message: String?
-    
-    init(){}
-    
-    init(message: String) {
-        self.message = message
-    }
+    let message: String
     
 }

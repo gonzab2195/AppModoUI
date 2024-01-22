@@ -10,20 +10,19 @@ import Foundation
 protocol LoginVMProtocol {
     var updatePasswordDots: ((String) -> Void)? { get set }
     var showLoginErrorLabel: ((String) -> Void)? { get set }
-    var redirectToLogged: (() -> Void)? { get set }
+    var redirectToHome: (() -> Void)? { get set }
 }
 
 class LoginVM: LoginVMProtocol {
     
     //Constants
-    
-     var passwordLength = 6
+    var passwordLength = 6
    
     //Delegates
     var delegates: LoginVMProtocol?
     var updatePasswordDots: ((String)->Void)?
     var showLoginErrorLabel: ((String) -> Void)?
-    var redirectToLogged: (() -> Void)?
+    var redirectToHome: (() -> Void)?
     
     //Variables
     
@@ -45,13 +44,13 @@ class LoginVM: LoginVMProtocol {
     }
     
     @MainActor
-    func handleAddNumber(keypad: Keypad){
-        
+    private func handleAddNumber(keypad: Keypad){
+       
         guard let updatePasswordDots = self.updatePasswordDots,
-              let redirectToLogged = self.redirectToLogged else{
+              let redirectToHome = self.redirectToHome else{
             return
         }
-        
+                
         if loginTriesLeft == 0 {
             return
         }
@@ -67,27 +66,17 @@ class LoginVM: LoginVMProtocol {
             Task {
                
                 do {
-                    let response = try await LoginAPI.shared.doLogin(password: password)
+                    try await LoginAPI.shared.doLogin(password: password)
                     
-                    guard let accessToken = response.accessToken else {
-                        handleErrorLabel()
-                        return
-                    }
+                    try await UserAPI.shared.getUserInfo()
                     
-                    if(!accessToken.isEmpty){
-                        saveTokenToKeychain(key: KeychainKeys.ACCESS_TOKEN,
-                                            save: response.accessToken!)
-                        saveTokenToKeychain(key: KeychainKeys.REFRESH_TOKEN,
-                                            save: response.refreshToken!)
-                      
-                        let userInfo = try await UserAPI.shared.getUserInfo()
-                        print(userInfo.name ?? "Error")
-                        
-                        redirectToLogged()
-                    }
-                 
+                    redirectToHome()
+                    
                 }catch let error{
-                    print("Fallo el login")
+                    
+                    handleErrorLabel(message: "Error interno")
+                    
+                    print(error)
                 }
                     
             }
@@ -95,7 +84,7 @@ class LoginVM: LoginVMProtocol {
         
     }
     
-    func handleRemoveNumber(){
+    private func handleRemoveNumber(){
         
         guard let updatePasswordDots = self.updatePasswordDots else{
             return
@@ -107,7 +96,7 @@ class LoginVM: LoginVMProtocol {
         
     }
     
-    private func handleErrorLabel(){
+    private func handleErrorLabel(message: String){
         
         guard let updatePasswordDots = self.updatePasswordDots,
               let showLoginErrorLabel = self.showLoginErrorLabel else{
@@ -118,6 +107,6 @@ class LoginVM: LoginVMProtocol {
         password = ""
         
         updatePasswordDots(password)
-        showLoginErrorLabel("Clave incorrecta. Te quedan \(loginTriesLeft) intentos")
+        showLoginErrorLabel(message)
     }
 }

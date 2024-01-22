@@ -45,11 +45,15 @@ class NetworkManager {
             throw NSError(domain: "Error on Response", code: httpStatus, userInfo: [NSLocalizedDescriptionKey: "Server Error"])
         }
         
+        if(httpStatus == 401) {
+            let observerName = Notification.Name(ObserversNames.LOG_OUT)
+            NotificationCenter.default.post(name: observerName, object: nil)
+        }
+        
         if httpStatus != 200 {
-           
             let decodedError: ErrorResponse = try decoder.decode(ErrorResponse.self, from: data)
                             
-            throw NSError(domain: "Error on Response", code: httpStatus, userInfo: [NSLocalizedDescriptionKey: decodedError.errors?.first?.message ?? ""])
+            throw NSError(domain: "Error on Response", code: httpStatus, userInfo: [NSLocalizedDescriptionKey: decodedError.errors.first?.message ?? ""])
         }
         
     }

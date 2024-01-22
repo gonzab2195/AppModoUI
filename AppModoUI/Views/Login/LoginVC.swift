@@ -7,7 +7,7 @@
 
 import UIKit
 
-class LoginVC: UIViewController {
+class LoginVC: ViewManager {
     
     @IBOutlet weak var avatarCircle: UIView!
     @IBOutlet weak var userInitialsLabel: UILabel!
@@ -18,12 +18,11 @@ class LoginVC: UIViewController {
     @IBOutlet weak var errorLabel: UILabel!
     
     private var passwordDots: PasswordDots?
-    
-    var loginVM = LoginVM()
-    
+    private var loginVM = LoginVM()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        Navigation.hideNavigationBar(view: self)
         
         configureAvatarCircle()
         configureUserInitialsLabel()
@@ -36,10 +35,10 @@ class LoginVC: UIViewController {
         
         loginVM.updatePasswordDots = { self.passwordDots?.updatePasswordDots(password: $0) }
         loginVM.showLoginErrorLabel = { self.errorOnLogin(message: $0) }
-        loginVM.redirectToLogged = { redirectToStoryboard(currentView: self,
-                                                          storyboardID: StoryboardNames.HOME_STORYBOARD,
-                                                          viewControllerID: ViewControllerNames.HOME_VIEW) }
-        
+        loginVM.redirectToHome = { Navigation.redirectToStoryboard(currentView: self,
+                                                        storyboardID: StoryboardNames.HOME_STORYBOARD,
+                                                        viewControllerID: ViewControllerNames.HOME_VIEW) }
+        loginVM.redirectToHome!()
         NotificationCenter.default.addObserver(self, selector: #selector(LoginVC.keypadPressed(notification:)), name: Notification.Name(ObserversNames.KEYPAD_BUTTON_PRESSED), object: nil)
     }
     

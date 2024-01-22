@@ -10,4 +10,5 @@ import Foundation
 struct KeychainKeys {
     public static let ACCESS_TOKEN = "accessToken"
     public static let REFRESH_TOKEN = "refreshToken"
+    public static let ME = "ME"
 }

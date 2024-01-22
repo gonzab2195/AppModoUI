@@ -7,7 +7,7 @@
 
 import Foundation
 
-class Card: Decodable {
+struct Card: Decodable {
     
     let id: String?
     let issuerName: String?
@@ -30,27 +30,28 @@ class Card: Decodable {
     let prepaid: Bool?
     let cardArt: CardArt?
     
-    init(id: String?, issuerName: String?, favourite: Bool?, expiry: String?, type: String?, bin: String?, lastDigits: String?, expired: Bool?, bank: Bank?, color: String?, cardColor: String?, bankLogo: String?, issuerLogo: String?, issuerBackgroundLogo: String?, recentlyPushed: Bool?, enrollmentType: String?, details_available: Bool?, cvvType: String?, prepaid: Bool?, cardArt: CardArt?) {
-        self.id = id
-        self.issuerName = issuerName
-        self.favourite = favourite
-        self.expiry = expiry
-        self.type = type
-        self.bin = bin
-        self.lastDigits = lastDigits
-        self.expired = expired
-        self.bank = bank
-        self.color = color
-        self.cardColor = cardColor
-        self.bankLogo = bankLogo
-        self.issuerLogo = issuerLogo
-        self.issuerBackgroundLogo = issuerBackgroundLogo
-        self.recentlyPushed = recentlyPushed
-        self.enrollmentType = enrollmentType
-        self.details_available = details_available
-        self.cvvType = cvvType
-        self.prepaid = prepaid
-        self.cardArt = cardArt
+}
+
+extension Card: Encodable {
+    func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(id, forKey: .id)
+        try container.encode(issuerName, forKey: .issuerName)
+        try container.encode(favourite, forKey: .favourite)
+        try container.encode(expiry, forKey: .expiry)
+        try container.encode(type, forKey: .type)
+        try container.encode(bin, forKey: .bin)
+        try container.encode(bank, forKey: .bank)
+        try container.encode(color, forKey: .color)
+        try container.encode(cardColor, forKey: .cardColor)
+        try container.encode(bankLogo, forKey: .bankLogo)
+        try container.encode(issuerLogo, forKey: .issuerLogo)
+        try container.encode(issuerBackgroundLogo, forKey: .issuerBackgroundLogo)
+        try container.encode(recentlyPushed, forKey: .recentlyPushed)
+        try container.encode(enrollmentType, forKey: .enrollmentType)
+        try container.encode(details_available, forKey: .details_available)
+        try container.encode(cvvType, forKey: .cvvType)
+        try container.encode(prepaid, forKey: .prepaid)
+        try container.encode(cardArt, forKey: .cardArt)
     }
-    
 }

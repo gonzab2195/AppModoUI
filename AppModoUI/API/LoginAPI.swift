@@ -16,7 +16,7 @@ final class LoginAPI: NetworkManagerProtocol {
 
     private init(){}
     
-    func doLogin(password: String) async throws -> Login {
+    func doLogin(password: String) async throws {
         
         do {
             
@@ -49,12 +49,14 @@ final class LoginAPI: NetworkManagerProtocol {
             let decoder = NetworkManager.createDecoder()
             let decodedResponse = try decoder.decode(Login.self, from: data)
             
-            return decodedResponse
+            Keychain.saveToKeychain(key: KeychainKeys.ACCESS_TOKEN,
+                                save: decodedResponse.accessToken)
+            Keychain.saveToKeychain(key: KeychainKeys.REFRESH_TOKEN,
+                                save: decodedResponse.refreshToken)
          
         } catch let error {
            NetworkManager.isDecodingError(error: error)
-           print(error)
-           return Login()
+           throw error
         }
     }
 }
