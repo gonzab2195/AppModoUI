@@ -1,13 +1,13 @@
 //
-//  AccountsCarrousel.swift
+//  PromosCarrousel.swift
 //  AppModoUI
 //
-//  Created by Gonzalo Berro on 21/01/2024.
+//  Created by Gonzalo Berro on 23/01/2024.
 //
 
 import UIKit
 
-class AccountsCarrousel: UIView {
+class PromosCarrousel: UIView {
     
     var carrouselElements: [UIView]?
     
@@ -34,7 +34,7 @@ class AccountsCarrousel: UIView {
             return
         }
         
-        let carrouselContainer = HorizontalCarrousel(elementsWidth: 250,
+        let carrouselContainer = HorizontalCarrousel(elementsWidth: 350,
                                                      spaceBetween: 10,
                                                      initialPadding: 20,
                                                      elementsArray: carrouselElements)
@@ -49,4 +49,5 @@ class AccountsCarrousel: UIView {
         ])
         
     }
+    
 }

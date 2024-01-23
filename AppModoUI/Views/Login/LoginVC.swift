@@ -10,7 +10,7 @@ import UIKit
 class LoginVC: ViewManager, LoginPresenterProtocol {
     
     //Presenter
-    private var loginVM: LoginPresenter?
+    private var loginPresenter: LoginPresenter?
     
     @IBOutlet weak var avatarCircle: UIView!
     @IBOutlet weak var userInitialsLabel: UILabel!
@@ -26,7 +26,7 @@ class LoginVC: ViewManager, LoginPresenterProtocol {
         super.viewDidLoad()
         Navigation.hideNavigationBar(view: self)
         
-        loginVM = LoginPresenter(view: self)
+        loginPresenter = LoginPresenter(view: self)
         
         configureAvatarCircle()
         configureUserInitialsLabel()
@@ -51,20 +51,20 @@ class LoginVC: ViewManager, LoginPresenterProtocol {
     
     func configureUserInitialsLabel() {
         
-        userInitialsLabel.text = loginVM!.nameInitials
+        userInitialsLabel.text = loginPresenter!.nameInitials
         userInitialsLabel.textColor = UIColor(named: Colors.PAYMENT_DARK)
         userInitialsLabel.font = .systemFont(ofSize: 19, weight: .semibold)
     }
     
     func configureUsernameLabel() {
         
-        usernameLabel.text = loginVM!.name
+        usernameLabel.text = loginPresenter!.name
         usernameLabel.textColor = .black
         usernameLabel.font = .systemFont(ofSize: 16, weight: .semibold)
     }
     
     func configurePassword(){
-        passwordDots = PasswordDots(superView: passwordDotsContainer, passwordLength: loginVM!.passwordLength)
+        passwordDots = PasswordDots(superView: passwordDotsContainer, passwordLength: loginPresenter!.passwordLength)
         passwordDots!.createPasswordDots()
     }
     
@@ -95,7 +95,7 @@ class LoginVC: ViewManager, LoginPresenterProtocol {
         
         if let keypad:Keypad = notification.object as? Keypad {
             
-            loginVM!.handleKeyboardPressed(keypad: keypad)
+            loginPresenter!.handleKeyboardPressed(keypad: keypad)
            
         }
     }

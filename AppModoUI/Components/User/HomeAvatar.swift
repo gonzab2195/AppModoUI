@@ -81,7 +81,7 @@ class HomeAvatar: UIView {
     }
     
     func userImageCircle(){
-        let avatarImage = UserImageCircle()
+        let avatarImage = UserImageCircle(image: image ?? "")
         avatarImage.translatesAutoresizingMaskIntoConstraints = false
         
         self.addSubview(avatarImage)

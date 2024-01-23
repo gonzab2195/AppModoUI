@@ -9,16 +9,16 @@ import UIKit
 
 class IconButton: UIButton {
     
-    init(imageName: String){
+    init(image: UIImage){
         super.init(frame: .zero)
-        configure(imageName: imageName)
+        configure(image: image)
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configure(imageName: String){
+    func configure(image: UIImage){
         
         self.backgroundColor = UIColor(named: Colors.SECONDARY_GRAY_3)
         self.layer.cornerRadius = 20
@@ -29,7 +29,7 @@ class IconButton: UIButton {
         self.addSubview(buttonImage)
         
         buttonImage.contentMode = .scaleAspectFit
-        buttonImage.image = UIImage(systemName: imageName)
+        buttonImage.image = image
         buttonImage.tintColor = .black
         buttonImage.translatesAutoresizingMaskIntoConstraints = false
         

@@ -10,6 +10,7 @@ import Foundation
 final class UserAPI: NetworkManagerProtocol {
     
     static let baseURL = "https://api.preprod.playdigital.com.ar/users/"
+    
     private let meUrl = baseURL + "me"
     
     static let shared = UserAPI()
@@ -28,11 +29,7 @@ final class UserAPI: NetworkManagerProtocol {
           
             let (data, response) = try await URLSession.shared.data(for: request)
             
-            guard let httpResponse = response as? HTTPURLResponse else {
-                throw NSError(domain: "Error", code: 400, userInfo: [NSLocalizedDescriptionKey: "Respuesta incorrecta"])
-            }
-            
-            try NetworkManager.responseHasError(httpStatus: httpResponse.statusCode, data: data)
+            try NetworkManager.responseHasError(response: response, data: data)
                                   
             Keychain.saveToKeychain(key: KeychainKeys.ME,
                                 save: String(data: data, encoding: .utf8)!)

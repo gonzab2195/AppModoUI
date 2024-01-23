@@ -13,8 +13,8 @@ protocol PasswordEyeButtonDelegate {
 
 final class PasswordEyeButton: UIButton {
 
-    private let showPasswordImage = "eye-open"
-    private let hidePasswordImage = "eye-close"
+    private let showPasswordImage = UIImage(named: "eyeCloseIcon")!.resized(toWidth: 35)
+    private let hidePasswordImage = UIImage(named: "eyeOpenIcon")!.resized(toWidth: 20)
     var showingPassword = false
     private var superView: UIView?
     
@@ -35,7 +35,8 @@ final class PasswordEyeButton: UIButton {
             return
         }
                 
-        self.setImage(UIImage(named: showingPassword ? hidePasswordImage : showPasswordImage), for: .normal)
+        let iconImage = showingPassword ? hidePasswordImage : showPasswordImage
+        self.setImage(iconImage, for: .normal)
         
         self.isUserInteractionEnabled = true
         superView.isUserInteractionEnabled = true
@@ -58,12 +59,11 @@ final class PasswordEyeButton: UIButton {
     
     
     @objc func imageTapped(sender: UIButton) {
-       
-        if(sender.currentImage == UIImage(named: showPasswordImage)){
-            sender.setImage(UIImage(named: hidePasswordImage), for: .normal)
+        if(!showingPassword){
+            sender.setImage(hidePasswordImage, for: .normal)
             showingPassword = true
         }else{
-            sender.setImage(UIImage(named: showPasswordImage), for: .normal)
+            sender.setImage(showPasswordImage, for: .normal)
             showingPassword = false
         }
         delegate?.onEyeButtonPressed()

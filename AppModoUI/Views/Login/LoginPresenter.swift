@@ -22,8 +22,8 @@ class LoginPresenter {
     
     //Constants
     let passwordLength = 6
-    let name = "Andres Diletto"
-    let nameInitials = "AD"
+    let name = "Daniel Rolon"
+    let nameInitials = "DR"
     
     //Variables
     var password = ""
@@ -67,9 +67,11 @@ class LoginPresenter {
             Task {
                
                 do {
-                    try await LoginAPI.shared.doLogin(password: password)
+                    try await AuthAPI.shared.doLogin(password: password)
                     
                     try await UserAPI.shared.getUserInfo()
+                    
+                    let user = User.getUserFromKeychain()
                     
                     router.navigateToHome(currentView: view)
                     

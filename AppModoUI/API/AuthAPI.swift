@@ -7,12 +7,12 @@
 
 import UIKit
 
-final class LoginAPI: NetworkManagerProtocol {
+final class AuthAPI: NetworkManagerProtocol {
     
     static let baseURL = "https://api.preprod.playdigital.com.ar/v2/auth/"
     private let loginURL = baseURL + "login"
     
-    static let shared = LoginAPI()
+    static let shared = AuthAPI()
 
     private init(){}
     
@@ -39,12 +39,8 @@ final class LoginAPI: NetworkManagerProtocol {
             request.timeoutInterval = 10
             
             let (data, response) = try await URLSession.shared.data(for: request)
-            
-            guard let httpResponse = response as? HTTPURLResponse else {
-                throw NSError(domain: "Error", code: 400, userInfo: [NSLocalizedDescriptionKey: "Respuesta incorrecta"])
-            }
            
-            try NetworkManager.responseHasError(httpStatus: httpResponse.statusCode, data: data)
+            try NetworkManager.responseHasError(response: response, data: data)
             
             let decoder = NetworkManager.createDecoder()
             let decodedResponse = try decoder.decode(Login.self, from: data)

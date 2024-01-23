@@ -9,11 +9,11 @@ import UIKit
 
 class HomeAccount: UIView {
     
-    var account: Account?
+    var accountInformation: AccountInformation?
     
-    init(account: Account){
+    init(accountInformation: AccountInformation){
         super.init(frame: .zero)
-        self.account = account
+        self.accountInformation = accountInformation
         configure()
     }
     
@@ -23,7 +23,7 @@ class HomeAccount: UIView {
     
     func configure() {
         
-        guard let account = self.account else {
+        guard let accountInformation = self.accountInformation else{
             return
         }
         
@@ -35,7 +35,7 @@ class HomeAccount: UIView {
         
         //Bank
         let bankLogoImageView = UIImageView()
-        bankLogoImageView.imageFrom(url: URL(string: account.bank.imageUrl)!)
+        bankLogoImageView.imageFrom(url: URL(string: accountInformation.bankLogo)!)
         bankLogoImageView.contentMode = .scaleAspectFit
         bankLogoImageView.translatesAutoresizingMaskIntoConstraints = false
         
@@ -51,7 +51,7 @@ class HomeAccount: UIView {
         bankLogoImageView.layer.masksToBounds = true
         
         let bankName = UILabel()
-        bankName.text = account.bank.name
+        bankName.text = accountInformation.bankName
         bankName.font = .systemFont(ofSize: 15, weight: .semibold)
         bankName.translatesAutoresizingMaskIntoConstraints = false
         
@@ -74,14 +74,14 @@ class HomeAccount: UIView {
         
         let roundedAmount = UILabel()
         roundedAmount.font = .systemFont(ofSize: 23, weight: .semibold)
-        roundedAmount.text = "3112,"
+        roundedAmount.text = "\(getRoundedAmount(accountInformation.accountBalance)),"
         roundedAmount.translatesAutoresizingMaskIntoConstraints = false
         
         self.addSubview(roundedAmount)
         
         let decimalsAmount = UILabel()
         decimalsAmount.font = .systemFont(ofSize: 18, weight: .semibold)
-        decimalsAmount.text = "54"
+        decimalsAmount.text = getDecimalAmount(accountInformation.accountBalance)
         decimalsAmount.translatesAutoresizingMaskIntoConstraints = false
         
         self.addSubview(decimalsAmount)
@@ -98,10 +98,11 @@ class HomeAccount: UIView {
             decimalsAmount.bottomAnchor.constraint(equalTo: roundedAmount.bottomAnchor, constant: 5)
         ])
         
+        //Acount Info
         let accountInfo = UILabel()
         
         accountInfo.font = .systemFont(ofSize: 13, weight: .regular)
-        accountInfo.text = "\(account.type == "SAVINGS" ? "CA" : "CC") ∙ \(account.lastDigits)"
+        accountInfo.text = "\(accountInformation.accountType == "SAVINGS" ? "CA" : "CC") ∙ \(accountInformation.accountLastDigits)"
         accountInfo.translatesAutoresizingMaskIntoConstraints = false
         
         self.addSubview(accountInfo)
