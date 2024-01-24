@@ -9,11 +9,11 @@ import UIKit
 
 class PromosCarrousel: UIView {
     
-    var carrouselElements: [UIView]?
+    var promotions: Promotion?
     
-    init(carrouselElements: [UIView]){
+    init(promotions: Promotion){
         super.init(frame: .zero)
-        self.carrouselElements = carrouselElements
+        self.promotions = promotions
         configure()
     }
     
@@ -30,8 +30,16 @@ class PromosCarrousel: UIView {
     
     func configureCarrousel() {
         
-        guard let carrouselElements = self.carrouselElements else {
+        var carrouselElements: [UIView] = []
+        
+        guard let promotions = self.promotions else {
             return
+        }
+        
+        for card in promotions.cards {
+            
+            carrouselElements.append(BannerPromos(bannerImage: card.landscapeApp))
+
         }
         
         let carrouselContainer = HorizontalCarrousel(elementsWidth: 350,

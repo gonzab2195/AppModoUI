@@ -186,17 +186,9 @@ class HomeVC: ViewManager, HomePresenterProtocol {
     //From Presenter
     
     func createAccountsCarrousel(accountsInformation: [AccountInformation]){
+       
         
-
-        var carrouselElements: [UIView] = []
-
-        for account in accountsInformation {
-          
-            carrouselElements.append(HomeAccount(accountInformation: account))
-
-        }
-        
-        let accountsCarrousel = AccountsCarrousel(carrouselElements: carrouselElements)
+        let accountsCarrousel = AccountsCarrousel(accountsInformation: accountsInformation)
         
         scrollViewContent.addSubview(accountsCarrousel)
                 
@@ -212,15 +204,8 @@ class HomeVC: ViewManager, HomePresenterProtocol {
     func createPromosCarrousel(promotions: Promotion){
         
 
-        var carrouselElements: [UIView] = []
-        print(promotions.cards.count)
-        for card in promotions.cards {
-            
-            carrouselElements.append(BannerPromos(bannerImage: card.content.image.primaryImage))
-
-        }
-        
-        let promotionsCarrousel = PromosCarrousel(carrouselElements: carrouselElements)
+      
+        let promotionsCarrousel = PromosCarrousel(promotions: promotions)
         
         scrollViewContent.addSubview(promotionsCarrousel)
                 
@@ -228,7 +213,7 @@ class HomeVC: ViewManager, HomePresenterProtocol {
             promotionsCarrousel.bottomAnchor.constraint(equalTo: promosCarrouselContainer.bottomAnchor),
             promotionsCarrousel.leftAnchor.constraint(equalTo: promosCarrouselContainer.leftAnchor),
             promotionsCarrousel.rightAnchor.constraint(equalTo: promosCarrouselContainer.rightAnchor),
-            promotionsCarrousel.heightAnchor.constraint(equalToConstant: 150)
+            promotionsCarrousel.heightAnchor.constraint(equalToConstant: 130)
         ])
        
     }

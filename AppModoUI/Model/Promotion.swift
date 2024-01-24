@@ -34,17 +34,5 @@ extension Promotion {
 }
 
 struct PromosCard: Decodable {
-    
-    let content: PromosContent
-}
-
-struct PromosContent: Decodable {
-    
-    let image: PromosImage
-}
-
-struct PromosImage: Decodable {
-    
-    let primaryImage: String
-    
+    let landscapeApp: String
 }

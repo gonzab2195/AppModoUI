@@ -9,11 +9,11 @@ import UIKit
 
 class AccountsCarrousel: UIView {
     
-    var carrouselElements: [UIView]?
+    var accountsInformation: [AccountInformation]?
     
-    init(carrouselElements: [UIView]){
+    init(accountsInformation: [AccountInformation]){
         super.init(frame: .zero)
-        self.carrouselElements = carrouselElements
+        self.accountsInformation = accountsInformation
         configure()
     }
     
@@ -30,9 +30,18 @@ class AccountsCarrousel: UIView {
     
     func configureCarrousel() {
         
-        guard let carrouselElements = self.carrouselElements else {
+        var carrouselElements: [UIView] = []
+        
+        guard let accountsInformation = self.accountsInformation else {
             return
         }
+
+        for account in accountsInformation {
+          
+            carrouselElements.append(HomeAccount(accountInformation: account))
+
+        }
+      
         
         let carrouselContainer = HorizontalCarrousel(elementsWidth: 250,
                                                      spaceBetween: 10,
