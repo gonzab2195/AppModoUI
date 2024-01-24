@@ -20,14 +20,14 @@ class HorizontalCarrousel: UIView {
         self.spaceBetween = spaceBetween
         self.elementsArray = elementsArray
         self.initialPadding = initialPadding
-        configure()
+        self.configure()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configure(){
+    private func configure(){
        
         self.translatesAutoresizingMaskIntoConstraints = false
         

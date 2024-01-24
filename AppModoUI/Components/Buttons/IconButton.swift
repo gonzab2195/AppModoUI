@@ -11,14 +11,14 @@ class IconButton: UIButton {
     
     init(image: UIImage){
         super.init(frame: .zero)
-        configure(image: image)
+        self.configure(image: image)
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configure(image: UIImage){
+    private func configure(image: UIImage){
         
         self.backgroundColor = UIColor(named: Colors.SECONDARY_GRAY_3)
         self.layer.cornerRadius = 20

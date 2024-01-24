@@ -79,7 +79,7 @@ class LoginVC: ViewManager, LoginPresenterProtocol {
         errorLabel.text = message
     }
     
-    //Functions
+    //From Presenter
     
     func updatePasswordDots(password: String) {
         self.passwordDots?.updatePasswordDots(password: password)

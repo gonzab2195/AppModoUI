@@ -7,49 +7,50 @@
 
 import UIKit
 
-final class KeypadButtonContainer: UIView {
+final class KeypadButtonContainer: UIStackView {
     
-    private var keypad: Keypad?
+    private var keypads: [Keypad]?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
     }
     
-    init(keypad: Keypad) {
+    init(keypads: [Keypad]) {
         super.init(frame: .zero)
-        self.keypad = keypad
-        configureButton()
+        self.keypads = keypads
+        self.configureButton()
     }
     
-    required init?(coder: NSCoder) {
+    required init(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configureButton(){
+    
+    private func configureButton(){
         
         self.translatesAutoresizingMaskIntoConstraints = false
+        self.axis = .horizontal
+        self.spacing = 10
+        self.distribution = .fillEqually
         
-        configureButtonContent()
+        self.configureButtonContent()
 
     }
     
-    func configureButtonContent(){
+    private func configureButtonContent(){
         
-        guard let keypad = self.keypad else {
+        if keypads == nil || keypads!.count < 3 {
+            print(keypads?.count ?? "Error")
             return
         }
         
-        let keypadButton = KeypadButton(keypad: keypad)
+        let keypadButton1 = KeypadButton(keypad: keypads![0])
+        let keypadButton2 = KeypadButton(keypad: keypads![1])
+        let keypadButton3 = KeypadButton(keypad: keypads![2])
         
-        self.addSubview(keypadButton)
-        self.bringSubviewToFront(keypadButton)
-        
-        NSLayoutConstraint.activate([
-            keypadButton.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: 5),
-            keypadButton.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -5),
-            keypadButton.topAnchor.constraint(equalTo: self.topAnchor, constant: 5),
-            keypadButton.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 5)
-        ])
+        self.addArrangedSubview(keypadButton1)
+        self.addArrangedSubview(keypadButton2)
+        self.addArrangedSubview(keypadButton3)
     }
 
 }

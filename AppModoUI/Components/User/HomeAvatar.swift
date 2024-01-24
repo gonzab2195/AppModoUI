@@ -21,27 +21,27 @@ class HomeAvatar: UIView {
         self.image = image
         self.name = name
         self.nameInitials = nameInitials
-        configure()
+        self.configure()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configure(){
+    private func configure(){
         self.translatesAutoresizingMaskIntoConstraints = false
         
-        helloUser()
+        self.helloUser()
         
         guard let _ = self.image else {
-            userInitialCircle()
+            self.userInitialCircle()
             return
         }
         
-        userImageCircle()
+        self.userImageCircle()
     }
     
-    func helloUser(){
+    private func helloUser(){
         
         let avatarName = UILabel()
         
@@ -61,7 +61,7 @@ class HomeAvatar: UIView {
         avatarName.numberOfLines = 2
     }
     
-    func userInitialCircle(){
+    private func userInitialCircle(){
         
         guard let nameInitials = self.nameInitials else{
             return
@@ -80,7 +80,7 @@ class HomeAvatar: UIView {
         ])
     }
     
-    func userImageCircle(){
+    private func userImageCircle(){
         let avatarImage = UserImageCircle(image: image ?? "")
         avatarImage.translatesAutoresizingMaskIntoConstraints = false
         

@@ -203,8 +203,6 @@ class HomeVC: ViewManager, HomePresenterProtocol {
     
     func createPromosCarrousel(promotions: Promotion){
         
-
-      
         let promotionsCarrousel = PromosCarrousel(promotions: promotions)
         
         scrollViewContent.addSubview(promotionsCarrousel)

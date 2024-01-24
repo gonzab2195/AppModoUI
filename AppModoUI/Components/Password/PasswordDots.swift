@@ -13,9 +13,9 @@ final class PasswordDots: PasswordEyeButtonDelegate {
     private let filledDotColor = UIColor(named: Colors.PAYMENT_DEFAULT)
     private var password = ""
     
-    let passwordLength: Int?
-    let superView: UIView?
-    let eyeButton: PasswordEyeButton?
+    private let passwordLength: Int?
+    private let superView: UIView?
+    private let eyeButton: PasswordEyeButton?
 
     var passwordShown = false
     
@@ -23,7 +23,6 @@ final class PasswordDots: PasswordEyeButtonDelegate {
         self.superView = superView
         self.passwordLength = passwordLength
         self.eyeButton = PasswordEyeButton(superView: superView)
-
     }
     
     func onEyeButtonPressed() {
@@ -60,7 +59,7 @@ final class PasswordDots: PasswordEyeButtonDelegate {
             subview.removeFromSuperview()
         }
        
-        createPasswordDots()
+        self.createPasswordDots()
     }
     
     private func createDot(circleNumber: Int){

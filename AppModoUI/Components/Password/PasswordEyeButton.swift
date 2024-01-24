@@ -57,7 +57,6 @@ final class PasswordEyeButton: UIButton {
         ])
     }
     
-    
     @objc func imageTapped(sender: UIButton) {
         if(!showingPassword){
             sender.setImage(hidePasswordImage, for: .normal)

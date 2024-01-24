@@ -9,19 +9,19 @@ import UIKit
 
 class HomeAccount: UIView {
     
-    var accountInformation: AccountInformation?
+    private var accountInformation: AccountInformation?
     
     init(accountInformation: AccountInformation){
         super.init(frame: .zero)
         self.accountInformation = accountInformation
-        configure()
+        self.configure()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configure() {
+    private func configure() {
         
         guard let accountInformation = self.accountInformation else{
             return

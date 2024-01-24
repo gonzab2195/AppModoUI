@@ -9,19 +9,19 @@ import UIKit
 
 class BannerPromos: UIImageView {
     
-    var bannerImage: String?
+    private var bannerImage: String?
     
     init(bannerImage: String){
         super.init(frame: .zero)
         self.bannerImage = bannerImage
-        configure()
+        self.configure()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configure(){
+    private func configure(){
         
         guard let bannerImage = self.bannerImage else {
             return

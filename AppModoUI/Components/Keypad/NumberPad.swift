@@ -18,14 +18,14 @@ final class NumberPad: UIView {
     init(keypad: Keypad){
         super.init(frame: .zero)
         self.keypad = keypad
-        configureNumberPad()
+        self.configureNumberPad()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configureNumberPad(){
+    private func configureNumberPad(){
         
         guard let keypad = self.keypad else {
             return

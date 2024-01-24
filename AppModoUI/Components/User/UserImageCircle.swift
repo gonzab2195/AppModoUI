@@ -11,14 +11,14 @@ class UserImageCircle: UIImageView {
     
     init(image: String){
         super.init(frame: .zero)
-        configure(image: image)
+        self.configure(image: image)
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configure(image: String){
+    private func configure(image: String){
         self.image = UIImage(systemName: "user")
         self.contentMode = .scaleAspectFit
         self.layer.cornerRadius = 40

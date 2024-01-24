@@ -43,14 +43,14 @@ class ButtonWithImage: UIButton {
         self.title = title
         self.textColor = textColor
         self.fontSize = fontSize
-        configure()
+        self.configure()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configure(){
+    private func configure(){
         self.backgroundColor = buttonColor
         
         self.titleLabel?.font = UIFont.systemFont(ofSize: CGFloat(fontSize), weight: .semibold)

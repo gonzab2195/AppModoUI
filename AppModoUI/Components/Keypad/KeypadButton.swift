@@ -22,10 +22,10 @@ final class KeypadButton: UIButton {
     init(keypad: Keypad) {
         super.init(frame: .zero)
         self.keypad = keypad
-        configure()
+        self.configure()
     }
     
-    func configure(){
+    private func configure(){
         
         guard let keypad = self.keypad else {
             return

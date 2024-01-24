@@ -9,26 +9,26 @@ import UIKit
 
 class AccountsCarrousel: UIView {
     
-    var accountsInformation: [AccountInformation]?
+    private var accountsInformation: [AccountInformation]?
     
     init(accountsInformation: [AccountInformation]){
         super.init(frame: .zero)
         self.accountsInformation = accountsInformation
-        configure()
+        self.configure()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configure(){
+    private func configure(){
         
         self.translatesAutoresizingMaskIntoConstraints = false
         
-        configureCarrousel()
+        self.configureCarrousel()
     }
     
-    func configureCarrousel() {
+    private func configureCarrousel() {
         
         var carrouselElements: [UIView] = []
         

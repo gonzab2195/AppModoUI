@@ -11,21 +11,21 @@ class PromosHomeSection: UIView {
         
     init(){
         super.init(frame: .zero)
-        configure()
+        self.configure()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configure(){
+    private func configure(){
         
         self.translatesAutoresizingMaskIntoConstraints = false
         
-        configureTitleSection()
+        self.configureTitleSection()
     }
     
-    func configureTitleSection(){
+    private func configureTitleSection(){
         let title = HomeTitle(title: "TUS PROMOCIONES")
         self.addSubview(title)
         

@@ -11,8 +11,7 @@ class HomeTitle: UILabel {
     
     init(title: String){
         super.init(frame: .zero)
-        
-        configure(title: title)
+        self.configure(title: title)
         
     }
     
@@ -20,7 +19,7 @@ class HomeTitle: UILabel {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configure(title: String){
+    private func configure(title: String){
         
         self.text = title
         self.translatesAutoresizingMaskIntoConstraints = false
