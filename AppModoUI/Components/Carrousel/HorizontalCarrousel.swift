@@ -1,100 +1,110 @@
 //
-//  HorizontalCarrousel.swift
+//  TestCarrousel.swift
 //  AppModoUI
 //
-//  Created by Gonzalo Berro on 21/01/2024.
+//  Created by Gonzalo Berro on 24/01/2024.
 //
 
 import UIKit
 
+@objc protocol HorizontalCarrouselProtocol {
+    
+    @objc func updateCarrousel(notification: Notification)
+    
+}
+
 class HorizontalCarrousel: UIView {
     
-    private var elementsWidth: Double?
-    private var elementsArray: [UIView]?
-    private var spaceBetween: Double?
-    private var initialPadding: Double?
+    private var carrouselElements: [UIView] = []
+    private var elementsSize: CGSize?
+    private var spaceBetween: CGFloat?
+    private var initialPadding: CGFloat?
     
-    init(elementsWidth: Double, spaceBetween: Double, initialPadding: Double, elementsArray: [UIView]){
+    private let collectionView: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .horizontal
+        
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collectionView.register(HorizontalCarrouselCell.self, forCellWithReuseIdentifier: HorizontalCarrouselCell.identifier)
+        collectionView.showsHorizontalScrollIndicator = false
+
+        return collectionView
+    }()
+    
+    init(carrouselElements: [UIView], elementsSize: CGSize, spaceBetween: CGFloat, initialPadding: CGFloat){
         super.init(frame: .zero)
-        self.elementsWidth = elementsWidth
+        self.carrouselElements = carrouselElements
+        self.elementsSize = elementsSize
         self.spaceBetween = spaceBetween
-        self.elementsArray = elementsArray
         self.initialPadding = initialPadding
         self.configure()
+        
+       
     }
+    
+   
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
+    func reloadData(carrouselElements: [UIView]){
+        self.carrouselElements = carrouselElements
+        collectionView.reloadData()
+    }
+    
     private func configure(){
-       
+        
+        collectionView.contentInset = UIEdgeInsets(top: 0, left: initialPadding ?? 20, bottom: 0, right: 0)
+        
+      
         self.translatesAutoresizingMaskIntoConstraints = false
-        
-        let scrollView = UIScrollView()
-        scrollView.translatesAutoresizingMaskIntoConstraints = false
-        scrollView.showsHorizontalScrollIndicator = false
-        self.addSubview(scrollView)
-        
-        let contentView = UIView()
-        contentView.translatesAutoresizingMaskIntoConstraints = false
-        scrollView.addSubview(contentView)
-        
-        let contentViewWidthAnchor = contentView.widthAnchor.constraint(equalTo: scrollView.widthAnchor)
-        
-        contentViewWidthAnchor.isActive = true
-        contentViewWidthAnchor.priority = UILayoutPriority(50)
+        self.addSubview(collectionView)
+
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-           scrollView.topAnchor.constraint(equalTo: self.topAnchor),
-           scrollView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
-           scrollView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
-           scrollView.bottomAnchor.constraint(equalTo: self.bottomAnchor),
-           
-           contentView.topAnchor.constraint(equalTo: scrollView.topAnchor),
-           contentView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
-           contentView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
-           contentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
-           contentView.heightAnchor.constraint(equalTo: scrollView.heightAnchor),
-           
+            collectionView.topAnchor.constraint(equalTo: self.topAnchor),
+            collectionView.leftAnchor.constraint(equalTo: self.leftAnchor),
+            collectionView.rightAnchor.constraint(equalTo: self.rightAnchor),
+            collectionView.bottomAnchor.constraint(equalTo: self.bottomAnchor)
         ])
         
-        guard let elementsWidth = self.elementsWidth, 
-              let spaceBetween = self.spaceBetween,
-              let initialPadding = self.initialPadding,
-              let elementsArray = self.elementsArray else {
-            return
-        }
+        collectionView.dataSource = self
+        collectionView.delegate = self
         
-        for (index, element) in elementsArray.enumerated() {
-            
-            element.translatesAutoresizingMaskIntoConstraints = false
-            contentView.addSubview(element)
-            
-            NSLayoutConstraint.activate([
-                element.topAnchor.constraint(equalTo: contentView.topAnchor),
-                element.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
-                element.heightAnchor.constraint(equalTo: contentView.heightAnchor),
-                element.widthAnchor.constraint(equalToConstant: elementsWidth),
-            ])
-            
-            if(index == 0){
-                NSLayoutConstraint.activate([
-                    element.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: initialPadding),
-                ])
-            }else{
-                NSLayoutConstraint.activate([
-                    element.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: CGFloat((elementsWidth + spaceBetween) * Double(index)) + initialPadding),
-                ])
-            }
-            
-            if(index + 1 == elementsArray.count){
-                NSLayoutConstraint.activate([
-                    element.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -100)
-                ])
-            }
-            
-        }
     }
+}
+
+extension HorizontalCarrousel: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return self.carrouselElements.count
+    }
+    
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HorizontalCarrouselCell.identifier, for: indexPath) as? HorizontalCarrouselCell else {
+            fatalError("Error when dequeue cell")
+        }
+        let newCell = self.carrouselElements[indexPath.row]
+        
+        cell.configure(cellContent: newCell)
+        
+        return cell
+        
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return self.elementsSize ?? CGSize(width: 100, height: 100)
+    }
+    
+    //Horizontal
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        
+        return spaceBetween ?? 10
+    }
+    
     
 }

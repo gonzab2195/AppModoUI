@@ -33,27 +33,6 @@ extension BankAccount: Encodable {
     }
 }
 
-extension BankAccount {
-    
-    static func getAccountsFromBank(bankId: String) -> [BankAccount]?{
-        do{
-            let decoder = NetworkManager.createDecoder()
-            let userAsString = Keychain.retrieveKeyFromKeychain(key: "bank_\(bankId)")
-            
-            guard let userAsData = userAsString!.data(using: .utf8) else {
-                return []
-            }
-            
-            let userDecoded = try decoder.decode([BankAccount].self, from: userAsData)
-            
-            return userDecoded
-        } catch {
-            return []
-        }
-    }
-}
-
-
 struct FeatureFlags: Decodable {
     let makeTransfer: Bool
     let destinationAccountType: Virtual

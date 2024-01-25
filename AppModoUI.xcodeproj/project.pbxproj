@@ -11,7 +11,6 @@
 		BF7BFA172B5C4BBF002F3802 /* HomeAvatar.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7BFA162B5C4BBF002F3802 /* HomeAvatar.swift */; };
 		BF7BFA192B5C4F6D002F3802 /* UserImageCircle.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7BFA182B5C4F6D002F3802 /* UserImageCircle.swift */; };
 		BF7BFA1B2B5C501D002F3802 /* UserInitialsCircle.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7BFA1A2B5C501D002F3802 /* UserInitialsCircle.swift */; };
-		BF7BFA1E2B5D5692002F3802 /* HorizontalCarrousel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7BFA1D2B5D5692002F3802 /* HorizontalCarrousel.swift */; };
 		BF7BFA212B5D5D4B002F3802 /* HomeAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7BFA202B5D5D4B002F3802 /* HomeAccount.swift */; };
 		BF7BFA232B5D99F0002F3802 /* AccountsCarrousel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7BFA222B5D99F0002F3802 /* AccountsCarrousel.swift */; };
 		BF7BFA272B5EC62F002F3802 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7BFA262B5EC62F002F3802 /* Account.swift */; };
@@ -31,6 +30,10 @@
 		BF7BFA442B60678B002F3802 /* PromosAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7BFA432B60678B002F3802 /* PromosAPI.swift */; };
 		BF7BFA462B606849002F3802 /* Promotion.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7BFA452B606849002F3802 /* Promotion.swift */; };
 		BF7BFA492B606FE1002F3802 /* HomeTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7BFA482B606FE1002F3802 /* HomeTitle.swift */; };
+		BF7BFA4B2B615C49002F3802 /* HorizontalCarrousel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7BFA4A2B615C49002F3802 /* HorizontalCarrousel.swift */; };
+		BF7BFA4D2B615E6C002F3802 /* HorizontalCarrouselCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7BFA4C2B615E6C002F3802 /* HorizontalCarrouselCell.swift */; };
+		BF7BFA4F2B61793F002F3802 /* AccountBalance.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7BFA4E2B61793F002F3802 /* AccountBalance.swift */; };
+		BF7BFA512B618B03002F3802 /* AccountBank.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7BFA502B618B03002F3802 /* AccountBank.swift */; };
 		BFD6105C2B500FEC004E3953 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD6105B2B500FEC004E3953 /* AppDelegate.swift */; };
 		BFD6105E2B500FEC004E3953 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD6105D2B500FEC004E3953 /* SceneDelegate.swift */; };
 		BFD610632B500FEC004E3953 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BFD610612B500FEC004E3953 /* Main.storyboard */; };
@@ -74,7 +77,6 @@
 		BF7BFA162B5C4BBF002F3802 /* HomeAvatar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeAvatar.swift; sourceTree = "<group>"; };
 		BF7BFA182B5C4F6D002F3802 /* UserImageCircle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserImageCircle.swift; sourceTree = "<group>"; };
 		BF7BFA1A2B5C501D002F3802 /* UserInitialsCircle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInitialsCircle.swift; sourceTree = "<group>"; };
-		BF7BFA1D2B5D5692002F3802 /* HorizontalCarrousel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalCarrousel.swift; sourceTree = "<group>"; };
 		BF7BFA202B5D5D4B002F3802 /* HomeAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeAccount.swift; sourceTree = "<group>"; };
 		BF7BFA222B5D99F0002F3802 /* AccountsCarrousel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountsCarrousel.swift; sourceTree = "<group>"; };
 		BF7BFA262B5EC62F002F3802 /* Account.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
@@ -94,6 +96,10 @@
 		BF7BFA432B60678B002F3802 /* PromosAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromosAPI.swift; sourceTree = "<group>"; };
 		BF7BFA452B606849002F3802 /* Promotion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Promotion.swift; sourceTree = "<group>"; };
 		BF7BFA482B606FE1002F3802 /* HomeTitle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTitle.swift; sourceTree = "<group>"; };
+		BF7BFA4A2B615C49002F3802 /* HorizontalCarrousel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalCarrousel.swift; sourceTree = "<group>"; };
+		BF7BFA4C2B615E6C002F3802 /* HorizontalCarrouselCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalCarrouselCell.swift; sourceTree = "<group>"; };
+		BF7BFA4E2B61793F002F3802 /* AccountBalance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountBalance.swift; sourceTree = "<group>"; };
+		BF7BFA502B618B03002F3802 /* AccountBank.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountBank.swift; sourceTree = "<group>"; };
 		BFD610582B500FEC004E3953 /* AppModoUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AppModoUI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BFD6105B2B500FEC004E3953 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BFD6105D2B500FEC004E3953 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -158,7 +164,8 @@
 		BF7BFA1C2B5D567D002F3802 /* Carrousel */ = {
 			isa = PBXGroup;
 			children = (
-				BF7BFA1D2B5D5692002F3802 /* HorizontalCarrousel.swift */,
+				BF7BFA4A2B615C49002F3802 /* HorizontalCarrousel.swift */,
+				BF7BFA4C2B615E6C002F3802 /* HorizontalCarrouselCell.swift */,
 			);
 			path = Carrousel;
 			sourceTree = "<group>";
@@ -170,6 +177,8 @@
 				BF7BFA202B5D5D4B002F3802 /* HomeAccount.swift */,
 				BF7BFA222B5D99F0002F3802 /* AccountsCarrousel.swift */,
 				BF7BFA362B602A72002F3802 /* AccountsHomeSection.swift */,
+				BF7BFA4E2B61793F002F3802 /* AccountBalance.swift */,
+				BF7BFA502B618B03002F3802 /* AccountBank.swift */,
 			);
 			path = Accounts;
 			sourceTree = "<group>";
@@ -450,9 +459,9 @@
 				BFD6108C2B56C677004E3953 /* ObserversNames.swift in Sources */,
 				BFD6108E2B56F79F004E3953 /* HomeVC.swift in Sources */,
 				BFD6107E2B5038D2004E3953 /* KeypadButtonContainer.swift in Sources */,
-				BF7BFA1E2B5D5692002F3802 /* HorizontalCarrousel.swift in Sources */,
 				BF7BFA272B5EC62F002F3802 /* Account.swift in Sources */,
 				BF7BFA232B5D99F0002F3802 /* AccountsCarrousel.swift in Sources */,
+				BF7BFA512B618B03002F3802 /* AccountBank.swift in Sources */,
 				BFD610C12B59F1CA004E3953 /* LoginPresenter.swift in Sources */,
 				BFD610AC2B59743F004E3953 /* User.swift in Sources */,
 				BFD610A82B59714B004E3953 /* UserAPI.swift in Sources */,
@@ -462,11 +471,13 @@
 				BF7BFA442B60678B002F3802 /* PromosAPI.swift in Sources */,
 				BF7BFA372B602A72002F3802 /* AccountsHomeSection.swift in Sources */,
 				BF7BFA492B606FE1002F3802 /* HomeTitle.swift in Sources */,
+				BF7BFA4B2B615C49002F3802 /* HorizontalCarrousel.swift in Sources */,
 				BFD6107C2B50378A004E3953 /* Colors.swift in Sources */,
 				BF7BFA192B5C4F6D002F3802 /* UserImageCircle.swift in Sources */,
 				BFD610B22B598B74004E3953 /* SuggestedBanksByCards.swift in Sources */,
 				BFD610852B505B15004E3953 /* Keypad.swift in Sources */,
 				BF7BFA292B5ED247002F3802 /* LoginRouter.swift in Sources */,
+				BF7BFA4F2B61793F002F3802 /* AccountBalance.swift in Sources */,
 				BFD610B02B598B3C004E3953 /* CardArt.swift in Sources */,
 				BFD610A62B597035004E3953 /* KeychainKeys.swift in Sources */,
 				BF7BFA422B6064FA002F3802 /* BannerPromos.swift in Sources */,
@@ -489,6 +500,7 @@
 				BFD6109F2B581F35004E3953 /* AuthAPI.swift in Sources */,
 				BFD610742B501C42004E3953 /* PasswordDots.swift in Sources */,
 				BF7BFA212B5D5D4B002F3802 /* HomeAccount.swift in Sources */,
+				BF7BFA4D2B615E6C002F3802 /* HorizontalCarrouselCell.swift in Sources */,
 				BFD610962B56FFA4004E3953 /* StoryboardNames.swift in Sources */,
 				BF7BFA2F2B600973002F3802 /* BankAccount.swift in Sources */,
 				BFD6109C2B581E54004E3953 /* Login.swift in Sources */,

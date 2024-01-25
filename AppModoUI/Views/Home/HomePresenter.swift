@@ -8,8 +8,8 @@
 import Foundation
 
 protocol HomePresenterProtocol {
-    func createAccountsCarrousel(accountsInformation: [AccountInformation])
-    func createPromosCarrousel(promotions: Promotion)
+    func createAccountsCarrousel(observerName: String, accountsInformation: [AccountInformation])
+    func createPromosCarrousel(observerName: String, promotions: Promotion)
 }
 
 class HomePresenter {
@@ -25,54 +25,77 @@ class HomePresenter {
     
     @MainActor
     func configureAccountsCarrousel() {
-        
+        let observerName = ObserversNames.ACCOUNT_CARROUSEL
+       
         var accountsInformation: [AccountInformation] = []
+      
+        for account in user.accounts {
+            accountsInformation.append(AccountInformation.createAccountInformation(account: account, balance: nil))
+        }
+       
+        view.createAccountsCarrousel(observerName: observerName, accountsInformation: accountsInformation)
         
-        var banksCalled = Set<String>()
+        getAccountBalances(accounts: user.accounts) { accountsInformation in
+            Keychain.saveToKeychain(key: KeychainKeys.ACCOUNTS_INFORMATION, save: encodeClass(clase: accountsInformation)!)
+            
+            DispatchQueue.main.async {
+                NotificationCenter.default.post(name: Notification.Name(observerName), object: accountsInformation)
+            }
+        }
+    }
+    
+    func getAccountBalances(accounts: [Account], onCompletion: @escaping (_ accountsInformation: [AccountInformation]) -> Void) {
         
-        Task {
-            for account in user.accounts {
+        Task.detached {
+            var accountsInformation: [AccountInformation] = []
+            
+            var banksResponses = [String: [BankAccount]]()
+            
+            for account in accounts {
                 
                 do{
+                    var bankAccount: [BankAccount]?
                     
-                    if !banksCalled.contains(account.bank.id) {
-                        try await BankAPI.shared.getAccountsInformation(bankId: account.bank.id)
-                        banksCalled.insert( account.bank.id)
+                    if banksResponses[account.bank.id] == nil {
+                        bankAccount = try await BankAPI.shared.getAccountsInformation(bankId: account.bank.id)
+                        banksResponses[account.bank.id] = bankAccount
                     }
                     
-                    if let bankAccount = BankAccount.getAccountsFromBank(bankId: account.bank.id)?.first(where: { $0.id == account.id}) {
+                    if let bankAccounts = banksResponses[account.bank.id] {
                         
-                        accountsInformation.append(AccountInformation(bankId: account.bank.id,
-                                                                      bankName: account.bank.name,
-                                                                      bankLogo: account.bank.imageUrl,
-                                                                      accountId: account.id,
-                                                                      accountType: account.type,
-                                                                      accountLastDigits: account.lastDigits,
-                                                                      accountBalance: bankAccount.balance,
-                                                                      favorite: account.favourite))
-                        
+                        accountsInformation.append(AccountInformation.createAccountInformation(account: account,
+                                                                                               balance: bankAccounts.first(where: { $0.id == account.id})?.balance))
                     }
                 } catch let error {
                     print(error)
                 }
             }
-                    
-            view.createAccountsCarrousel(accountsInformation: accountsInformation)
+            
+            onCompletion(accountsInformation)
         }
     }
     
     @MainActor
     func configurePromotionsCarrousel() {
-                        
-        Task {
+        let observerName = ObserversNames.PROMOTIONS_HUB
+        view.createPromosCarrousel(observerName: observerName, promotions: Promotion(cards: []))
+        
+        getPromotions() { promotion in
+            DispatchQueue.main.async {
+                NotificationCenter.default.post(name: Notification.Name(observerName), object: promotion)
+            }
+        }
+    }
+    
+    func getPromotions(onCompletion: @escaping (_ promotion: Promotion) -> Void){
+        Task.detached {
             do{
                 try await PromosAPI.shared.getPrimaryHub()
+                
+                onCompletion(Promotion.getPromotionsHub())
             } catch let error {
                 print(error)
             }
-
-            view.createPromosCarrousel(promotions: Promotion.getPromotionsHub())
-
         }
     }
 }

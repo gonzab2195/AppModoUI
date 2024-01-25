@@ -14,7 +14,7 @@ final class BankAPI: NetworkManagerProtocol {
     private let bankAccounts = baseURL + "#bankaccount#/accounts"
     static var shared = BankAPI()
     
-    func getAccountsInformation(bankId: String) async throws  {
+    func getAccountsInformation(bankId: String) async throws -> [BankAccount] {
         let endpointURL = URL(string: bankAccounts.replacingOccurrences(of: "#bankaccount#", with: bankId))!
         
         var request = URLRequest(url: endpointURL)
@@ -29,7 +29,11 @@ final class BankAPI: NetworkManagerProtocol {
         
         try NetworkManager.responseHasError(response: response, data: data)
         
-        Keychain.saveToKeychain(key: "bank_\(bankId)", save: String(data: data, encoding: .utf8)!)
+        let decoder = NetworkManager.createDecoder()
+        let bankAccount = try decoder.decode([BankAccount].self, from: data)
+        
+        return bankAccount
+        
     }
     
 }

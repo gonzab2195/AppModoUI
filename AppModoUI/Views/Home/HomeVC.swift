@@ -15,30 +15,32 @@ class HomeVC: ViewManager, HomePresenterProtocol {
     private let scrollView = UIScrollView()
     private let scrollViewContent = UIView()
     private var avatarView: HomeAvatar?
-    private let accountsCarrouselContainer = AccountsHomeSection()
+    //Accounts
+    private let accountsHomeSection = AccountsHomeSection()
+    private var accountsCarrousel: AccountsCarrousel?
     private var mainButtonRow: UIStackView?
     private var secondaryButtonRow: UIStackView?
-    private let promosCarrouselContainer = PromosHomeSection()
+    
+    //Promos
+    private let promosHomeSection = PromosHomeSection()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         homePresenter = HomePresenter(view: self)
-        
         Navigation.hideNavigationBar(view: self)
        
-        configureScrollView()
-        configureUserAvatar()
-        configureNotificationButton()
-        configureAccountsCarrouselContainer()
-        configureCenterButtons()
-        configurePromotionsCarrousel()
-      
-        homePresenter!.configureAccountsCarrousel()
-        homePresenter!.configurePromotionsCarrousel()
+        self.configureScrollView()
+        self.configureUserAvatar()
+        self.configureNotificationButton()
+        self.homePresenter!.configureAccountsCarrousel()
+        self.configureCenterButtons()
+        self.homePresenter!.configurePromotionsCarrousel()
+
+       
     }
     
-    func configureScrollView(){
+    private func configureScrollView(){
         
         view.addSubview(scrollView)
         scrollView.addSubview(scrollViewContent)
@@ -66,7 +68,7 @@ class HomeVC: ViewManager, HomePresenterProtocol {
         ])
     }
     
-    func configureUserAvatar(){
+    private func configureUserAvatar(){
         
         let viewWidth = Double(view.frame.width / 1.5);
         
@@ -90,7 +92,7 @@ class HomeVC: ViewManager, HomePresenterProtocol {
         
     }
     
-    func configureNotificationButton(){
+    private func configureNotificationButton(){
             
         let notificationButton = IconButton(image: UIImage(named: "bellIcon")!)
         
@@ -106,21 +108,7 @@ class HomeVC: ViewManager, HomePresenterProtocol {
        
     }
     
-    func configureAccountsCarrouselContainer(){
-        
-        accountsCarrouselContainer.translatesAutoresizingMaskIntoConstraints = false
-        scrollViewContent.addSubview(accountsCarrouselContainer)
-        
-        NSLayoutConstraint.activate([
-            accountsCarrouselContainer.topAnchor.constraint(equalTo: avatarView!.bottomAnchor, constant: 40),
-            accountsCarrouselContainer.leftAnchor.constraint(equalTo: scrollViewContent.leftAnchor),
-            accountsCarrouselContainer.rightAnchor.constraint(equalTo: scrollViewContent.rightAnchor),
-            accountsCarrouselContainer.heightAnchor.constraint(equalToConstant: 170)
-        ])
-        
-    }
-    
-    func configureCenterButtons(){
+    private func configureCenterButtons(){
             
         let scanQrButton = ButtonWithImage(buttonColor: UIColor(named: Colors.PAYMENT_DEFAULT)!, title: "Pagar", textColor: .white, fontSize: 19, image: UIImage(named: "qrIcon")!)
         let sendButton = ButtonWithImage(buttonColor: UIColor(named: Colors.SEND_DEFAULT)!, title: "Enviar", textColor: .white, fontSize: 19, image: UIImage(named: "arrowUp")!)
@@ -140,7 +128,7 @@ class HomeVC: ViewManager, HomePresenterProtocol {
         scrollViewContent.addSubview(mainButtonRow)
         
         NSLayoutConstraint.activate([
-            mainButtonRow.topAnchor.constraint(equalTo: accountsCarrouselContainer.bottomAnchor, constant: 20),
+            mainButtonRow.topAnchor.constraint(equalTo: accountsHomeSection.bottomAnchor, constant: 10),
             mainButtonRow.leftAnchor.constraint(equalTo: scrollViewContent.leftAnchor, constant: 20),
             mainButtonRow.rightAnchor.constraint(equalTo: scrollViewContent.rightAnchor, constant: -20),
             mainButtonRow.heightAnchor.constraint(equalToConstant: 65)
@@ -171,47 +159,55 @@ class HomeVC: ViewManager, HomePresenterProtocol {
         ])
     }
     
-    func configurePromotionsCarrousel(){
-       
-        scrollViewContent.addSubview(promosCarrouselContainer)
-        
-        NSLayoutConstraint.activate([
-            promosCarrouselContainer.topAnchor.constraint(equalTo: secondaryButtonRow!.bottomAnchor, constant: 10),
-            promosCarrouselContainer.leftAnchor.constraint(equalTo: scrollViewContent.leftAnchor),
-            promosCarrouselContainer.rightAnchor.constraint(equalTo: scrollViewContent.rightAnchor),
-            promosCarrouselContainer.heightAnchor.constraint(equalToConstant: 170)
-        ])
-    }
-    
     //From Presenter
     
-    func createAccountsCarrousel(accountsInformation: [AccountInformation]){
-       
+    func createAccountsCarrousel(observerName: String, accountsInformation: [AccountInformation]){
         
-        let accountsCarrousel = AccountsCarrousel(accountsInformation: accountsInformation)
+        scrollViewContent.addSubview(accountsHomeSection)
+        
+        NSLayoutConstraint.activate([
+            accountsHomeSection.topAnchor.constraint(equalTo: avatarView!.bottomAnchor, constant: 40),
+            accountsHomeSection.leftAnchor.constraint(equalTo: scrollViewContent.leftAnchor),
+            accountsHomeSection.rightAnchor.constraint(equalTo: scrollViewContent.rightAnchor),
+            accountsHomeSection.heightAnchor.constraint(equalToConstant: 170)
+        ])
+        
+        accountsCarrousel = AccountsCarrousel(observerName: observerName, accountsInformation: accountsInformation)
+        
+        guard let accountsCarrousel = self.accountsCarrousel else {
+            return
+        }
         
         scrollViewContent.addSubview(accountsCarrousel)
                 
         NSLayoutConstraint.activate([
-            accountsCarrousel.bottomAnchor.constraint(equalTo: accountsCarrouselContainer.bottomAnchor),
-            accountsCarrousel.leftAnchor.constraint(equalTo: accountsCarrouselContainer.leftAnchor),
-            accountsCarrousel.rightAnchor.constraint(equalTo: accountsCarrouselContainer.rightAnchor),
+            accountsCarrousel.bottomAnchor.constraint(equalTo: accountsHomeSection.bottomAnchor),
+            accountsCarrousel.leftAnchor.constraint(equalTo: accountsHomeSection.leftAnchor),
+            accountsCarrousel.rightAnchor.constraint(equalTo: accountsHomeSection.rightAnchor),
             accountsCarrousel.heightAnchor.constraint(equalToConstant: 130)
         ])
        
     }
     
-    func createPromosCarrousel(promotions: Promotion){
+    func createPromosCarrousel(observerName: String, promotions: Promotion){
         
-        let promotionsCarrousel = PromosCarrousel(promotions: promotions)
+        scrollViewContent.addSubview(promosHomeSection)
         
-        scrollViewContent.addSubview(promotionsCarrousel)
-                
         NSLayoutConstraint.activate([
-            promotionsCarrousel.bottomAnchor.constraint(equalTo: promosCarrouselContainer.bottomAnchor),
-            promotionsCarrousel.leftAnchor.constraint(equalTo: promosCarrouselContainer.leftAnchor),
-            promotionsCarrousel.rightAnchor.constraint(equalTo: promosCarrouselContainer.rightAnchor),
-            promotionsCarrousel.heightAnchor.constraint(equalToConstant: 130)
+            promosHomeSection.topAnchor.constraint(equalTo: secondaryButtonRow!.bottomAnchor, constant: 10),
+            promosHomeSection.leftAnchor.constraint(equalTo: scrollViewContent.leftAnchor),
+            promosHomeSection.rightAnchor.constraint(equalTo: scrollViewContent.rightAnchor),
+            promosHomeSection.heightAnchor.constraint(equalToConstant: 150)
+        ])
+        
+        let promotionsCarrousel = PromosCarrousel(observerName: observerName, promotion: promotions)
+        scrollViewContent.addSubview(promotionsCarrousel)
+        
+        NSLayoutConstraint.activate([
+            promotionsCarrousel.bottomAnchor.constraint(equalTo: promosHomeSection.bottomAnchor),
+            promotionsCarrousel.leftAnchor.constraint(equalTo: promosHomeSection.leftAnchor),
+            promotionsCarrousel.rightAnchor.constraint(equalTo: promosHomeSection.rightAnchor),
+            promotionsCarrousel.heightAnchor.constraint(equalToConstant: 110)
         ])
        
     }

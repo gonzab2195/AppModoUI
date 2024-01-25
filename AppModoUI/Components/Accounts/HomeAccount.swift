@@ -17,7 +17,7 @@ class HomeAccount: UIView {
         self.configure()
     }
     
-    required init?(coder: NSCoder) {
+    required init(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
@@ -33,70 +33,29 @@ class HomeAccount: UIView {
         self.layer.borderColor = UIColor(named: Colors.SECONDARY_GRAY_8)?.cgColor
         self.layer.borderWidth = 1
         
+        let container = UIStackView()
+        container.translatesAutoresizingMaskIntoConstraints = false
+        container.axis = .vertical
+        container.spacing = 10
+        container.distribution = .equalSpacing
+        
+        self.addSubview(container)
+        
+        NSLayoutConstraint.activate([
+            container.topAnchor.constraint(equalTo: self.topAnchor, constant: 20),
+            container.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 20),
+            container.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -10),
+            container.rightAnchor.constraint(equalTo: self.rightAnchor)
+        ])
+        
         //Bank
-        let bankLogoImageView = UIImageView()
-        bankLogoImageView.imageFrom(url: URL(string: accountInformation.bankLogo)!)
-        bankLogoImageView.contentMode = .scaleAspectFit
-        bankLogoImageView.translatesAutoresizingMaskIntoConstraints = false
         
-        self.addSubview(bankLogoImageView)
+        let bankLogo = AccountBank(logo: accountInformation.bankLogo, name: accountInformation.bankName)
         
-        NSLayoutConstraint.activate([
-            bankLogoImageView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20),
-            bankLogoImageView.topAnchor.constraint(equalTo: self.topAnchor, constant: 20),
-            bankLogoImageView.widthAnchor.constraint(equalToConstant: 30),
-            bankLogoImageView.heightAnchor.constraint(equalToConstant: 30)
-        ])
-        bankLogoImageView.layer.cornerRadius = 12.5
-        bankLogoImageView.layer.masksToBounds = true
+        //Acount Balance
         
-        let bankName = UILabel()
-        bankName.text = accountInformation.bankName
-        bankName.font = .systemFont(ofSize: 15, weight: .semibold)
-        bankName.translatesAutoresizingMaskIntoConstraints = false
+        let accountBalance = AccountBalance(balance: accountInformation.accountBalance)
         
-        self.addSubview(bankName)
-        
-        NSLayoutConstraint.activate([
-            bankName.leadingAnchor.constraint(equalTo: bankLogoImageView.trailingAnchor, constant: 5),
-            bankName.topAnchor.constraint(equalTo: self.topAnchor, constant: 26),
-            bankName.widthAnchor.constraint(equalToConstant: 100),
-        ])
-        
-        //Amount
-        let currency = UILabel()
-        
-        currency.font = .systemFont(ofSize: 19, weight: .semibold)
-        currency.text = "$"
-        currency.translatesAutoresizingMaskIntoConstraints = false
-        
-        self.addSubview(currency)
-        
-        let roundedAmount = UILabel()
-        roundedAmount.font = .systemFont(ofSize: 23, weight: .semibold)
-        roundedAmount.text = "\(getRoundedAmount(accountInformation.accountBalance)),"
-        roundedAmount.translatesAutoresizingMaskIntoConstraints = false
-        
-        self.addSubview(roundedAmount)
-        
-        let decimalsAmount = UILabel()
-        decimalsAmount.font = .systemFont(ofSize: 18, weight: .semibold)
-        decimalsAmount.text = getDecimalAmount(accountInformation.accountBalance)
-        decimalsAmount.translatesAutoresizingMaskIntoConstraints = false
-        
-        self.addSubview(decimalsAmount)
-        
-        NSLayoutConstraint.activate([
-            roundedAmount.topAnchor.constraint(equalTo: bankLogoImageView.topAnchor, constant: 40),
-            roundedAmount.leadingAnchor.constraint(equalTo: currency.trailingAnchor, constant: 3),
-            
-            currency.topAnchor.constraint(equalTo: roundedAmount.topAnchor, constant: 2),
-            currency.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20),
-            
-            decimalsAmount.topAnchor.constraint(equalTo: bankLogoImageView.topAnchor, constant: 40),
-            decimalsAmount.leadingAnchor.constraint(equalTo: roundedAmount.trailingAnchor),
-            decimalsAmount.bottomAnchor.constraint(equalTo: roundedAmount.bottomAnchor, constant: 5)
-        ])
         
         //Acount Info
         let accountInfo = UILabel()
@@ -105,12 +64,9 @@ class HomeAccount: UIView {
         accountInfo.text = "\(accountInformation.accountType == "SAVINGS" ? "CA" : "CC") ∙ \(accountInformation.accountLastDigits)"
         accountInfo.translatesAutoresizingMaskIntoConstraints = false
         
-        self.addSubview(accountInfo)
-        
-        NSLayoutConstraint.activate([
-            accountInfo.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -10),
-            accountInfo.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20)
-        ])
+        container.addArrangedSubview(bankLogo)
+        container.addArrangedSubview(accountBalance)
+        container.addArrangedSubview(accountInfo)
     }
     
 }

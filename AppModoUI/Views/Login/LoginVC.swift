@@ -89,7 +89,7 @@ class LoginVC: ViewManager, LoginPresenterProtocol {
         self.errorOnLogin(message: message)
     }
     
-    @objc func keypadPressed(notification: NSNotification){
+    @objc func keypadPressed(notification: Notification){
         
         errorLabel.isHidden = true
         

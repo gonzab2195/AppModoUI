@@ -12,4 +12,6 @@ struct KeychainKeys {
     public static let REFRESH_TOKEN = "refreshToken"
     public static let ME = "ME"
     public static let PROMOS_HUB = "promosHub"
+    public static let USER_ACCOUNTS = "userAccounts"
+    public static let ACCOUNTS_INFORMATION = "accountsInformation"
 }

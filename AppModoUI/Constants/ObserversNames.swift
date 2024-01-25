@@ -11,5 +11,7 @@ struct ObserversNames {
     
     public static let KEYPAD_BUTTON_PRESSED = "KEYPAD_BUTTON_PRESSED"
     public static let LOG_OUT = "LOG_OUT"
+    public static let ACCOUNT_CARROUSEL = "ACCOUNT_CARROUSEL"
+    public static let PROMOTIONS_HUB = "PROMOTIONS_HUB"
     
 }

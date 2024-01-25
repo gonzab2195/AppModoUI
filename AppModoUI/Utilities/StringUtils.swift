@@ -28,3 +28,20 @@ func getDecimalAmount(_ amount: Float) -> String {
     let parteDecimal = amount - Float(Int(amount))
     return String(String(format: "%.2f", parteDecimal).split(separator: ".")[1])
 }
+
+func encodeClass(clase: Encodable) -> String? {
+    let encoder = JSONEncoder()
+    encoder.outputFormatting = .prettyPrinted
+
+    do {
+        let jsonData = try encoder.encode(clase)
+        if let jsonString = String(data: jsonData, encoding: .utf8) {
+            return jsonString
+        } else {
+            return nil
+        }
+    } catch {
+        print("Error al encodear la clase: \(error)")
+        return nil
+    }
+}
