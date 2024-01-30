@@ -13,6 +13,7 @@ class ViewManager: UIViewController{
         super.viewDidLoad()
         
         NotificationCenter.default.addObserver(self, selector: #selector(ViewManager.doLogout), name: Notification.Name(ObserversNames.LOG_OUT), object: nil)
+        
     }
     
     deinit {
@@ -26,8 +27,7 @@ class ViewManager: UIViewController{
         Keychain.deleteKeyFromKeychain(keyToDelete: KeychainKeys.ME)
         
         Navigation.redirectToStoryboard(currentView: self,
-                             storyboardID: StoryboardNames.LOGIN_STORYBOARD,
-                             viewControllerID: ViewControllerNames.LOGIN_VIEW)
+                                        viewControllerID: ViewControllerNames.LOGIN_VIEW.rawValue, animated: true)
         
     }
 }

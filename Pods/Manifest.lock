@@ -1,0 +1,20 @@
+PODS:
+  - CHGlassmorphismView (0.0.4)
+  - SwiftSVG (2.3.2)
+
+DEPENDENCIES:
+  - CHGlassmorphismView (~> 0.0.4)
+  - SwiftSVG (~> 2.0)
+
+SPEC REPOS:
+  trunk:
+    - CHGlassmorphismView
+    - SwiftSVG
+
+SPEC CHECKSUMS:
+  CHGlassmorphismView: e2ded43b8eada0f00915963d7d75287068099af2
+  SwiftSVG: ca7f64e403b8ea7ea8eba8c823b83ba4a059834c
+
+PODFILE CHECKSUM: 4981b8b2a0f9979c60d4e34259bafdb8161288ec
+
+COCOAPODS: 1.11.3

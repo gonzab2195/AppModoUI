@@ -5,7 +5,7 @@
 //  Created by Gonzalo Berro on 18/01/2024.
 //
 
-import Foundation
+import UIKit
 
 protocol LoginPresenterProtocol {
     func updatePasswordDots(password: String) -> Void
@@ -70,10 +70,8 @@ class LoginPresenter {
                     try await AuthAPI.shared.doLogin(password: password)
                     
                     try await UserAPI.shared.getUserInfo()
-                    
-                    let user = User.getUserFromKeychain()
-                    
-                    router.navigateToHome(currentView: view)
+                                        
+                    router.navigateToHome(currentView: view as! UIViewController)
                     
                 }catch let error{
                     

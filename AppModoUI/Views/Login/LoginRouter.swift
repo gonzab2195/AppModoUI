@@ -5,17 +5,15 @@
 //  Created by Gonzalo Berro on 22/01/2024.
 //
 
-import Foundation
+import UIKit
 
 protocol LoginRouterProtocol {
-    func navigateToHome(currentView: LoginPresenterProtocol) -> Void
+    func navigateToHome(currentView: UIViewController) -> Void
 }
 
 class LoginRouter: LoginRouterProtocol {
     
-    func navigateToHome(currentView: LoginPresenterProtocol){
-        Navigation.redirectToStoryboard(currentView: currentView as! ViewManager,
-                                        storyboardID: StoryboardNames.HOME_STORYBOARD,
-                                        viewControllerID: ViewControllerNames.HOME_VIEW)
+    func navigateToHome(currentView: UIViewController){
+        Navigation.redirectToViewController(fromView: currentView, toView: HomeTabVC())
     }
 }

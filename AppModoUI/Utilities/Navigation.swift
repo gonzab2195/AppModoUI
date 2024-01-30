@@ -14,23 +14,24 @@ struct Navigation {
         view.navigationController?.interactivePopGestureRecognizer?.isEnabled = false
     }
 
-    static func redirectToStoryboard(currentView: ViewManager, storyboardID: String, viewControllerID: String){
+    static func redirectToStoryboard(currentView: UIViewController, viewControllerID: String, animated: Bool?){
         DispatchQueue.main.async {
             
-            let homeStoryboard = UIStoryboard(
-                name: storyboardID,
+            let storyboard = UIStoryboard(
+                name: viewControllerID,
                 bundle: nil)
             
-            let homeVC = homeStoryboard.instantiateViewController(
+            let viewController = storyboard.instantiateViewController(
                 withIdentifier: viewControllerID) as! ViewManager
                 
             currentView.navigationController?.pushViewController(
-                    homeVC, animated: true)
+                viewController, animated: animated != nil ? animated! : true)
             
         }
     }
     
-    static func redirectToViewController(fromView: ViewManager, toView: ViewManager){
+    static func redirectToViewController(fromView: UIViewController, toView: UIViewController){
+        
         fromView.navigationController?.pushViewController(toView, animated: true)
     }
     

@@ -24,22 +24,12 @@ class Keychain : KeychainProtocol {
         switch status {
             case errSecSuccess:
                 status = SecItemUpdate(query as CFDictionary, newData as CFDictionary)
-                if status != errSecSuccess {
-                    print("Error al actualizar el valor en el Keychain: \(status)")
-                } else {
-                    print("Valor actualizado correctamente en el Keychain: \(key)")
-                }
                 
             case errSecItemNotFound:
                 var newItemQuery = query
                 newItemQuery[kSecValueData as String] = save.data(using: .utf8)!
                 
                 status = SecItemAdd(newItemQuery as CFDictionary, nil)
-                if status != errSecSuccess {
-                    print("Error al guardar el valor en el Keychain: \(status)")
-                } else {
-                    print("Valor guardado correctamente en el Keychain: \(key)")
-                }
                 
             default:
                 print("Error inesperado al acceder al Keychain: \(status)")
@@ -75,8 +65,7 @@ class Keychain : KeychainProtocol {
         let keyExistsStatus = SecItemCopyMatching(keychainQuery as CFDictionary, &result)
 
         if keyExistsStatus == errSecSuccess {
-            
-            let status = SecItemDelete(keychainQuery as CFDictionary)
+            SecItemDelete(keychainQuery as CFDictionary)
         } else {
             print("No existe la key a eliminar \(keyToDelete)")
         }

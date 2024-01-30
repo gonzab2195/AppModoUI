@@ -7,9 +7,11 @@
 
 import Foundation
 
-struct ViewControllerNames {
+enum ViewControllerNames: String {
     
-    public static let HOME_VIEW = "Home"
-    public static let LOGIN_VIEW = "Login"
-    
+    case HOME_VIEW = "Home"
+    case LOGIN_VIEW = "Login"
+    case PROMOS = "Promos"
+    case WALLET = "Wallet"
+    case MENU = "Menu"
 }

@@ -13,5 +13,6 @@ struct ObserversNames {
     public static let LOG_OUT = "LOG_OUT"
     public static let ACCOUNT_CARROUSEL = "ACCOUNT_CARROUSEL"
     public static let PROMOTIONS_HUB = "PROMOTIONS_HUB"
+    public static let MENU_BUTTON_UPDATED = "MENU_BUTTON_UPDATED"
     
 }

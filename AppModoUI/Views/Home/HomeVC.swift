@@ -26,6 +26,7 @@ class HomeVC: ViewManager, HomePresenterProtocol {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+       
         
         homePresenter = HomePresenter(view: self)
         Navigation.hideNavigationBar(view: self)
@@ -35,9 +36,7 @@ class HomeVC: ViewManager, HomePresenterProtocol {
         self.configureNotificationButton()
         self.homePresenter!.configureAccountsCarrousel()
         self.configureCenterButtons()
-        self.homePresenter!.configurePromotionsCarrousel()
-
-       
+        self.homePresenter!.configurePromotionsCarrousel()       
     }
     
     private func configureScrollView(){
@@ -49,7 +48,7 @@ class HomeVC: ViewManager, HomePresenterProtocol {
         
         scrollViewContent.translatesAutoresizingMaskIntoConstraints = false
 
-        let scrollViewContentHeightAnchor = scrollViewContent.heightAnchor.constraint(equalTo: scrollView.heightAnchor)
+        let scrollViewContentHeightAnchor = scrollViewContent.heightAnchor.constraint(equalTo: scrollView.heightAnchor, multiplier: 2)
 
         scrollViewContentHeightAnchor.isActive = true
         scrollViewContentHeightAnchor.priority = UILayoutPriority(50)

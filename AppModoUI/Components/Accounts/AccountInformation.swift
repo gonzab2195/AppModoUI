@@ -25,11 +25,15 @@ struct AccountInformation: Decodable {
         var accountsInformation: [AccountInformation] = []
         
         do{
-            
-            let keychainData = Keychain.retrieveKeyFromKeychain(key: KeychainKeys.ACCOUNTS_INFORMATION)!.data(using: .utf8)
-            if let data = keychainData {
-                accountsInformation = try decoder.decode([AccountInformation].self, from: data)
+            if let keychainData = Keychain.retrieveKeyFromKeychain(key: KeychainKeys.ACCOUNTS_INFORMATION) {
+                
+                let dataDecoded = keychainData.data(using: .utf8)
+                
+                if let data = dataDecoded {
+                    accountsInformation = try decoder.decode([AccountInformation].self, from: data)
+                }
             }
+           
         } catch let error {
             print(error)
             accountsInformation = []

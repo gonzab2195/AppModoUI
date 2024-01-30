@@ -1,0 +1,6 @@
+framework module CHGlassmorphismView {
+  umbrella header "CHGlassmorphismView-umbrella.h"
+
+  export *
+  module * { export * }
+}

@@ -5,7 +5,7 @@
 //  Created by Gonzalo Berro on 23/01/2024.
 //
 
-import Foundation
+import UIKit
 
 protocol HomePresenterProtocol {
     func createAccountsCarrousel(observerName: String, accountsInformation: [AccountInformation])
@@ -63,8 +63,11 @@ class HomePresenter {
                     
                     if let bankAccounts = banksResponses[account.bank.id] {
                         
-                        accountsInformation.append(AccountInformation.createAccountInformation(account: account,
-                                                                                               balance: bankAccounts.first(where: { $0.id == account.id})?.balance))
+                        let balance = bankAccounts.first(where: { $0.id == account.id})?.balance
+                        
+                        accountsInformation.append(
+                            AccountInformation.createAccountInformation(account: account,
+                                                                        balance: balance))
                     }
                 } catch let error {
                     print(error)

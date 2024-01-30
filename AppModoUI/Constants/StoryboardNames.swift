@@ -11,6 +11,6 @@ struct StoryboardNames {
     
     public static let HOME_STORYBOARD = "Home"
     public static let LOGIN_STORYBOARD = "Main"
-
+    public static let PROMOS = "Promos"
     
 }
