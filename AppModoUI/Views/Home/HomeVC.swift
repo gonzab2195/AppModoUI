@@ -24,19 +24,27 @@ class HomeVC: ViewManager, HomePresenterProtocol {
     //Promos
     private let promosHomeSection = PromosHomeSection()
     
+    //Pull to refresh
+    var refreshControl = UIRefreshControl()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
        
-        
         homePresenter = HomePresenter(view: self)
         Navigation.hideNavigationBar(view: self)
-       
         self.configureScrollView()
+        self.configure()
+    }
+    
+    @objc private func configure(){
+     
         self.configureUserAvatar()
         self.configureNotificationButton()
         self.homePresenter!.configureAccountsCarrousel()
         self.configureCenterButtons()
-        self.homePresenter!.configurePromotionsCarrousel()       
+        self.homePresenter!.configurePromotionsCarrousel()
+        
+        refreshControl.endRefreshing()
     }
     
     private func configureScrollView(){
@@ -65,6 +73,10 @@ class HomeVC: ViewManager, HomePresenterProtocol {
             scrollViewContent.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
             scrollViewContent.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
         ])
+        
+        refreshControl.addTarget(self, action: #selector(self.configure), for: .valueChanged)
+        
+        scrollView.addSubview(refreshControl)
     }
     
     private func configureUserAvatar(){

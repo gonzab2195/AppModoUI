@@ -17,6 +17,9 @@ class HomeTabVC: UITabBarController {
     
     private func configure(){
         
+        UsersDefault.saveToUserDefault(key: UsersDefaultsKeys.MENU_SELECTED,
+                                       save: ViewControllerNames.HOME_VIEW.rawValue)
+        
         self.view.backgroundColor = .systemBackground
         
         
