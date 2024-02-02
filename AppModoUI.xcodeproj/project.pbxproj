@@ -81,6 +81,12 @@
 		BFE96C4D2B682E0000D4C263 /* MenuVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE96C4C2B682E0000D4C263 /* MenuVC.swift */; };
 		BFE96C4F2B6968E300D4C263 /* HomeTabVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE96C4E2B6968E300D4C263 /* HomeTabVC.swift */; };
 		BFE96C522B696F5200D4C263 /* HomeTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE96C512B696F5200D4C263 /* HomeTabBar.swift */; };
+		BFE96C552B6AC6FD00D4C263 /* ErrorCodes.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE96C542B6AC6FD00D4C263 /* ErrorCodes.swift */; };
+		BFE96C572B6BCCDD00D4C263 /* InternalCodes.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE96C562B6BCCDD00D4C263 /* InternalCodes.swift */; };
+		BFE96C592B6C198700D4C263 /* PromosPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE96C582B6C198700D4C263 /* PromosPresenter.swift */; };
+		BFE96C5B2B6C20F000D4C263 /* WalletTabButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE96C5A2B6C20F000D4C263 /* WalletTabButton.swift */; };
+		BFE96C5E2B6C26B600D4C263 /* WalletTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE96C5D2B6C26B600D4C263 /* WalletTabBar.swift */; };
+		BFE96C602B6C287300D4C263 /* WalletPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE96C5F2B6C287300D4C263 /* WalletPresenter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -162,6 +168,12 @@
 		BFE96C4C2B682E0000D4C263 /* MenuVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuVC.swift; sourceTree = "<group>"; };
 		BFE96C4E2B6968E300D4C263 /* HomeTabVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTabVC.swift; sourceTree = "<group>"; };
 		BFE96C512B696F5200D4C263 /* HomeTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTabBar.swift; sourceTree = "<group>"; };
+		BFE96C542B6AC6FD00D4C263 /* ErrorCodes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorCodes.swift; sourceTree = "<group>"; };
+		BFE96C562B6BCCDD00D4C263 /* InternalCodes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InternalCodes.swift; sourceTree = "<group>"; };
+		BFE96C582B6C198700D4C263 /* PromosPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromosPresenter.swift; sourceTree = "<group>"; };
+		BFE96C5A2B6C20F000D4C263 /* WalletTabButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletTabButton.swift; sourceTree = "<group>"; };
+		BFE96C5D2B6C26B600D4C263 /* WalletTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletTabBar.swift; sourceTree = "<group>"; };
+		BFE96C5F2B6C287300D4C263 /* WalletPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletPresenter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -283,6 +295,7 @@
 		BFD6105A2B500FEC004E3953 /* AppModoUI */ = {
 			isa = PBXGroup;
 			children = (
+				BFE96C532B6AC6F100D4C263 /* Exceptions */,
 				BFE96C3A2B68227400D4C263 /* UsersDefault */,
 				BFD610A22B596FB1004E3953 /* Keychain */,
 				BFD6109D2B581F25004E3953 /* API */,
@@ -304,7 +317,8 @@
 		BFD610752B50364F004E3953 /* Components */ = {
 			isa = PBXGroup;
 			children = (
-				BFE96C502B696F4400D4C263 /* Tabbar */,
+				BFE96C5C2B6C26A000D4C263 /* Wallet */,
+				BFE96C502B696F4400D4C263 /* HomeBar */,
 				BF7BFA472B606FD7002F3802 /* Texts */,
 				BF7BFA3C2B60440D002F3802 /* Promos */,
 				BF7BFA1F2B5D5D3D002F3802 /* Accounts */,
@@ -329,9 +343,9 @@
 		BFD610772B50367D004E3953 /* Buttons */ = {
 			isa = PBXGroup;
 			children = (
-				BFE96C382B68137500D4C263 /* MenuButton.swift */,
 				BF7BFA132B5C45DE002F3802 /* IconButton.swift */,
 				BF7BFA382B602E6F002F3802 /* ButtonWithImage.swift */,
+				BFE96C5A2B6C20F000D4C263 /* WalletTabButton.swift */,
 			);
 			path = Buttons;
 			sourceTree = "<group>";
@@ -448,6 +462,7 @@
 			isa = PBXGroup;
 			children = (
 				BFE96C422B68293500D4C263 /* PromosVC.swift */,
+				BFE96C582B6C198700D4C263 /* PromosPresenter.swift */,
 			);
 			path = Promos;
 			sourceTree = "<group>";
@@ -456,6 +471,7 @@
 			isa = PBXGroup;
 			children = (
 				BFE96C462B682CF100D4C263 /* WalletVC.swift */,
+				BFE96C5F2B6C287300D4C263 /* WalletPresenter.swift */,
 			);
 			path = Wallet;
 			sourceTree = "<group>";
@@ -468,12 +484,30 @@
 			path = Menu;
 			sourceTree = "<group>";
 		};
-		BFE96C502B696F4400D4C263 /* Tabbar */ = {
+		BFE96C502B696F4400D4C263 /* HomeBar */ = {
 			isa = PBXGroup;
 			children = (
+				BFE96C382B68137500D4C263 /* MenuButton.swift */,
 				BFE96C512B696F5200D4C263 /* HomeTabBar.swift */,
 			);
-			path = Tabbar;
+			path = HomeBar;
+			sourceTree = "<group>";
+		};
+		BFE96C532B6AC6F100D4C263 /* Exceptions */ = {
+			isa = PBXGroup;
+			children = (
+				BFE96C542B6AC6FD00D4C263 /* ErrorCodes.swift */,
+				BFE96C562B6BCCDD00D4C263 /* InternalCodes.swift */,
+			);
+			path = Exceptions;
+			sourceTree = "<group>";
+		};
+		BFE96C5C2B6C26A000D4C263 /* Wallet */ = {
+			isa = PBXGroup;
+			children = (
+				BFE96C5D2B6C26B600D4C263 /* WalletTabBar.swift */,
+			);
+			path = Wallet;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -595,11 +629,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BFE96C5B2B6C20F000D4C263 /* WalletTabButton.swift in Sources */,
 				BFD610B82B59A382004E3953 /* Bank.swift in Sources */,
 				BF7BFA392B602E6F002F3802 /* ButtonWithImage.swift in Sources */,
 				BFD6108C2B56C677004E3953 /* ObserversNames.swift in Sources */,
 				BFD6108E2B56F79F004E3953 /* HomeVC.swift in Sources */,
 				BFD6107E2B5038D2004E3953 /* KeypadButtonContainer.swift in Sources */,
+				BFE96C5E2B6C26B600D4C263 /* WalletTabBar.swift in Sources */,
 				BF7BFA272B5EC62F002F3802 /* Account.swift in Sources */,
 				BF7BFA232B5D99F0002F3802 /* AccountsCarrousel.swift in Sources */,
 				BF7BFA512B618B03002F3802 /* AccountBank.swift in Sources */,
@@ -611,12 +647,15 @@
 				BFD6105C2B500FEC004E3953 /* AppDelegate.swift in Sources */,
 				BF7BFA442B60678B002F3802 /* PromosAPI.swift in Sources */,
 				BFE96C472B682CF100D4C263 /* WalletVC.swift in Sources */,
+				BFE96C552B6AC6FD00D4C263 /* ErrorCodes.swift in Sources */,
 				BF7BFA372B602A72002F3802 /* AccountsHomeSection.swift in Sources */,
 				BF7BFA492B606FE1002F3802 /* HomeTitle.swift in Sources */,
 				BF7BFA4B2B615C49002F3802 /* HorizontalCarrousel.swift in Sources */,
 				BFD6107C2B50378A004E3953 /* Colors.swift in Sources */,
+				BFE96C572B6BCCDD00D4C263 /* InternalCodes.swift in Sources */,
 				BF7BFA192B5C4F6D002F3802 /* UserImageCircle.swift in Sources */,
 				BFE96C4D2B682E0000D4C263 /* MenuVC.swift in Sources */,
+				BFE96C592B6C198700D4C263 /* PromosPresenter.swift in Sources */,
 				BFD610B22B598B74004E3953 /* SuggestedBanksByCards.swift in Sources */,
 				BFD610852B505B15004E3953 /* Keypad.swift in Sources */,
 				BF7BFA292B5ED247002F3802 /* LoginRouter.swift in Sources */,
@@ -655,6 +694,7 @@
 				BFE96C4F2B6968E300D4C263 /* HomeTabVC.swift in Sources */,
 				BF7BFA3B2B6037DA002F3802 /* UIImageExtension.swift in Sources */,
 				BF7BFA142B5C45DE002F3802 /* IconButton.swift in Sources */,
+				BFE96C602B6C287300D4C263 /* WalletPresenter.swift in Sources */,
 				BF7BFA332B601356002F3802 /* AccountInformation.swift in Sources */,
 				BF7BFA1B2B5C501D002F3802 /* UserInitialsCircle.swift in Sources */,
 				BFD610722B50102D004E3953 /* LoginVC.swift in Sources */,

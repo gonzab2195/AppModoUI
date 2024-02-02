@@ -32,7 +32,7 @@ class PromosVC: ViewManager, WKNavigationDelegate {
         ])
        
         
-        let url = URL(string: "https://modo.com.ar/promos-app")!
+        let url = PromosPresenter.webviewURL
         webView.load(URLRequest(url: url))
         webView.allowsBackForwardNavigationGestures = true
        

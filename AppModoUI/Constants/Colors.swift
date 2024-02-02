@@ -18,4 +18,5 @@ struct Colors {
     public static let SECONDARY_PAYMENT_10 = "secondaryPayment_10"
     public static let SEND_DEFAULT = "sendDefault"
     public static let ERROR_DARK = "errorDark"
+    public static let BLUE_CROSS_DARK = "blueCrossDark"
 }

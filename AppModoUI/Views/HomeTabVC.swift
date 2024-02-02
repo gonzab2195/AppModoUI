@@ -46,8 +46,8 @@ class HomeTabVC: UITabBarController {
         
         NSLayoutConstraint.activate([
             customTabBar.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -20),
-            customTabBar.leftAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leftAnchor, constant: 20),
-            customTabBar.rightAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.rightAnchor, constant: -20),
+            customTabBar.leftAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leftAnchor, constant: 15),
+            customTabBar.rightAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.rightAnchor, constant: -15),
             customTabBar.heightAnchor.constraint(equalToConstant: 90),
          ])
         

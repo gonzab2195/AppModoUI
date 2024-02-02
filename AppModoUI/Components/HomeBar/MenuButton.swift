@@ -91,8 +91,10 @@ class MenuButton: UIButton {
         }
         
         UsersDefault.saveToUserDefault(key: UsersDefaultsKeys.MENU_SELECTED, save: menuButton.rawValue)
-        NotificationCenter.default.post(name: Notification.Name(ObserversNames.MENU_BUTTON_UPDATED), object: nil)
+        
         setMenuStatus()
+      
+        NotificationCenter.default.post(name: Notification.Name(ObserversNames.MENU_BUTTON_UPDATED), object: nil)
         viewController?.selectedIndex = menuIndex
 
     }

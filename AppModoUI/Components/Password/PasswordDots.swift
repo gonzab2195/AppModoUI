@@ -14,12 +14,12 @@ final class PasswordDots: PasswordEyeButtonDelegate {
     private var password = ""
     
     private let passwordLength: Int?
-    private let superView: UIView?
+    private let superView: UIStackView?
     private let eyeButton: PasswordEyeButton?
-
+    
     var passwordShown = false
     
-    init(superView: UIView, passwordLength: Int) {
+    init(superView: UIStackView, passwordLength: Int) {
         self.superView = superView
         self.passwordLength = passwordLength
         self.eyeButton = PasswordEyeButton(superView: superView)
@@ -34,6 +34,11 @@ final class PasswordDots: PasswordEyeButtonDelegate {
         guard let superView = superView, let passwordLength = self.passwordLength else {
             return
         }
+        
+        superView.alignment = .center
+        superView.axis = .horizontal
+        superView.spacing = 5
+        superView.distribution = .equalCentering
         
         eyeButton?.delegate = self
         
@@ -59,7 +64,7 @@ final class PasswordDots: PasswordEyeButtonDelegate {
             subview.removeFromSuperview()
         }
        
-        self.createPasswordDots()
+       self.createPasswordDots()
     }
     
     private func createDot(circleNumber: Int){
@@ -80,19 +85,11 @@ final class PasswordDots: PasswordEyeButtonDelegate {
             circle.layer.cornerRadius = 7
             circle.clipsToBounds = true
         }
+        
+        circle.widthAnchor.constraint(equalToConstant: 16).isActive = true
+        circle.heightAnchor.constraint(equalToConstant: 16).isActive = true
        
-        
-        superView.addSubview(circle)
-        
-        circle.translatesAutoresizingMaskIntoConstraints = false
-      
-        NSLayoutConstraint.activate([
-            circle.leftAnchor.constraint(equalTo: superView.safeAreaLayoutGuide.leftAnchor, constant: CGFloat(circleNumber * 36)),
-            circle.widthAnchor.constraint(equalToConstant: 16),
-            circle.heightAnchor.constraint(equalToConstant: 16),
-            circle.centerYAnchor.constraint(equalTo: superView.centerYAnchor)
-            
-        ])
+        superView.addArrangedSubview(circle)
         
         
     }

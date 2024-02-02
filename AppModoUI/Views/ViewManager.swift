@@ -27,7 +27,7 @@ class ViewManager: UIViewController{
         Keychain.deleteKeyFromKeychain(keyToDelete: KeychainKeys.ME)
         
         Navigation.redirectToStoryboard(currentView: self,
-                                        viewControllerID: ViewControllerNames.LOGIN_VIEW.rawValue, animated: true)
+                                        viewControllerID: ViewControllerNames.LOGIN_VIEW.rawValue, animated: false)
         
     }
 }

@@ -10,7 +10,7 @@ import Foundation
 enum ViewControllerNames: String {
     
     case HOME_VIEW = "Home"
-    case LOGIN_VIEW = "Login"
+    case LOGIN_VIEW = "Main"
     case PROMOS = "Promos"
     case WALLET = "Wallet"
     case MENU = "Menu"

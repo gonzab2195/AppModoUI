@@ -53,25 +53,37 @@ class HomePresenter {
             
             for account in accounts {
                 
+                var bankAccount: [BankAccount]?
+                
                 do{
-                    var bankAccount: [BankAccount]?
                     
                     if banksResponses[account.bank.id] == nil {
+                        
                         bankAccount = try await BankAPI.shared.getAccountsInformation(bankId: account.bank.id)
                         banksResponses[account.bank.id] = bankAccount
                     }
                     
-                    if let bankAccounts = banksResponses[account.bank.id] {
-                        
-                        let balance = bankAccounts.first(where: { $0.id == account.id})?.balance
-                        
-                        accountsInformation.append(
-                            AccountInformation.createAccountInformation(account: account,
-                                                                        balance: balance))
-                    }
                 } catch let error {
-                    print(error)
+                    
+                    let errorDecoded = error as NSError
+                    if(errorDecoded.code == ErrorCodes.UNAUTHORIZED.rawValue){
+                        return
+                    }
+                    
                 }
+                    
+                var balance: Float?  = nil
+                
+                if let bankAccounts = banksResponses[account.bank.id] {
+                    
+                    balance = bankAccounts.first(where: { $0.id == account.id})?.balance
+                    
+                }
+                
+                accountsInformation.append(
+                    AccountInformation.createAccountInformation(account: account,
+                                                                balance: balance))
+               
             }
             
             onCompletion(accountsInformation)

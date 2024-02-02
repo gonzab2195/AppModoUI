@@ -16,9 +16,9 @@ class LoginVC: ViewManager, LoginPresenterProtocol {
     @IBOutlet weak var userInitialsLabel: UILabel!
     @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var passwordInputLabel: UILabel!
-    @IBOutlet weak var passwordDotsContainer: UIView!
     @IBOutlet weak var keypadView: UIView!
     @IBOutlet weak var errorLabel: UILabel!
+    @IBOutlet weak var passwordDotsContainer: UIStackView!
     
     private var passwordDots: PasswordDots?
     
@@ -67,6 +67,7 @@ class LoginVC: ViewManager, LoginPresenterProtocol {
         passwordDots = PasswordDots(superView: passwordDotsContainer, passwordLength: loginPresenter!.passwordLength)
         passwordDots!.createPasswordDots()
     }
+    
     
     func configureKeypad(){
         KeypadComponent(superView: keypadView).createKeypad()

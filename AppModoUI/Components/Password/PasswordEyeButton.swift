@@ -16,11 +16,11 @@ final class PasswordEyeButton: UIButton {
     private let showPasswordImage = UIImage(named: "eyeCloseIcon")!.resized(toWidth: 35)
     private let hidePasswordImage = UIImage(named: "eyeOpenIcon")!.resized(toWidth: 20)
     var showingPassword = false
-    private var superView: UIView?
+    private var superView: UIStackView?
     
     var delegate: PasswordEyeButtonDelegate?
         
-    init(superView : UIView) {
+    init(superView : UIStackView) {
         super.init(frame: .zero)
         self.superView = superView
     }
@@ -34,7 +34,7 @@ final class PasswordEyeButton: UIButton {
         guard let superView = superView else {
             return
         }
-                
+                        
         let iconImage = showingPassword ? hidePasswordImage : showPasswordImage
         self.setImage(iconImage, for: .normal)
         
@@ -43,18 +43,11 @@ final class PasswordEyeButton: UIButton {
 
         self.addTarget(self, action: #selector(imageTapped(sender:)), for: .touchUpInside)
         
-        superView.addSubview(self)
+        self.widthAnchor.constraint(equalToConstant: 35).isActive = true
+        self.heightAnchor.constraint(equalToConstant: 35).isActive = true
         
-        superView.bringSubviewToFront(self)
+        superView.addArrangedSubview(self)
         
-        self.translatesAutoresizingMaskIntoConstraints = false
-
-        NSLayoutConstraint.activate([
-            self.leftAnchor.constraint(equalTo: superView.safeAreaLayoutGuide.leftAnchor, constant: CGFloat((36 * 5) + 25)),
-            self.widthAnchor.constraint(equalToConstant: 35),
-            self.heightAnchor.constraint(equalToConstant: 35),
-            self.centerYAnchor.constraint(equalTo: superView.centerYAnchor)
-        ])
     }
     
     @objc func imageTapped(sender: UIButton) {

@@ -53,6 +53,7 @@ class LoginPresenter {
         }
                 
         if loginTriesLeft == 0 {
+            handleErrorLabel(message: "Bloqueamos tu clave por seguridad")
             return
         }
         
@@ -67,6 +68,7 @@ class LoginPresenter {
             Task {
                
                 do {
+                    loginTriesLeft -= 1
                     try await AuthAPI.shared.doLogin(password: password)
                     
                     try await UserAPI.shared.getUserInfo()
@@ -74,9 +76,17 @@ class LoginPresenter {
                     router.navigateToHome(currentView: view as! UIViewController)
                     
                 }catch let error{
+                    let errorDecoded = error as NSError
                     
-                    handleErrorLabel(message: "Error interno")
-                    print(error)
+                    if let errorMessage = InternalCodes.getInternalMessage(
+                        internalMessage: errorDecoded.domain, toReplace: String(loginTriesLeft)) {
+                        handleErrorLabel(message: errorMessage)
+                        return
+                    }
+                    
+                    if(errorDecoded.code == ErrorCodes.UNAUTHORIZED.rawValue){
+                        return
+                    }
                 }
                     
             }
@@ -102,7 +112,6 @@ class LoginPresenter {
             return
         }
         
-        loginTriesLeft -= 1
         password = ""
         
         view.updatePasswordDots(password: password)

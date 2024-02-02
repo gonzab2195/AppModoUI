@@ -46,19 +46,15 @@ class NetworkManager {
         let httpStatus = httpResponse.statusCode
         
         let decoder = createDecoder()
-       
-        if httpStatus == 503 {
-            throw NSError(domain: "Error on Response", code: httpStatus, userInfo: [NSLocalizedDescriptionKey: "Server Error"])
-        }
         
-        if httpStatus == 401 {
+        if httpStatus == ErrorCodes.UNAUTHORIZED.rawValue {
             let observerName = Notification.Name(ObserversNames.LOG_OUT)
             NotificationCenter.default.post(name: observerName, object: nil)
         }
         
-        if httpStatus != 200 {
+        if httpStatus != ErrorCodes.OK.rawValue {
             let decodedError: ErrorResponse = try decoder.decode(ErrorResponse.self, from: data)
-            throw NSError(domain: "Error on Response", code: httpStatus, userInfo: [NSLocalizedDescriptionKey: decodedError.errors.first?.message ?? "No Message"])
+            throw NSError(domain: decodedError.internalCode, code: httpStatus, userInfo: [NSLocalizedDescriptionKey: decodedError.errors.first?.message ?? "No Message"])
         }
         
     }
