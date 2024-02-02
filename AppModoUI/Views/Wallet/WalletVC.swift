@@ -17,6 +17,7 @@ class WalletVC: ViewManager, WalletTabBarProtocol {
     private var selectedTab: String = ""
 
     override func viewDidLoad() {
+        
         super.viewDidLoad()
         Navigation.hideNavigationBar(view: self)
         
@@ -27,6 +28,7 @@ class WalletVC: ViewManager, WalletTabBarProtocol {
     }
     
     private func configureTitle(){
+        
         titleLabel.text = WalletPresenter.walletTitle
         titleLabel.numberOfLines = 2
         titleLabel.font = UIFont.boldSystemFont(ofSize: 24)
@@ -40,9 +42,11 @@ class WalletVC: ViewManager, WalletTabBarProtocol {
             titleLabel.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor, constant: 20),
             titleLabel.widthAnchor.constraint(equalToConstant: self.view.frame.width / 1.70),
         ])
+        
     }
     
     private func configureTabBar(){
+        
         tabsContainer.delegate = self
         self.view.addSubview(tabsContainer)
         
@@ -57,7 +61,6 @@ class WalletVC: ViewManager, WalletTabBarProtocol {
     
     private func configureContent(){
         
-       
         cardsView.translatesAutoresizingMaskIntoConstraints = false
         cardsView.backgroundColor = .red
         
@@ -89,6 +92,7 @@ class WalletVC: ViewManager, WalletTabBarProtocol {
     
     //Delegate
     func selectedTab(tabText: String) {
+        
         selectedTab = tabText
         
         if(tabText == WalletPresenter.CARDS_TAB) {

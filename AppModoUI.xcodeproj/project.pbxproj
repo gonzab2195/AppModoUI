@@ -52,7 +52,6 @@
 		BFD6108C2B56C677004E3953 /* ObserversNames.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD6108B2B56C677004E3953 /* ObserversNames.swift */; };
 		BFD6108E2B56F79F004E3953 /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD6108D2B56F79F004E3953 /* HomeVC.swift */; };
 		BFD610902B56FD8F004E3953 /* ViewControllerNames.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD6108F2B56FD8F004E3953 /* ViewControllerNames.swift */; };
-		BFD610922B56FDEF004E3953 /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BFD610912B56FDEF004E3953 /* Home.storyboard */; };
 		BFD610992B5702B8004E3953 /* Navigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD610982B5702B8004E3953 /* Navigation.swift */; };
 		BFD6109C2B581E54004E3953 /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD6109B2B581E54004E3953 /* Login.swift */; };
 		BFD6109F2B581F35004E3953 /* AuthAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD6109E2B581F35004E3953 /* AuthAPI.swift */; };
@@ -74,10 +73,7 @@
 		BFE96C3C2B68228300D4C263 /* UsersDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE96C3B2B68228300D4C263 /* UsersDefault.swift */; };
 		BFE96C3E2B68233600D4C263 /* UsersDefaultsKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE96C3D2B68233600D4C263 /* UsersDefaultsKeys.swift */; };
 		BFE96C432B68293500D4C263 /* PromosVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE96C422B68293500D4C263 /* PromosVC.swift */; };
-		BFE96C452B6829F000D4C263 /* Promos.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BFE96C442B6829F000D4C263 /* Promos.storyboard */; };
 		BFE96C472B682CF100D4C263 /* WalletVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE96C462B682CF100D4C263 /* WalletVC.swift */; };
-		BFE96C492B682D4C00D4C263 /* Wallet.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BFE96C482B682D4C00D4C263 /* Wallet.storyboard */; };
-		BFE96C4B2B682DF600D4C263 /* Menu.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BFE96C4A2B682DF600D4C263 /* Menu.storyboard */; };
 		BFE96C4D2B682E0000D4C263 /* MenuVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE96C4C2B682E0000D4C263 /* MenuVC.swift */; };
 		BFE96C4F2B6968E300D4C263 /* HomeTabVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE96C4E2B6968E300D4C263 /* HomeTabVC.swift */; };
 		BFE96C522B696F5200D4C263 /* HomeTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE96C512B696F5200D4C263 /* HomeTabBar.swift */; };
@@ -139,7 +135,6 @@
 		BFD6108B2B56C677004E3953 /* ObserversNames.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObserversNames.swift; sourceTree = "<group>"; };
 		BFD6108D2B56F79F004E3953 /* HomeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVC.swift; sourceTree = "<group>"; };
 		BFD6108F2B56FD8F004E3953 /* ViewControllerNames.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerNames.swift; sourceTree = "<group>"; };
-		BFD610912B56FDEF004E3953 /* Home.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
 		BFD610982B5702B8004E3953 /* Navigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Navigation.swift; sourceTree = "<group>"; };
 		BFD6109B2B581E54004E3953 /* Login.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Login.swift; sourceTree = "<group>"; };
 		BFD6109E2B581F35004E3953 /* AuthAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthAPI.swift; sourceTree = "<group>"; };
@@ -161,10 +156,7 @@
 		BFE96C3B2B68228300D4C263 /* UsersDefault.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersDefault.swift; sourceTree = "<group>"; };
 		BFE96C3D2B68233600D4C263 /* UsersDefaultsKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersDefaultsKeys.swift; sourceTree = "<group>"; };
 		BFE96C422B68293500D4C263 /* PromosVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromosVC.swift; sourceTree = "<group>"; };
-		BFE96C442B6829F000D4C263 /* Promos.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Promos.storyboard; sourceTree = "<group>"; };
 		BFE96C462B682CF100D4C263 /* WalletVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletVC.swift; sourceTree = "<group>"; };
-		BFE96C482B682D4C00D4C263 /* Wallet.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Wallet.storyboard; sourceTree = "<group>"; };
-		BFE96C4A2B682DF600D4C263 /* Menu.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Menu.storyboard; sourceTree = "<group>"; };
 		BFE96C4C2B682E0000D4C263 /* MenuVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuVC.swift; sourceTree = "<group>"; };
 		BFE96C4E2B6968E300D4C263 /* HomeTabVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTabVC.swift; sourceTree = "<group>"; };
 		BFE96C512B696F5200D4C263 /* HomeTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTabBar.swift; sourceTree = "<group>"; };
@@ -377,10 +369,6 @@
 			isa = PBXGroup;
 			children = (
 				BFD610612B500FEC004E3953 /* Main.storyboard */,
-				BFD610912B56FDEF004E3953 /* Home.storyboard */,
-				BFE96C442B6829F000D4C263 /* Promos.storyboard */,
-				BFE96C482B682D4C00D4C263 /* Wallet.storyboard */,
-				BFE96C4A2B682DF600D4C263 /* Menu.storyboard */,
 			);
 			path = Storyboard;
 			sourceTree = "<group>";
@@ -570,13 +558,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BFE96C4B2B682DF600D4C263 /* Menu.storyboard in Resources */,
 				BFD610682B500FF0004E3953 /* LaunchScreen.storyboard in Resources */,
 				BFD610652B500FF0004E3953 /* Assets.xcassets in Resources */,
 				BFD610632B500FEC004E3953 /* Main.storyboard in Resources */,
-				BFE96C452B6829F000D4C263 /* Promos.storyboard in Resources */,
-				BFD610922B56FDEF004E3953 /* Home.storyboard in Resources */,
-				BFE96C492B682D4C00D4C263 /* Wallet.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
