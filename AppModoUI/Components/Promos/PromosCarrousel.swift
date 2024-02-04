@@ -10,7 +10,7 @@ import UIKit
 class PromosCarrousel: UIView, HorizontalCarrouselProtocol {
     
     private var promotion: Promotion?
-    private var carrouselContainer: HorizontalCarrousel?
+    private var carrouselContainer: Carrousel?
 
     init(observerName: String, promotion: Promotion){
         super.init(frame: .zero)
@@ -45,7 +45,7 @@ class PromosCarrousel: UIView, HorizontalCarrouselProtocol {
         
         
         
-        carrouselContainer = HorizontalCarrousel(carrouselElements: createArray(),
+        carrouselContainer = Carrousel(carrouselElements: createArray(),
                                                      elementsSize: CGSize(width: 350, height: 110),
                                                      spaceBetween: 10,
                                                      initialPadding: 20)

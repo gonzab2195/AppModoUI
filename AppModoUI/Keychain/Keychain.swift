@@ -66,8 +66,6 @@ class Keychain : KeychainProtocol {
 
         if keyExistsStatus == errSecSuccess {
             SecItemDelete(keychainQuery as CFDictionary)
-        } else {
-            print("No existe la key a eliminar \(keyToDelete)")
-        }
+        } 
     }
 }

@@ -44,7 +44,7 @@ struct AccountInformation: Decodable {
                                   bankLogo: account.bank.imageUrl,
                                   accountId: account.id,
                                   accountType: account.type,
-                                  accountLastDigits: account.lastDigits,
+                                  accountLastDigits: account.lastDigits ?? "",
                                   accountBalance: balance != nil ? balance : accountsInformation.first(where: { $0.accountId == account.id})?.accountBalance ?? nil,
                                   favorite: account.favourite)
         

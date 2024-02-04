@@ -15,10 +15,14 @@ protocol LoginPresenterProtocol {
 class LoginPresenter {
     
     //View
-    var view: LoginPresenterProtocol?
+    let view: LoginPresenterProtocol?
+    
+    //Use Case
+    let loginUseCase = LoginUseCase()
+    let meUseCase = MeUseCase()
     
     //Router
-    var router = LoginRouter()
+    let router: LoginRouterProtocol = LoginRouter()
     
     //Constants
     let passwordLength = 6
@@ -69,9 +73,9 @@ class LoginPresenter {
                
                 do {
                     loginTriesLeft -= 1
-                    try await AuthAPI.shared.doLogin(password: password)
+                    try await loginUseCase.doLogin(password: password)
                     
-                    try await UserAPI.shared.getUserInfo()
+                    try await meUseCase.getMe()
                                         
                     router.navigateToHome(currentView: view as! UIViewController)
                     

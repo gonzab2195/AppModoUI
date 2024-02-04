@@ -7,7 +7,7 @@
 
 import UIKit
 
-class HomeVC: ViewManager, HomePresenterProtocol {
+class HomeVC: ViewManagerVC, HomePresenterProtocol {
     
     //Presenter
     private var homePresenter: HomePresenter?
@@ -56,14 +56,14 @@ class HomeVC: ViewManager, HomePresenterProtocol {
         
         scrollViewContent.translatesAutoresizingMaskIntoConstraints = false
 
-        let scrollViewContentHeightAnchor = scrollViewContent.heightAnchor.constraint(equalTo: scrollView.heightAnchor, multiplier: 2)
+        let scrollViewContentHeightAnchor = scrollViewContent.heightAnchor.constraint(equalTo: scrollView.heightAnchor, multiplier: 1.1)
 
         scrollViewContentHeightAnchor.isActive = true
         scrollViewContentHeightAnchor.priority = UILayoutPriority(50)
         
         NSLayoutConstraint.activate([
             scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 50),
             scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             
@@ -218,7 +218,7 @@ class HomeVC: ViewManager, HomePresenterProtocol {
             promotionsCarrousel.bottomAnchor.constraint(equalTo: promosHomeSection.bottomAnchor),
             promotionsCarrousel.leftAnchor.constraint(equalTo: promosHomeSection.leftAnchor),
             promotionsCarrousel.rightAnchor.constraint(equalTo: promosHomeSection.rightAnchor),
-            promotionsCarrousel.heightAnchor.constraint(equalToConstant: 110)
+            promotionsCarrousel.heightAnchor.constraint(equalToConstant: 110),
         ])
        
     }

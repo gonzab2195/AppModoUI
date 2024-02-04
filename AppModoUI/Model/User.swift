@@ -75,14 +75,16 @@ extension User {
         do{
             let decoder = NetworkManager.createDecoder()
             let userAsString = Keychain.retrieveKeyFromKeychain(key: KeychainKeys.ME)
-            
+           
             guard let userAsData = userAsString!.data(using: .utf8) else {
                 return self.emptyUser()
             }
-            let userDecoded = try decoder.decode(User.self, from: userAsData)
             
+            let userDecoded = try decoder.decode(User.self, from: userAsData)
+           
             return userDecoded
-        } catch {
+        } catch let error{
+            print(error)
             return self.emptyUser()
         }
     }

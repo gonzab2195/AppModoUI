@@ -10,7 +10,7 @@ import Foundation
 struct Account: Decodable {
     
     let id: String
-    let lastDigits: String
+    let lastDigits: String?
     let type: String
     let currencyCode: String
     let favourite: Bool

@@ -7,7 +7,7 @@
 
 import UIKit
 
-class MenuVC: ViewManager {
+class MenuVC: ViewManagerVC {
     
     override func viewDidLoad() {
         super.viewDidLoad()

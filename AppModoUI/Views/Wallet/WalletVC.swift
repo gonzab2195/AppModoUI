@@ -7,10 +7,12 @@
 
 import UIKit
 
-class WalletVC: ViewManager, WalletTabBarProtocol {
+class WalletVC: ViewManagerVC, WalletTabBarProtocol {
+    
+    private let presenter = WalletPresenter()
   
     private let titleLabel = UILabel()
-    private let tabsContainer = WalletTabBar(tabs: WalletPresenter.walletTabs)
+    private var tabsContainer: WalletTabBar?
     private let cardsView = UIView()
     private let accountsView = UIView()
     
@@ -29,7 +31,7 @@ class WalletVC: ViewManager, WalletTabBarProtocol {
     
     private func configureTitle(){
         
-        titleLabel.text = WalletPresenter.walletTitle
+        titleLabel.text = presenter.walletTitle
         titleLabel.numberOfLines = 2
         titleLabel.font = UIFont.boldSystemFont(ofSize: 24)
 
@@ -46,6 +48,11 @@ class WalletVC: ViewManager, WalletTabBarProtocol {
     }
     
     private func configureTabBar(){
+        tabsContainer = WalletTabBar(tabs: presenter.walletTabs)
+        
+        guard let tabsContainer = self.tabsContainer else {
+            return
+        }
         
         tabsContainer.delegate = self
         self.view.addSubview(tabsContainer)
@@ -61,8 +68,11 @@ class WalletVC: ViewManager, WalletTabBarProtocol {
     
     private func configureContent(){
         
+        guard let tabsContainer = self.tabsContainer else {
+            return
+        }
+        
         cardsView.translatesAutoresizingMaskIntoConstraints = false
-        cardsView.backgroundColor = .red
         
         self.view.addSubview(cardsView)
         
@@ -87,6 +97,26 @@ class WalletVC: ViewManager, WalletTabBarProtocol {
         ])
         
         accountsView.isHidden = true
+        
+        
+        let cards = presenter.getUserCards()
+        var carrouselElements: [UIView] = []
+        
+        for userCard in cards {
+            let walletCard = WalletCard(card: userCard)
+            carrouselElements.append(walletCard)
+        }
+        
+        let carrousel = Carrousel(carrouselElements: carrouselElements, elementsSize: CGSize(width: cardsView.frame.width, height: 200), spaceBetween: 10, initialPadding: 20, axis: .vertical)
+        
+        cardsView.addSubview(carrousel)
+        
+        NSLayoutConstraint.activate([
+            carrousel.topAnchor.constraint(equalTo: cardsView.topAnchor),
+            carrousel.leftAnchor.constraint(equalTo: cardsView.leftAnchor),
+            carrousel.rightAnchor.constraint(equalTo: cardsView.rightAnchor),
+            carrousel.bottomAnchor.constraint(equalTo: cardsView.bottomAnchor)
+        ])
         
     }
     

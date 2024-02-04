@@ -16,6 +16,9 @@ class HomePresenter {
     
     let user = User.getUserFromKeychain()!
     
+    //Use Case
+    let accountUseCase = AccountUseCase()
+    
     //View
     var view: HomePresenterProtocol
     
@@ -35,58 +38,12 @@ class HomePresenter {
        
         view.createAccountsCarrousel(observerName: observerName, accountsInformation: accountsInformation)
         
-        getAccountBalances(accounts: user.accounts) { accountsInformation in
+        accountUseCase.getAccountBalances(accounts: user.accounts) { accountsInformation in
             Keychain.saveToKeychain(key: KeychainKeys.ACCOUNTS_INFORMATION, save: encodeClass(clase: accountsInformation)!)
             
             DispatchQueue.main.async {
                 NotificationCenter.default.post(name: Notification.Name(observerName), object: accountsInformation)
             }
-        }
-    }
-    
-    func getAccountBalances(accounts: [Account], onCompletion: @escaping (_ accountsInformation: [AccountInformation]) -> Void) {
-        
-        Task.detached {
-            var accountsInformation: [AccountInformation] = []
-            
-            var banksResponses = [String: [BankAccount]]()
-            
-            for account in accounts {
-                
-                var bankAccount: [BankAccount]?
-                
-                do{
-                    
-                    if banksResponses[account.bank.id] == nil {
-                        
-                        bankAccount = try await BankAPI.shared.getAccountsInformation(bankId: account.bank.id)
-                        banksResponses[account.bank.id] = bankAccount
-                    }
-                    
-                } catch let error {
-                    
-                    let errorDecoded = error as NSError
-                    if(errorDecoded.code == ErrorCodes.UNAUTHORIZED.rawValue){
-                        return
-                    }
-                    
-                }
-                    
-                var balance: Float?  = nil
-                
-                if let bankAccounts = banksResponses[account.bank.id] {
-                    
-                    balance = bankAccounts.first(where: { $0.id == account.id})?.balance
-                    
-                }
-                
-                accountsInformation.append(
-                    AccountInformation.createAccountInformation(account: account,
-                                                                balance: balance))
-               
-            }
-            
-            onCompletion(accountsInformation)
         }
     }
     

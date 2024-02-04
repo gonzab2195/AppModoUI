@@ -16,7 +16,7 @@ struct Card: Decodable {
     let type: String
     let bin: String
     let lastDigits: String
-    let expired: Bool
+    let expired: Bool?
     let bank: Bank
     let color: String?
     let cardColor: String
@@ -41,6 +41,7 @@ extension Card: Encodable {
         try container.encode(expiry, forKey: .expiry)
         try container.encode(type, forKey: .type)
         try container.encode(bin, forKey: .bin)
+        try container.encode(lastDigits, forKey: .lastDigits)
         try container.encode(bank, forKey: .bank)
         try container.encode(color, forKey: .color)
         try container.encode(cardColor, forKey: .cardColor)

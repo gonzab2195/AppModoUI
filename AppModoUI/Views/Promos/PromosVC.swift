@@ -8,7 +8,7 @@
 import UIKit
 import WebKit
 
-class PromosVC: ViewManager, WKNavigationDelegate {
+class PromosVC: ViewManagerVC, WKNavigationDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()

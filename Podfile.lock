@@ -1,20 +1,26 @@
 PODS:
   - CHGlassmorphismView (0.0.4)
-  - SwiftSVG (2.3.2)
+  - CocoaLumberjack (3.8.2):
+    - CocoaLumberjack/Core (= 3.8.2)
+  - CocoaLumberjack/Core (3.8.2)
+  - SVGKit (3.0.0):
+    - CocoaLumberjack (~> 3.0)
 
 DEPENDENCIES:
   - CHGlassmorphismView (~> 0.0.4)
-  - SwiftSVG (~> 2.0)
+  - SVGKit
 
 SPEC REPOS:
   trunk:
     - CHGlassmorphismView
-    - SwiftSVG
+    - CocoaLumberjack
+    - SVGKit
 
 SPEC CHECKSUMS:
   CHGlassmorphismView: e2ded43b8eada0f00915963d7d75287068099af2
-  SwiftSVG: ca7f64e403b8ea7ea8eba8c823b83ba4a059834c
+  CocoaLumberjack: f8d89a516e7710fdb2e9b8f1560b16ec6040eef0
+  SVGKit: 1ad7513f8c74d9652f94ed64ddecda1a23864dea
 
-PODFILE CHECKSUM: 4981b8b2a0f9979c60d4e34259bafdb8161288ec
+PODFILE CHECKSUM: 3a7bc710682d43e443005643a59c724c031f7ae4
 
 COCOAPODS: 1.11.3

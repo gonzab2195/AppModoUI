@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import SwiftSVG
 
 class MenuButton: UIButton {
     

@@ -17,7 +17,7 @@ final class UserAPI: NetworkManagerProtocol {
     
     private init(){}
     
-    func getUserInfo() async throws {
+    func getUserInfo() async throws -> User {
         
         do {
             let url = try NetworkManager.createURL(urlString: meUrl)
@@ -30,10 +30,11 @@ final class UserAPI: NetworkManagerProtocol {
             let (data, response) = try await URLSession.shared.data(for: request)
             
             try NetworkManager.responseHasError(response: response, data: data)
-                                  
-            Keychain.saveToKeychain(key: KeychainKeys.ME,
-                                save: String(data: data, encoding: .utf8)!)
-
+                         
+            let decoder = NetworkManager.createDecoder()
+            let user = try decoder.decode(User.self, from: data)
+            
+            return user
             
         } catch let error {
             NetworkManager.isDecodingError(error: error)

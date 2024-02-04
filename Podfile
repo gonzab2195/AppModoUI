@@ -7,6 +7,6 @@ target 'AppModoUI' do
 
   # Pods for AppModoUI
   pod "CHGlassmorphismView", "~> 0.0.4"
-  pod 'SwiftSVG', '~> 2.0'
+  pod 'SVGKit'
 
 end

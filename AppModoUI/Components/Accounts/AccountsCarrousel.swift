@@ -10,7 +10,7 @@ import UIKit
 class AccountsCarrousel: UIView, HorizontalCarrouselProtocol {
     
     private var accountsInformation: [AccountInformation]?
-    private var carrouselContainer: HorizontalCarrousel?
+    private var carrouselContainer: Carrousel?
     
     init(observerName: String, accountsInformation: [AccountInformation]){
         super.init(frame: .zero)
@@ -41,7 +41,7 @@ class AccountsCarrousel: UIView, HorizontalCarrouselProtocol {
         
         self.translatesAutoresizingMaskIntoConstraints = false
         
-        carrouselContainer = HorizontalCarrousel(carrouselElements: createArray(),
+        carrouselContainer = Carrousel(carrouselElements: createArray(),
                                                  elementsSize: CGSize(width: 250, height: 130),
                                                  spaceBetween: 10,
                                                  initialPadding: 20)

@@ -7,7 +7,7 @@
 
 import UIKit
 
-class LoginVC: ViewManager, LoginPresenterProtocol {
+class LoginVC: ViewManagerVC, LoginPresenterProtocol {
     
     //Presenter
     private var loginPresenter: LoginPresenter?

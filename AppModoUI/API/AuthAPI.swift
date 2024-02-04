@@ -16,7 +16,7 @@ final class AuthAPI: NetworkManagerProtocol {
 
     private init(){}
     
-    func doLogin(password: String) async throws {
+    func doLogin(password: String) async throws -> Login{
         
         do {
             
@@ -45,10 +45,7 @@ final class AuthAPI: NetworkManagerProtocol {
             let decoder = NetworkManager.createDecoder()
             let decodedResponse = try decoder.decode(Login.self, from: data)
             
-            Keychain.saveToKeychain(key: KeychainKeys.ACCESS_TOKEN,
-                                save: decodedResponse.accessToken)
-            Keychain.saveToKeychain(key: KeychainKeys.REFRESH_TOKEN,
-                                save: decodedResponse.refreshToken)
+            return decodedResponse
          
         } catch let error {
            NetworkManager.isDecodingError(error: error)
