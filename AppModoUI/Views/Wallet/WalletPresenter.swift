@@ -18,5 +18,9 @@ class WalletPresenter {
     func getUserCards() -> [Card]{
         return User.getUserFromKeychain()?.cards ?? []
     }
+    
+    func getUserAccounts() -> [Account]{
+        return User.getUserFromKeychain()?.accounts ?? []
+    }
 
 }

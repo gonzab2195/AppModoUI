@@ -37,6 +37,11 @@ class NetworkManager {
         return url
     }
     
+    static func logOut(){
+        let observerName = Notification.Name(ObserversNames.LOG_OUT)
+        NotificationCenter.default.post(name: observerName, object: nil)
+    }
+    
     static func responseHasError(response: URLResponse, data: Data) throws{
         
         guard let httpResponse = response as? HTTPURLResponse else {
@@ -48,8 +53,7 @@ class NetworkManager {
         let decoder = createDecoder()
         
         if httpStatus == ErrorCodes.UNAUTHORIZED.rawValue {
-            let observerName = Notification.Name(ObserversNames.LOG_OUT)
-            NotificationCenter.default.post(name: observerName, object: nil)
+            logOut()
         }
         
         if httpStatus != ErrorCodes.OK.rawValue {

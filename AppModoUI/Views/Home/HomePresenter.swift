@@ -14,7 +14,7 @@ protocol HomePresenterProtocol {
 
 class HomePresenter {
     
-    let user = User.getUserFromKeychain()!
+    private let user = User.getUserFromKeychain()!
     
     //Use Case
     let accountUseCase = AccountUseCase()
@@ -24,6 +24,10 @@ class HomePresenter {
     
     init(view: HomePresenterProtocol){
         self.view = view
+    }
+    
+    func getUser() -> User? {
+        return user
     }
     
     @MainActor

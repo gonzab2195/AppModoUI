@@ -35,6 +35,8 @@ class LoginPresenter {
     
     init(view: LoginPresenterProtocol){
         self.view = view
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(self.loginWithBiometrics), name: Notification.Name(ObserversNames.USED_BIOMETRICS), object: nil)
     }
     
     @MainActor
@@ -71,31 +73,49 @@ class LoginPresenter {
         if password.count == passwordLength {
             Task {
                
-                do {
-                    loginTriesLeft -= 1
-                    try await loginUseCase.doLogin(password: password)
-                    
-                    try await meUseCase.getMe()
-                                        
-                    router.navigateToHome(currentView: view as! UIViewController)
-                    
-                }catch let error{
-                    let errorDecoded = error as NSError
-                    
-                    if let errorMessage = InternalCodes.getInternalMessage(
-                        internalMessage: errorDecoded.domain, toReplace: String(loginTriesLeft)) {
-                        handleErrorLabel(message: errorMessage)
-                        return
-                    }
-                    
-                    if(errorDecoded.code == ErrorCodes.UNAUTHORIZED.rawValue){
-                        return
-                    }
-                }
+                await doLogin(password: password)
                     
             }
          }
         
+    }
+    
+    @objc func loginWithBiometrics(){
+
+        let biometrics = Biometrics()
+        
+        biometrics.useBiometric() {
+             self.useSavedPassword()
+        }
+    }
+    
+    private func doLogin(password: String) async{
+        do {
+            loginTriesLeft -= 1
+            try await loginUseCase.doLogin(password: password)
+            
+            try await meUseCase.getMe()
+            DispatchQueue.main.async {
+                self.router.navigateToHome(currentView: self.view as! UIViewController)
+            }
+            
+        }catch let error{
+            
+            DispatchQueue.main.async {
+                let errorDecoded = error as NSError
+                
+                if let errorMessage = InternalCodes.getInternalMessage(
+                    internalMessage: errorDecoded.domain, toReplace: String(self.loginTriesLeft)) {
+                    self.handleErrorLabel(message: errorMessage)
+                    return
+                }
+                
+                if(errorDecoded.code == ErrorCodes.UNAUTHORIZED.rawValue){
+                    return
+                }
+            }
+            
+        }
     }
     
     private func handleRemoveNumber(){
@@ -120,5 +140,14 @@ class LoginPresenter {
         
         view.updatePasswordDots(password: password)
         view.showLoginErrorLabel(message: message)
+    }
+    
+    private func useSavedPassword (){
+       
+        Task {
+            let savedPassword = Keychain.retrieveKeyFromKeychain(key: "userPassword")
+            
+            await doLogin(password: savedPassword ?? "")
+        }
     }
 }

@@ -31,7 +31,7 @@ class WalletTabButton: UIButton {
         
         
         self.titleLabel?.font = UIFont.systemFont(ofSize: 13, weight: .bold)
-        self.layer.cornerRadius = 15
+        self.layer.cornerRadius = 10
         self.setTitle(text, for: .normal)
         self.addTarget(self, action: #selector(self.toggleTab), for: .touchUpInside)
         

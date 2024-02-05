@@ -18,11 +18,14 @@ class ViewManagerPresenter {
     
     func doLogout(){
         
-        Keychain.deleteKeyFromKeychain(keyToDelete: KeychainKeys.ACCESS_TOKEN)
-        Keychain.deleteKeyFromKeychain(keyToDelete: KeychainKeys.REFRESH_TOKEN)
-        Keychain.deleteKeyFromKeychain(keyToDelete: KeychainKeys.ME)
+        let deleted = Keychain.deleteKeyFromKeychain(keyToDelete: KeychainKeys.ACCESS_TOKEN)
+        let _ = Keychain.deleteKeyFromKeychain(keyToDelete: KeychainKeys.REFRESH_TOKEN)
+        let _ = Keychain.deleteKeyFromKeychain(keyToDelete: KeychainKeys.ME)
         
-        router.goToLogin(currentView: view)
+        if deleted {
+            router.goToLogin(currentView: view)
+        }
+       
     }
     
 }

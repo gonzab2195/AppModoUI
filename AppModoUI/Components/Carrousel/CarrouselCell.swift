@@ -7,7 +7,7 @@
 
 import UIKit
 
-class HorizontalCarrouselCell: UICollectionViewCell {
+class CarrouselCell: UICollectionViewCell {
     
     static let identifier = "TestCell"
     

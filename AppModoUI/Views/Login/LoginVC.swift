@@ -27,7 +27,8 @@ class LoginVC: ViewManagerVC, LoginPresenterProtocol {
         Navigation.hideNavigationBar(view: self)
         
         loginPresenter = LoginPresenter(view: self)
-        
+        //loginPresenter?.loginWithBiometrics()
+    
         configureAvatarCircle()
         configureUserInitialsLabel()
         configureUsernameLabel()

@@ -26,48 +26,36 @@ class WalletCard: UIImageView {
         self.imageFrom(url: URL(string: card.issuerBackgroundLogo)!)
 
         
-        self.layer.cornerRadius = 25
+        self.layer.cornerRadius = 20
         self.backgroundColor = UIColor.colorFromHex(hex: card.cardColor)
         self.contentMode = .scaleAspectFill
         self.clipsToBounds = true
         
         //Bank Logo
         DispatchQueue.global().async {
-            let url = URL(string: card.bankLogo)!
-            let bankImage = SVGKImage(contentsOf: url)
-
+            let bankImage = SVGKImage(contentsOf: URL(string: card.bankLogo)!)
+            let issueImage = SVGKImage(contentsOf: URL(string: card.issuerLogo)!)
+           
             DispatchQueue.main.async {
                 
                 let bankLogo = SVGKFastImageView(svgkImage: bankImage)
-                bankLogo?.contentMode = .scaleAspectFit
+                let issueLogo = SVGKFastImageView(svgkImage: issueImage)
                 
+                bankLogo?.contentMode = .scaleAspectFit
+                issueLogo?.contentMode = .scaleAspectFit
                 
                 bankLogo!.translatesAutoresizingMaskIntoConstraints = false
+                issueLogo!.translatesAutoresizingMaskIntoConstraints = false
+                
+                self.addSubview(issueLogo!)
                 self.addSubview(bankLogo!)
                 
                 NSLayoutConstraint.activate([
-                    bankLogo!.topAnchor.constraint(equalTo: self.topAnchor, constant: 15),
-                    bankLogo!.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 15),
-                    bankLogo!.widthAnchor.constraint(equalToConstant: 150),
-                    bankLogo!.heightAnchor.constraint(equalToConstant: 50)
-                ])
-            }
-        }
-        
-        //Issuer Logo
-        DispatchQueue.global().async {
-            
-            let issueImage = SVGKImage(contentsOf: URL(string: card.issuerLogo)!)
-            
-            DispatchQueue.main.async {
-                let issueLogo = SVGKFastImageView(svgkImage: issueImage)
-                issueLogo?.contentMode = .scaleAspectFit
-                
-                
-                issueLogo!.translatesAutoresizingMaskIntoConstraints = false
-                self.addSubview(issueLogo!)
-                
-                NSLayoutConstraint.activate([
+                   bankLogo!.topAnchor.constraint(equalTo: self.topAnchor, constant: 15),
+                   bankLogo!.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 15),
+                   bankLogo!.widthAnchor.constraint(equalToConstant: 150),
+                   bankLogo!.heightAnchor.constraint(equalToConstant: 50),
+                    
                    issueLogo!.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -35),
                    issueLogo!.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -15),
                    issueLogo!.widthAnchor.constraint(equalToConstant: 70),

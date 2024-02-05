@@ -14,6 +14,8 @@ class ViewManagerVC: UIViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.view.backgroundColor = .white
+        
         viewManagerPresenter = ViewManagerPresenter(view: self)
         
         NotificationCenter.default.addObserver(self, selector: #selector(ViewManagerVC.notLogged), name: Notification.Name(ObserversNames.LOG_OUT), object: nil)

@@ -25,7 +25,7 @@ class Carrousel: UIView {
         let layout = UICollectionViewFlowLayout()
         
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        collectionView.register(HorizontalCarrouselCell.self, forCellWithReuseIdentifier: HorizontalCarrouselCell.identifier)
+        collectionView.register(CarrouselCell.self, forCellWithReuseIdentifier: CarrouselCell.identifier)
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.showsVerticalScrollIndicator = false
 
@@ -59,6 +59,7 @@ class Carrousel: UIView {
     }
     
     private func configure(){
+        self.backgroundColor = .white
         
         collectionView.contentInset = UIEdgeInsets(top: 0, left: initialPadding ?? 20, bottom: scrollDirection == .vertical ? 95 : 0, right: 20)
         
@@ -90,7 +91,7 @@ extension Carrousel: UICollectionViewDelegate, UICollectionViewDataSource, UICol
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HorizontalCarrouselCell.identifier, for: indexPath) as? HorizontalCarrouselCell else {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CarrouselCell.identifier, for: indexPath) as? CarrouselCell else {
             fatalError("Error when dequeue cell")
         }
         let newCell = self.carrouselElements[indexPath.row]

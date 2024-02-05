@@ -46,6 +46,7 @@ class HomeTabVC: UITabBarController {
         var navs: [UINavigationController] = []
         
         for tab in tabs {
+
             let nav = UINavigationController(rootViewController: tab.viewController)
             
             nav.tabBarItem.title = tab.title

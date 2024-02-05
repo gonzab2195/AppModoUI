@@ -14,7 +14,7 @@ class HomeVC: ViewManagerVC, HomePresenterProtocol {
     
     private let scrollView = UIScrollView()
     private let scrollViewContent = UIView()
-    private var avatarView: HomeAvatar?
+    private var avatarView: UserAvatar?
     //Accounts
     private let accountsHomeSection = AccountsHomeSection()
     private var accountsCarrousel: AccountsCarrousel?
@@ -83,9 +83,7 @@ class HomeVC: ViewManagerVC, HomePresenterProtocol {
         
         let viewWidth = Double(view.frame.width / 1.5);
         
-        avatarView = HomeAvatar(image: homePresenter!.user.image,
-                                name:  homePresenter!.user.firstName,
-                                nameInitials: homePresenter!.user.userInitials(),
+        avatarView = UserAvatar(user: homePresenter?.getUser(),
                                 width: viewWidth)
         
         

@@ -4,7 +4,7 @@ import Foundation
 protocol KeychainProtocol {
     static func saveToKeychain(key: String, save: String) -> Void
     static func retrieveKeyFromKeychain(key: String) -> String?
-    static func deleteKeyFromKeychain(keyToDelete: String) -> Void
+    static func deleteKeyFromKeychain(keyToDelete: String) -> Bool
 }
 
 class Keychain : KeychainProtocol {
@@ -56,7 +56,7 @@ class Keychain : KeychainProtocol {
         return nil
     }
     
-    static func deleteKeyFromKeychain(keyToDelete: String) {
+    static func deleteKeyFromKeychain(keyToDelete: String) -> Bool {
         let keychainQuery = [
                 kSecClass as String: kSecClassGenericPassword as String,
                 kSecAttrAccount as String: keyToDelete] as [String : Any]
@@ -66,6 +66,9 @@ class Keychain : KeychainProtocol {
 
         if keyExistsStatus == errSecSuccess {
             SecItemDelete(keychainQuery as CFDictionary)
-        } 
+            return true
+        }
+        
+        return false
     }
 }

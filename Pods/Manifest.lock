@@ -1,8 +1,8 @@
 PODS:
   - CHGlassmorphismView (0.0.4)
-  - CocoaLumberjack (3.8.2):
-    - CocoaLumberjack/Core (= 3.8.2)
-  - CocoaLumberjack/Core (3.8.2)
+  - CocoaLumberjack (3.8.3):
+    - CocoaLumberjack/Core (= 3.8.3)
+  - CocoaLumberjack/Core (3.8.3)
   - SVGKit (3.0.0):
     - CocoaLumberjack (~> 3.0)
 
@@ -18,9 +18,9 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   CHGlassmorphismView: e2ded43b8eada0f00915963d7d75287068099af2
-  CocoaLumberjack: f8d89a516e7710fdb2e9b8f1560b16ec6040eef0
+  CocoaLumberjack: 466a5ccee85d6d757e1effad3693d7a8856024ae
   SVGKit: 1ad7513f8c74d9652f94ed64ddecda1a23864dea
 
-PODFILE CHECKSUM: 3a7bc710682d43e443005643a59c724c031f7ae4
+PODFILE CHECKSUM: 5f70f98f3e3110e3a4f9f4cd98f513bbf473a61f
 
 COCOAPODS: 1.11.3

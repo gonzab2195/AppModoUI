@@ -40,7 +40,6 @@ final class KeypadButtonContainer: UIStackView {
     private func configureButtonContent(){
         
         if keypads == nil || keypads!.count < 3 {
-            print(keypads?.count ?? "Error")
             return
         }
         

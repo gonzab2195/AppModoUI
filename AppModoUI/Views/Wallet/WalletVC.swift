@@ -13,8 +13,8 @@ class WalletVC: ViewManagerVC, WalletTabBarProtocol {
   
     private let titleLabel = UILabel()
     private var tabsContainer: WalletTabBar?
-    private let cardsView = UIView()
-    private let accountsView = UIView()
+    private let cardsCarrousel = WalletCardCarrousel()
+    private let accountsCarrousel = WalletAccountCarrousel()
     
     private var selectedTab: String = ""
 
@@ -45,6 +45,17 @@ class WalletVC: ViewManagerVC, WalletTabBarProtocol {
             titleLabel.widthAnchor.constraint(equalToConstant: self.view.frame.width / 1.70),
         ])
         
+        let button = AddButton()
+        
+        self.view.addSubview(button)
+        
+        NSLayoutConstraint.activate([
+            button.bottomAnchor.constraint(equalTo: titleLabel.bottomAnchor),
+            button.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -20),
+            button.heightAnchor.constraint(equalToConstant: 50),
+            button.widthAnchor.constraint(equalToConstant: 50),
+        ])
+        
     }
     
     private func configureTabBar(){
@@ -71,53 +82,31 @@ class WalletVC: ViewManagerVC, WalletTabBarProtocol {
         guard let tabsContainer = self.tabsContainer else {
             return
         }
-        
-        cardsView.translatesAutoresizingMaskIntoConstraints = false
-        
-        self.view.addSubview(cardsView)
-        
-        NSLayoutConstraint.activate([
-            cardsView.topAnchor.constraint(equalTo: tabsContainer.bottomAnchor, constant: 20),
-            cardsView.leftAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leftAnchor, constant: 20),
-            cardsView.rightAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.rightAnchor, constant: -20),
-            cardsView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor)
-        ])
-        
-       
-        accountsView.translatesAutoresizingMaskIntoConstraints = false
-        accountsView.backgroundColor = .blue
-        
-        self.view.addSubview(accountsView)
+                
+        accountsCarrousel.translatesAutoresizingMaskIntoConstraints = false
+        accountsCarrousel.backgroundColor = .blue
+        accountsCarrousel.isHidden = true
+
+        self.view.addSubview(cardsCarrousel)
+        self.view.addSubview(accountsCarrousel)
         
         NSLayoutConstraint.activate([
-            accountsView.topAnchor.constraint(equalTo: tabsContainer.bottomAnchor, constant: 20),
-            accountsView.leftAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leftAnchor, constant: 20),
-            accountsView.rightAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.rightAnchor, constant: -20),
-            accountsView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor)
+            cardsCarrousel.topAnchor.constraint(equalTo: tabsContainer.bottomAnchor, constant: 20),
+            cardsCarrousel.leftAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leftAnchor, constant: 20),
+            cardsCarrousel.rightAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.rightAnchor, constant: -20),
+            cardsCarrousel.bottomAnchor.constraint(equalTo: self.view.bottomAnchor),
+            
+            accountsCarrousel.topAnchor.constraint(equalTo: tabsContainer.bottomAnchor, constant: 20),
+            accountsCarrousel.leftAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leftAnchor, constant: 20),
+            accountsCarrousel.rightAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.rightAnchor, constant: -20),
+            accountsCarrousel.bottomAnchor.constraint(equalTo: self.view.bottomAnchor)
         ])
         
-        accountsView.isHidden = true
-        
-        
+        let accounts = presenter.getUserAccounts()
         let cards = presenter.getUserCards()
-        var carrouselElements: [UIView] = []
         
-        for userCard in cards {
-            let walletCard = WalletCard(card: userCard)
-            carrouselElements.append(walletCard)
-        }
-        
-        let carrousel = Carrousel(carrouselElements: carrouselElements, elementsSize: CGSize(width: cardsView.frame.width, height: 200), spaceBetween: 10, initialPadding: 20, axis: .vertical)
-        
-        cardsView.addSubview(carrousel)
-        
-        NSLayoutConstraint.activate([
-            carrousel.topAnchor.constraint(equalTo: cardsView.topAnchor),
-            carrousel.leftAnchor.constraint(equalTo: cardsView.leftAnchor),
-            carrousel.rightAnchor.constraint(equalTo: cardsView.rightAnchor),
-            carrousel.bottomAnchor.constraint(equalTo: cardsView.bottomAnchor)
-        ])
-        
+        accountsCarrousel.createCarrousel(accounts: accounts)
+        cardsCarrousel.createCarrousel(cards: cards)
     }
     
     //Delegate
@@ -126,11 +115,11 @@ class WalletVC: ViewManagerVC, WalletTabBarProtocol {
         selectedTab = tabText
         
         if(tabText == WalletPresenter.CARDS_TAB) {
-            cardsView.isHidden = false
-            accountsView.isHidden = true
+            cardsCarrousel.isHidden = false
+            accountsCarrousel.isHidden = true
         } else{
-            accountsView.isHidden = false
-            cardsView.isHidden = true
+            accountsCarrousel.isHidden = false
+            cardsCarrousel.isHidden = true
         }
     }
 
