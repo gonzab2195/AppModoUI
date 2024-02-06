@@ -119,7 +119,7 @@ class HomeVC: ViewManagerVC, HomePresenterProtocol {
     
     private func configureCenterButtons(){
             
-        let scanQrButton = ButtonWithImage(buttonColor: UIColor(named: Colors.PAYMENT_DEFAULT)!, title: "Pagar", textColor: .white, fontSize: 19, image: UIImage(named: "qrIcon")!)
+        let scanQrButton = ButtonWithImage(buttonColor: UIColor(named: Colors.PAYMENT_DEFAULT)!, title: "Pagar", textColor: .white, fontSize: 19, image: UIImage(named: "QR")!)
         let sendButton = ButtonWithImage(buttonColor: UIColor(named: Colors.SEND_DEFAULT)!, title: "Enviar", textColor: .white, fontSize: 19, image: UIImage(named: "arrowUp")!)
 
 

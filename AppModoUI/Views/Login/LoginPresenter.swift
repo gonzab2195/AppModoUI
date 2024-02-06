@@ -80,15 +80,6 @@ class LoginPresenter {
         
     }
     
-    @objc func loginWithBiometrics(){
-
-        let biometrics = Biometrics()
-        
-        biometrics.useBiometric() {
-             self.useSavedPassword()
-        }
-    }
-    
     private func doLogin(password: String) async{
         do {
             loginTriesLeft -= 1
@@ -115,6 +106,15 @@ class LoginPresenter {
                 }
             }
             
+        }
+    }
+    
+    @objc func loginWithBiometrics(){
+
+        let biometrics = Biometrics()
+        
+        biometrics.useBiometric() {
+             self.useSavedPassword()
         }
     }
     
@@ -146,6 +146,9 @@ class LoginPresenter {
        
         Task {
             let savedPassword = Keychain.retrieveKeyFromKeychain(key: "userPassword")
+            DispatchQueue.main.async {
+                self.view!.updatePasswordDots(password: savedPassword ?? "")
+            }
             
             await doLogin(password: savedPassword ?? "")
         }

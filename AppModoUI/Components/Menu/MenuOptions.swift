@@ -21,19 +21,15 @@ class MenuOptions: UIView {
     private func configure(){
         
         self.translatesAutoresizingMaskIntoConstraints = false
-        
-        let biometrics = Biometrics()
-        
-       
-        
-        let option1 = MenuOption(image: UIImage(named: "bellIcon")!, text: "Configuración") {}
-        let option2 = MenuOption(image: UIImage(named: "bellIcon")!, text: "QR Personal") {}
-        let option3 = MenuOption(image: UIImage(named: "bellIcon")!, text: "Donar con MODO") {}
-        let option4 = MenuOption(image: UIImage(named: "bellIcon")!, text: "¿Necesitas ayuda?") {}
-        let option5 = MenuOption(image: UIImage(named: "bellIcon")!, text: "Invitar amigos") {}
-        let option6 = MenuOption(image: UIImage(named: "bellIcon")!, text: "Ayudanos a mejorar") {}
-        let option7 = MenuOption(image: UIImage(named: "bellIcon")!, text: "Legales") {}
-        let option8 = MenuOption(image: UIImage(named: "bellIcon")!, text: "Cerrar Sesión",
+                
+        let option1 = MenuOption(image: UIImage(named: "gearIcon")!, text: "Configuración") {}
+        let option2 = MenuOption(image: UIImage(named: "qrIcon")!, text: "QR Personal") {}
+        let option3 = MenuOption(image: UIImage(named: "donateIcon")!, text: "Donar con MODO") {}
+        let option4 = MenuOption(image: UIImage(named: "headphonesIcon")!, text: "¿Necesitas ayuda?") {}
+        let option5 = MenuOption(image: UIImage(named: "rechargeIcon")!, text: "Invitar amigos") {}
+        let option6 = MenuOption(image: UIImage(named: "recommendIcon")!, text: "Ayudanos a mejorar") {}
+        let option7 = MenuOption(image: UIImage(named: "alertIcon")!, text: "Legales") {}
+        let option8 = MenuOption(image: UIImage(named: "closeSessionIcon")!, text: "Cerrar Sesión",
                                  tintColor: UIColor(named: Colors.ERROR_DARK)!) { NetworkManager.logOut() }
         
         let carrousel = Carrousel(carrouselElements:
