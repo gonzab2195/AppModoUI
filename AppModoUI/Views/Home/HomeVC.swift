@@ -31,7 +31,7 @@ class HomeVC: ViewManagerVC, HomePresenterProtocol {
         super.viewDidLoad()
        
         homePresenter = HomePresenter(view: self)
-        Navigation.hideNavigationBar(view: self)
+
         self.configureScrollView()
         self.configure()
     }

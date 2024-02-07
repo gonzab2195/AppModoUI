@@ -27,7 +27,7 @@ struct Card: Decodable {
     let enrollmentType: String
     let detailsAvailable: Bool
     let cvvType: String
-    let prepaid: Bool
+    let prepaid: Bool?
     let cardArt: CardArt
     
 }

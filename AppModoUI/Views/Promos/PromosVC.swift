@@ -12,9 +12,6 @@ class PromosVC: ViewManagerVC, WKNavigationDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-       
-        Navigation.hideNavigationBar(view: self)
-        
         
         let webView = WKWebView()
         webView.navigationDelegate = self

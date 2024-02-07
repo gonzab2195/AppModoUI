@@ -17,11 +17,9 @@ class WalletVC: ViewManagerVC, WalletTabBarProtocol {
     private let accountsCarrousel = WalletAccountCarrousel()
     
     private var selectedTab: String = ""
-
+    
     override func viewDidLoad() {
-        
         super.viewDidLoad()
-        Navigation.hideNavigationBar(view: self)
         
         self.configureTitle()
         self.configureTabBar()

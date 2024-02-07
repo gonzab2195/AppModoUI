@@ -16,9 +16,7 @@ class MenuVC: ViewManagerVC {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-       
-        Navigation.hideNavigationBar(view: self)
-        
+            
         self.configureUserAvatar()
         self.configureMenuOptions()
     }
