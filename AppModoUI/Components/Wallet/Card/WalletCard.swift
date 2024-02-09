@@ -23,46 +23,49 @@ class WalletCard: UIImageView {
     
     private func configure(card: Card){
         
-        self.imageFrom(url: URL(string: card.issuerBackgroundLogo)!)
-
+        guard let bankURL = URL(string: card.bankLogo), let issuerURL = URL(string: card.issuerLogo) else {
+            return
+        }
         
+        self.imageFrom(url: URL(string: card.issuerBackgroundLogo)!)
         self.layer.cornerRadius = 20
         self.backgroundColor = UIColor.colorFromHex(hex: card.cardColor)
         self.contentMode = .scaleAspectFill
         self.clipsToBounds = true
         
         //Bank Logo
-        DispatchQueue.global().async {
-            let bankImage = SVGKImage(contentsOf: URL(string: card.bankLogo)!)
-            let issueImage = SVGKImage(contentsOf: URL(string: card.issuerLogo)!)
-           
-            DispatchQueue.main.async {
-                
-                let bankLogo = SVGKFastImageView(svgkImage: bankImage)
-                let issueLogo = SVGKFastImageView(svgkImage: issueImage)
-                
-                bankLogo?.contentMode = .scaleAspectFit
-                issueLogo?.contentMode = .scaleAspectFit
-                
-                bankLogo!.translatesAutoresizingMaskIntoConstraints = false
-                issueLogo!.translatesAutoresizingMaskIntoConstraints = false
-                
-                self.addSubview(issueLogo!)
-                self.addSubview(bankLogo!)
-                
-                NSLayoutConstraint.activate([
-                   bankLogo!.topAnchor.constraint(equalTo: self.topAnchor, constant: 15),
-                   bankLogo!.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 15),
-                   bankLogo!.widthAnchor.constraint(equalToConstant: 150),
-                   bankLogo!.heightAnchor.constraint(equalToConstant: 50),
-                    
-                   issueLogo!.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -35),
-                   issueLogo!.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -15),
-                   issueLogo!.widthAnchor.constraint(equalToConstant: 70),
-                   issueLogo!.heightAnchor.constraint(equalToConstant: 40)
-                ])
-            }
+        
+        let banks = ["Reba", "BIND"]
+        
+        if !banks.contains(card.bank.name) {
+            let bankLogo = UIImageView()
+            bankLogo.translatesAutoresizingMaskIntoConstraints = false
+            bankLogo.loadSVG(bankURL, card: card.lastDigits)
+            
+            self.addSubview(bankLogo)
+            
+            NSLayoutConstraint.activate([
+                bankLogo.topAnchor.constraint(equalTo: self.topAnchor, constant: 15),
+                bankLogo.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 15),
+                bankLogo.widthAnchor.constraint(equalToConstant: 150),
+                bankLogo.heightAnchor.constraint(equalToConstant: 50)
+            ])
         }
+        
+        let issueLogo = UIImageView()
+        issueLogo.loadSVG(issuerURL, card: card.lastDigits)
+        issueLogo.translatesAutoresizingMaskIntoConstraints = false
+        
+        self.addSubview(issueLogo)
+        
+        NSLayoutConstraint.activate([
+            issueLogo.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -35),
+            issueLogo.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -15),
+            issueLogo.widthAnchor.constraint(equalToConstant: 70),
+            issueLogo.heightAnchor.constraint(equalToConstant: 40)
+        ])
+       
+        
         
         //Last Digits
         

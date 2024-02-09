@@ -18,6 +18,19 @@ class WalletVC: ViewManagerVC, WalletTabBarProtocol {
     
     private var selectedTab: String = ""
     
+    init() {
+        super.init(nibName: nil, bundle: nil)
+        let accounts = presenter.getUserAccounts()
+        let cards = presenter.getUserCards()
+        
+        accountsCarrousel.createCarrousel(accounts: accounts)
+        cardsCarrousel.createCarrousel(cards: cards)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -100,11 +113,8 @@ class WalletVC: ViewManagerVC, WalletTabBarProtocol {
             accountsCarrousel.bottomAnchor.constraint(equalTo: self.view.bottomAnchor)
         ])
         
-        let accounts = presenter.getUserAccounts()
-        let cards = presenter.getUserCards()
+       
         
-        accountsCarrousel.createCarrousel(accounts: accounts)
-        cardsCarrousel.createCarrousel(cards: cards)
     }
     
     //Delegate

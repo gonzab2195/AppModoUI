@@ -9,15 +9,28 @@ import UIKit
 import WebKit
 
 class PromosVC: ViewManagerVC, WKNavigationDelegate {
-
+    
+    private let webView = WKWebView()
+    
+    init() {
+        super.init(nibName: nil, bundle: nil)
+       
+        
+        webView.navigationDelegate = self
+        webView.translatesAutoresizingMaskIntoConstraints = false
+        
+        let url = PromosPresenter.webviewURL
+        webView.load(URLRequest(url: url))
+        webView.allowsBackForwardNavigationGestures = true
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let webView = WKWebView()
-        webView.navigationDelegate = self
-       
-        
-        webView.translatesAutoresizingMaskIntoConstraints = false
         self.view.addSubview(webView)
         
         // Set up constraints
@@ -26,13 +39,7 @@ class PromosVC: ViewManagerVC, WKNavigationDelegate {
             webView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             webView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             webView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
-        ])
-       
-        
-        let url = PromosPresenter.webviewURL
-        webView.load(URLRequest(url: url))
-        webView.allowsBackForwardNavigationGestures = true
-       
+        ])  
     }
 
 }

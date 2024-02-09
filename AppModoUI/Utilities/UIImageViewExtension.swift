@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import PocketSVG
 
 extension UIImageView{
     func imageFrom(url:URL){
@@ -18,5 +19,27 @@ extension UIImageView{
                 }
             }
         }
+    }
+    
+    func loadSVG(_ url: URL, card: String){
+        DispatchQueue.global().async {
+            let bezierPaths = SVGBezierPath.pathsFromSVG(at: url)
+            DispatchQueue.main.async {
+                self.displaySVGImage(bezierPaths)
+            }
+        }
+    }
+    
+    func displaySVGImage(_ bezierPaths: [SVGBezierPath]){
+        let svgImage = SVGImageView()
+        svgImage.paths = bezierPaths
+        svgImage.translatesAutoresizingMaskIntoConstraints = false
+        svgImage.contentMode = .scaleAspectFit
+        self.addSubview(svgImage)
+        NSLayoutConstraint.activate([
+            svgImage.topAnchor.constraint(equalTo: self.topAnchor),
+            svgImage.bottomAnchor.constraint(equalTo: self.bottomAnchor),
+            svgImage.leadingAnchor.constraint(equalTo: self.leadingAnchor)
+        ])
     }
 }
