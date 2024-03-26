@@ -35,14 +35,18 @@ final class KeypadButton: UIButton {
         self.layer.cornerRadius = 5
         self.translatesAutoresizingMaskIntoConstraints = false
         
+        if keypad.imageName == KeypadImages.FaceId {
+            self.addTarget(self, action: #selector(KeypadButton.faceIdButtonTapped(sender:)), for: .touchUpInside)
+        } else {
+            self.addTarget(self, action: #selector(KeypadButton.buttonTapped(sender:)), for: .touchUpInside)
+        }
 
-        if(keypad.imageName != KeypadImages.Empty){
+        if keypad.imageName != KeypadImages.Empty {
             self.setImage(UIImage(named: keypad.imageName.rawValue), for: .normal)
-            self.addTarget(self, action: #selector(KeypadButton.imageButtonTapped(sender:)), for: .touchUpInside)
-        }else{
+        } else {
             let buttonContent = NumberPad(keypad: keypad)
             self.addSubview(buttonContent)
-            self.addTarget(self, action: #selector(KeypadButton.buttonTapped(sender:)), for: .touchUpInside)
+           
             
             NSLayoutConstraint.activate([
                 buttonContent.topAnchor.constraint(equalTo: self.topAnchor),
@@ -60,7 +64,7 @@ final class KeypadButton: UIButton {
         NotificationCenter.default.post(name: observerName, object: keypad)
     }
     
-    @objc func imageButtonTapped(sender: UIButton) {
+    @objc func faceIdButtonTapped(sender: UIButton) {
       
         NotificationCenter.default.post(name: Notification.Name(ObserversNames.USED_BIOMETRICS), object: "")
     }
